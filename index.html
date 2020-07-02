@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <style>
 .button {
   padding: 15px 25px;
@@ -14,7 +14,7 @@
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
-  margin: 10px;
+  margin: 3px;
 }
 
 .button:hover {background-color: #3e8e41}
@@ -60,11 +60,11 @@ body {
 <body>
 <h1 class="glow">Rock-Paper-Scissors</h1>
 
-
+<div class="btn-group">
 <button class="button" onclick="PlayRPS(0)">Rock!</button>
 <button class="button" onclick="PlayRPS(1)">Paper!</button>
 <button class="button" onclick="PlayRPS(2)">Scissors!</button>
-
+</div>
 
 <h1 style="font-size:3vw;" id="PlayersMove">Your Move: ?</h1>
 <h1 style="font-size:3vw;" id="AgentsMove">Computer's Move: ?</h1>
@@ -129,10 +129,6 @@ function PlayRPS(playerMove){
 
 	
 
-	//If we have played at least one match up-date statistics
-	if(NumberOfMatches > 0 ){
-		UpdateMoveStats(playerMove);
-	}
 	
 	NumberOfMatches = NumberOfMatches + 1; //Increment Match Count 
 	document.getElementById('NumberOfMatches').innerHTML = "Round: " + NumberOfMatches; //Display Match Number 
@@ -153,6 +149,13 @@ function PlayRPS(playerMove){
 	
 	
 	//return RPS_Strings[agentMove];
+	
+	//If we have played at least one match up-date statistics
+	if(NumberOfMatches > 0 ){
+		UpdateMoveStats(playerMove);
+	}
+	
+	
 	return;
 }
 
@@ -214,4 +217,5 @@ function DecideWinner(playerMove,agentMove){
 
 </body>
 </html> 
+
 
