@@ -1,238 +1,218 @@
 
-
 <!DOCTYPE html>
-
 <html>
-
-<html lang="en">
-<title>#8CANTWAIT</title>
-
-<!--
-<meta charset="UTF-8">
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
--->
-
 <style>
-.dropbtn {
-    position: relative;
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  left: 600px;
-   
-  
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  left: 600px;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown a:hover {background-color: #ddd; text-align: center;}
-
-.show {display: block; }
-
-.text-center {
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
   text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 9px #999;
+  margin: 100px;
 }
 
-h1 {
-text-align: center
-;}
+.button:hover {background-color: #3e8e41}
 
-h2 {
-text-align: center
-;}
-
-div {
-text-align: center;
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
-p {
-text-align: center;
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  background-color: black;
+  font-family: cursive;
 }
+
+.glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
 
 </style>
 </head>
 <body>
-<!-- Header -->
-<h1>
-<h2>Help implement #8CANTWAIT</h2>
-<p>Email the mayor of your city demanding change</p>
+<h1 class="glow">Rock-Paper-Scissors</h1>
 
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Find your city</button>
-  <div id="myDropdown" class="dropdown-content">
-  
-    <a onclick="window.open('mailto:tkeller@cabq.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Tim Keller ,%0A %0A My name is [name here]. I am a resident of Albuquerque, New Mexico and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Albuquerque, New Mexico</a>
- <a onclick="window.open('mailto:jeff.williams@arlingtontx.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Jeff Williams ,%0A %0A My name is [name here]. I am a resident of Arlington, Texas and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Arlington, Texas</a>
- <a onclick="window.open('mailto:kljohnson@atlantaga.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Keisha Bottoms ,%0A %0A My name is [name here]. I am a resident of Atlanta, Georgia and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Atlanta, Georgia</a>
- <a onclick="window.open('mailto:steve.adler@austintexas.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Stephen Adler ,%0A %0A My name is [name here]. I am a resident of Austin, Texas and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Austin, Texas</a>
- <a onclick="window.open('mailto:mayor@bakersfieldcity.us?subject=I Want To See Change (8CANTWAIT)&body=Mayor Karen Goh ,%0A %0A My name is [name here]. I am a resident of Bakersfield, California and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Bakersfield, California</a>
- <a onclick="window.open('mailto:mayor@baltimorecity.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Bernard  Young ,%0A %0A My name is [name here]. I am a resident of Baltimore, Maryland and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Baltimore, Maryland</a>
- <a onclick="window.open('mailto:mayor@boston.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Martin Walsh ,%0A %0A My name is [name here]. I am a resident of Boston, Massachusetts and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Boston, Massachusetts</a>
- <a onclick="window.open('mailto:vlyles@charlottenc.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Vi Lyles ,%0A %0A My name is [name here]. I am a resident of Charlotte, North Carolina and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Charlotte, North Carolina</a>
- <a onclick="window.open('mailto:alyssa.fisher@cityofchicago.org?subject=I Want To See Change (8CANTWAIT)&body=Mayor Lori Lightfoot ,%0A %0A My name is [name here]. I am a resident of Chicago, Illinois and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Chicago, Illinois</a>
- <a onclick="window.open('mailto:vmccall@city.cleveland.oh.us?subject=I Want To See Change (8CANTWAIT)&body=Mayor Frank Jackson ,%0A %0A My name is [name here]. I am a resident of Cleveland, Ohio and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Cleveland, Ohio</a>
- <a onclick="window.open('mailto:jsuthers@springsgov.com?subject=I Want To See Change (8CANTWAIT)&body=Mayor John W. Suthers ,%0A %0A My name is [name here]. I am a resident of Colorado Springs, Colorado and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Colorado Springs, Colorado</a>
- <a onclick="window.open('mailto:311@columbus.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Andrew J. Ginther ,%0A %0A My name is [name here]. I am a resident of Columbus, Ohio and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Columbus, Ohio</a>
- <a onclick="window.open('mailto:eric.johnson@dallascityhall.com?subject=I Want To See Change (8CANTWAIT)&body=Mayor Eric Johnson ,%0A %0A My name is [name here]. I am a resident of Dallas, Texas and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Dallas, Texas</a>
- <a onclick="window.open('mailto:ayorsoffice@denvergov.org?subject=I Want To See Change (8CANTWAIT)&body=Mayor Michael B. Hancock ,%0A %0A My name is [name here]. I am a resident of Denver, Colorado and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Denver, Colorado</a>
- <a onclick="window.open('mailto:dugganm@detroitmi.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Mike Duggan ,%0A %0A My name is [name here]. I am a resident of Detroit, Michigan and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Detroit, Michigan</a>
- <a onclick="window.open('mailto:mayor@elpasotexas.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Dee Margo ,%0A %0A My name is [name here]. I am a resident of El Paso, Texas and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">El Paso, Texas</a>
- <a onclick="window.open('mailto:betsy.price@fortworthtexas.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Betsy Price ,%0A %0A My name is [name here]. I am a resident of Fort Worth, Texas and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Fort Worth, Texas</a>
- <a onclick="window.open('mailto:mayor@fresno.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Lee Brand ,%0A %0A My name is [name here]. I am a resident of Fresno, California and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Fresno, California</a>
- <a onclick="window.open('mailto:mayor@honolulu.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Kirk Caldwell ,%0A %0A My name is [name here]. I am a resident of Honolulu, Hawaii and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Honolulu, Hawaii</a>
- <a onclick="window.open('mailto:mayor@houstontx.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Sylvester Turner ,%0A %0A My name is [name here]. I am a resident of Houston, Texas and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Houston, Texas</a>
- <a onclick="window.open('mailto:julie.marvel@indy.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Joseph Hogsett ,%0A %0A My name is [name here]. I am a resident of Indianapolis, Indiana and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Indianapolis, Indiana</a>
- <a onclick="window.open('mailto:mayorlennycurry@coj.net?subject=I Want To See Change (8CANTWAIT)&body=Mayor Lenny Curry ,%0A %0A My name is [name here]. I am a resident of Jacksonville, Florida and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Jacksonville, Florida</a>
- <a onclick="window.open('mailto:quinton.lucas@kcmo.org?subject=I Want To See Change (8CANTWAIT)&body=Mayor Quinton Lucas ,%0A %0A My name is [name here]. I am a resident of Kansas City, Missouri and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Kansas City, Missouri</a>
- <a onclick="window.open('mailto:earochi@lasvegasnevada.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Carolyn Goodman ,%0A %0A My name is [name here]. I am a resident of Las Vegas, Nevada and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Las Vegas, Nevada</a>
- <a onclick="window.open('mailto:mayor@longbeach.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Robert Garcia ,%0A %0A My name is [name here]. I am a resident of Long Beach, California and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Long Beach, California</a>
- <a onclick="window.open('mailto:mayor.garcetti@lacity.org?subject=I Want To See Change (8CANTWAIT)&body=Mayor Eric Garcetti ,%0A %0A My name is [name here]. I am a resident of Los Angeles, California and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Los Angeles, California</a>
- <a onclick="window.open('mailto:greg.fischer@louisvilleky.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Greg Fischer ,%0A %0A My name is [name here]. I am a resident of Louisville, Kentucky and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Louisville, Kentucky</a>
- <a onclick="window.open('mailto:mayor@memphistn.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Jim Strickland ,%0A %0A My name is [name here]. I am a resident of Memphis, Tennessee and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Memphis, Tennessee</a>
- <a onclick="window.open('mailto:mayor@mesaaz.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor John Giles ,%0A %0A My name is [name here]. I am a resident of Mesa, Arizona and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Mesa, Arizona</a>
- <a onclick="window.open('mailto:cgimenez@miamidade.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Francis Suarez ,%0A %0A My name is [name here]. I am a resident of Miami, Florida and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Miami, Florida</a>
- <a onclick="window.open('mailto:cgimenez@miamidade.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Carlos Gimenez,%0A %0A My name is [name here]. I am a resident of Miami-Dade, Florida and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Miami-Dade, Florida</a>
- <a onclick="window.open('mailto:mayor@milwaukee.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Tom Barrett ,%0A %0A My name is [name here]. I am a resident of Milwaukee, Wisconsin and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Milwaukee, Wisconsin</a>
- <a onclick="window.open('mailto:mayor@nashville.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor John Cooper ,%0A %0A My name is [name here]. I am a resident of Nashville, Tennessee and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Nashville, Tennessee</a>
- <a onclick="window.open('mailto:mayor@nola.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor LaToya Cantrell ,%0A %0A My name is [name here]. I am a resident of New Orleans, Louisiana and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">New Orleans, Louisiana</a>
- <a onclick="window.open('mailto:acaplan@cityhall.nyc.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Bill de Blasio ,%0A %0A My name is [name here]. I am a resident of New York, New York and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">New York, New York</a>
- <a onclick="window.open('mailto:officeofthemayor@oaklandnet.com?subject=I Want To See Change (8CANTWAIT)&body=Mayor Elizabeth Schaaf ,%0A %0A My name is [name here]. I am a resident of Oakland, California and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Oakland, California</a>
- <a onclick="window.open('mailto:mayor@okc.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor David Holt ,%0A %0A My name is [name here]. I am a resident of Oklahoma City, Oklahoma and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Oklahoma City, Oklahoma</a>
- <a onclick="window.open('mailto:mayor.stothert@cityofomaha.org?subject=I Want To See Change (8CANTWAIT)&body=Mayor Jean Stothert ,%0A %0A My name is [name here]. I am a resident of Omaha, Nebraska and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Omaha, Nebraska</a>
- <a onclick="window.open('mailto:james.kenney@phila.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor James Kenney ,%0A %0A My name is [name here]. I am a resident of Philadelphia, Pennsylvania and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Philadelphia, Pennsylvania</a>
- <a onclick="window.open('mailto:mayor.gallego@phoenix.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Kate Gallego ,%0A %0A My name is [name here]. I am a resident of Phoenix, Arizona and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Phoenix, Arizona</a>
- <a onclick="window.open('mailto:mayorwheeler@portlandoregon.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Ted Wheeler ,%0A %0A My name is [name here]. I am a resident of Portland, Oregon and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Portland, Oregon</a>
- <a onclick="window.open('mailto:mary-ann.baldwin@raleighnc.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Mary-Ann Baldwin ,%0A %0A My name is [name here]. I am a resident of Raleigh, North Carolina and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Raleigh, North Carolina</a>
- <a onclick="window.open('mailto:mayorsteinberg@cityofsacramento.org?subject=I Want To See Change (8CANTWAIT)&body=Mayor Darrell Steinberg ,%0A %0A My name is [name here]. I am a resident of Sacramento, California and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Sacramento, California</a>
- <a onclick="window.open('mailto:on.nirenberg@sanantonio.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Ron Nirenberg ,%0A %0A My name is [name here]. I am a resident of San Antonio, Texas and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">San Antonio, Texas</a>
- <a onclick="window.open('mailto:kevinfaulconer@sandiego.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Kevin Faulconer ,%0A %0A My name is [name here]. I am a resident of San Diego, California and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">San Diego, California</a>
- <a onclick="window.open('mailto:mayorlondonbreed@sfgov.org?subject=I Want To See Change (8CANTWAIT)&body=Mayor London Breed ,%0A %0A My name is [name here]. I am a resident of San Francisco, California and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">San Francisco, California</a>
- <a onclick="window.open('mailto:mayoremail@sanjoseca.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Sam Liccardo ,%0A %0A My name is [name here]. I am a resident of San Jose, California and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">San Jose, California</a>
- <a onclick="window.open('mailto:jenny.durkan@seattle.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Jenny Durkan ,%0A %0A My name is [name here]. I am a resident of Seattle, Washington and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Seattle, Washington</a>
- <a onclick="window.open('mailto:jane.castor@tampagov.net?subject=I Want To See Change (8CANTWAIT)&body=Mayor Jane Castor ,%0A %0A My name is [name here]. I am a resident of Tampa, Florida and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Tampa, Florida</a>
- <a onclick="window.open('mailto:mayor.romero@tucsonaz.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Regina Romero ,%0A %0A My name is [name here]. I am a resident of Tucson, Arizona and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Tucson, Arizona</a>
- <a onclick="window.open('mailto:mayor@cityoftulsa.org?subject=I Want To See Change (8CANTWAIT)&body=Mayor G. T. Bynum ,%0A %0A My name is [name here]. I am a resident of Tulsa, Oklahoma and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Tulsa, Oklahoma</a>
- <a onclick="window.open('mailto:bdyer@vbgov.com?subject=I Want To See Change (8CANTWAIT)&body=Mayor Bob Dyer ,%0A %0A My name is [name here]. I am a resident of Virginia Beach, Virginia and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Virginia Beach, Virginia</a>
- <a onclick="window.open('mailto: tomas.talamante@dc.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Muriel Bowser,%0A %0A My name is [name here]. I am a resident of Washington, DC and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Washington, DC</a>
- <a onclick="window.open('mailto:bwhipple@wichita.gov?subject=I Want To See Change (8CANTWAIT)&body=Mayor Brandon Whipple ,%0A %0A My name is [name here]. I am a resident of Wichita, Kansas and I urge you to take the pledge to enact the #8CantWait Use of Force policies. I know in highlight of the recent events you’ve come to realize that our city needs a change in policing. %0A %0A The #8CantWait policies are simple, common-sense and would make our community safer. Can you commit to the following policies? %0A 1. Ban Chokeholds and Strangleholds %0A 2. Require De-escalation %0A 3. Require Warning Before Shooting %0A 4. Require Exhaust All Alternatives Before Shooting %0A 5. Require Duty to Intervene %0A 6. Ban Shooting at Moving Vehicles %0A 7. Requires Use of Force Continuum  %0A 8. Requires Comprehensive Reporting %0A %0A For more information, you can visit https://8cantwait.org/. %0A Please take action immediately towards a safer future. It is needed and overdue. %0A %0A Sincerely, %0A [name here] %0A ');">Wichita, Kansas</a>
 
-  </div>
-</div>
-</h1>
+<button class="button" onclick="PlayRPS(0)">Play Rock!</button>
+<button class="button" onclick="PlayRPS(1)">Play Paper!</button>
+<button class="button" onclick="PlayRPS(2)">Play Scissors!</button>
+
+
+<h1 style="font-size:3vw;" id="PlayersMove">Your Move: ?</h1>
+<h1 style="font-size:3vw;" id="AgentsMove">Computer's Move: ?</h1>
+<h1 style="font-size:3vw;" id="NumberOfPlayerWins">Your Score: 0</h1>
+<h1 style="font-size:3vw;" id="NumberOfAgentWins">Computer's Score: 0</h1>
+<h1 style="font-size:3vw;" id="NumberOfMatches">Round: 0</h1>
+
+<p style="font-size:2vw;">Thank you for playing this thrilling game of Rock-Paper-Scissors!</p>
+
+<p>This text has been left here to make the webpage appear more official. This is what the copywrite symbol looks like: &copy;</p>
+
+
+<p id="PlayersMove"></p>
+<p id="AgentsMove"></p>
+<p id="NumberOfMatches"></p>
+<p id="NumberOfPlayerWins"></p>
+<p id="NumberOfAgentWins"></p>
+
+
+
+
+
 
 
 <script>
+//These are text field labels 
+var NumberOfMatches = 0;
+var NumberOfPlayerWins = 0;
+var NumberOfAgentWins = 0;
 
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
+var agentMove = 0; //Default as 0, it makes no difference in the logic
+
+var x = 0;
+
+var PayOffMatrix = [
+   [0, 1, -1],
+   [-1, 0, 1],
+   [1, -1, 0],
+];
+
+
+var PredictionMatrix = [
+   [0, 0, 0], 
+   [0, 0, 0], 
+   [0, 0, 0],
+];
+
+
+var AppropriateCounterResponse = [1 , 2 , 0 ]; //Appropriate Counter Response For a Particular Move P > R , S > P , R > S 
+
+
+var RPS_Strings = ["Rock","Paper","Scissors"];
+
 function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+	document.getElementById('demo1').innerHTML = "Your Move: "+ RPS_Strings[agentMove];
+  return x;
 }
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
+
+
+function PlayRPS(playerMove){
+
+	
+
+	//If we have played at least one match up-date statistics
+	if(NumberOfMatches > 0 ){
+		UpdateMoveStats(playerMove);
+	}
+	
+	NumberOfMatches = NumberOfMatches + 1; //Increment Match Count 
+	document.getElementById('NumberOfMatches').innerHTML = "Round: " + NumberOfMatches; //Display Match Number 
+	
+	
+	
+	
+	//Get the Agents Move 
+	agentMove = GetAgentsMove();
+	
+	//Decide Winner 
+	DecideWinner(playerMove,agentMove);
+	
+	//Display Players Move 
+	document.getElementById('PlayersMove').innerHTML = "Your Move: "+RPS_Strings[playerMove];
+	//Display Agents Move 
+	document.getElementById('AgentsMove').innerHTML = "Computer's Move: "+ RPS_Strings[agentMove];
+	
+	
+	//return RPS_Strings[agentMove];
+	return;
 }
+
+
+function UpdateMoveStats(playerMove){
+	PredictionMatrix[agentMove][playerMove] = PredictionMatrix[agentMove][playerMove]  + 1;
+}
+
+
+
+function GetAgentsMove(){
+
+	if( Math.random() > 0.5 ){
+	
+		potentialMove = Math.floor(Math.random() * 3);
+		
+		maxMoveFreq = 0;
+		
+		for (i = 0; i < 3; i++) {
+		
+			if( PredictionMatrix[agentMove][i]  > maxMoveFreq ){
+				maxMoveFreq = PredictionMatrix[agentMove][i];
+				potentialMove = AppropriateCounterResponse[i];
+			}
+			
+		}
+		
+		return potentialMove;
+		
+	}else {
+	
+	return Math.floor(Math.random() * 3); //With a certain chance we simply choose uniformly at random
+	
+	}
+}
+
+function DecideWinner(playerMove,agentMove){
+
+    if(PayOffMatrix[agentMove][playerMove] == 1 ){
+	
+		NumberOfPlayerWins = NumberOfPlayerWins + 1;
+		
+		document.getElementById('NumberOfPlayerWins').innerHTML = "Your score: " + NumberOfPlayerWins;
+		
+	}else if(PayOffMatrix[agentMove][playerMove] == -1 ){
+	
+		NumberOfAgentWins = NumberOfAgentWins + 1;
+		
+		document.getElementById('NumberOfAgentWins').innerHTML = "Computer's Score: " + NumberOfAgentWins;
+		
+	}
+	
+	//return RPS_Strings[agentMove];
+	
+}
+
 </script>
-
-<!--
-<script>
-window.open('mailto:ThisIsTheEmail@aol.org?subject=This is what my email is about&body=Hello, my name is [name here]. I have things I want to tell you.');
-</script>
-
-
-<button type="button" style="height: 50px; width: 200px"
-onclick="window.open('mailto:Miami@aol.org?subject=This is what my email is about&body=Hello Miami, my name is [name here]. I have things I want to tell you.');">
-Miami</button>
-
-
-<button type="button big-btn" style="height: 50px; width: 200px"
-onclick="window.open('mailto:NewYork@aol.org?subject=This is what my email is about&body=Hello New York, my name is [name here]. I have things I want to tell you.');">
-New York</button>
-
-
-<button type="button big-btn" style="height: 50px; width: 200px"
-onclick="window.open('mailto:LosAngeles@aol.org?subject=This is what my email is about&body=Hello Los Angeles, my name is [name here]. I have things I want to tell you.');">
-Los Angeles</button>
--->
-
-
-
-<p id="demo"></p>
-
-<script>
-openFile=fopen('C:\Users\MyAccount\Desktop\database.txt',0);
- readString = fread(openFile,flength(file);
-document.getElementById("demo").innerHTML = "hello";
-</script>
-
-<!--
-
-
-<script>
-openFile=fopen('C:\Users\MyAccount\Desktop\database.txt',0);
- readString = fread(openFile,flength(file) ;
-  document.getElementById("demo").innerHTML = "hello";
-// import fs module in which readFile function is specified.
- 
-const fsLibrary  = require('fs')
- 
-fsLibrary.readFile('C:\Users\MyAccount\Desktop\database.txt', (error, txtString) => {
- 
-    if (error) throw err;
- 
-    console.log(txtString.toString());
- 
-})
-
- document.getElementById("demo").innerHTML = res;
-</script>
--->
 
 
 </body>
 </html> 
+
