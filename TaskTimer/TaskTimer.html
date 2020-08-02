@@ -82,6 +82,8 @@ function diff_minutes(dt2, dt1)
  
  function getNumTasks() 
  {
+  clearTimeout(updateExpectedTimeContinuous);
+  clearInterval(updateExpectedTimeContinuousLOOP);
   initNumTasks = document.getElementById("numTasks").value;
   
   if(initNumTasks <= 0  ){
