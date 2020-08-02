@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+
+<style>
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+img {
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+      }
+</style>
+<div class = "center-screen">
+<title>Task Timer</title>
+
+<body>
+<!-- <h1> Task Timer </h1> -->
+
+<h1 id="clock"></h1>
+<h1 id="times"></h1>
+<h3> Initial Number of tasks: <input id = "numTasks" type="number" name="fname"><br> </h3>
+
+<button onclick ="getNumTasks()" onmouseenter = "SetImageByID('ResetTasksButtonImage','ResetNumTasksMouseOver.png')" onmouseleave = "SetImageByID('ResetTasksButtonImage','ResetNumTasks.png')" style="border-color:white"><img id = "ResetTasksButtonImage" src="ResetNumTasks.png"></button><br>
+<!-- <h3 id="InitNumTasks"></h3> -->
+<h1 id="TasksRemaing"></h1><br>
+<button onclick ="TaskCompleted()" onmouseenter = "SetImageByID('TaskCompletedButtonImage','TaskCompleteMouseOver.png')" onmouseleave = "SetImageByID('TaskCompletedButtonImage','TaskComplete.png')" style="border-color:white"><img id = "TaskCompletedButtonImage" src="TaskComplete.png"></button><br>
+ 
+ <h1 id="TimeRemaing"></h1><br>
+<h1 id="FinishTime"></h1><br>
+
+
+</div>
+
+<script>
+alert("Welcome to Task Timer");
+
+var timeRecord = [];
+var initNumTasks = 0;
+var numTasksRemain = 0;
+var currentTasksComplete = 0;
+var startTime = new Date();
+var myVar = setInterval(myTimer, 1000);
+var updateExpectedTimeContinuous = new setTimeout( TriggerContinuousUpdateExpectedTime , 1000);
+var updateExpectedTimeContinuousLOOP = new setInterval( TriggerContinuousUpdateExpectedTime , 1000);
+
+function myTimer() {
+  var d = new Date();
+  document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+}
+
+function SetImageByID(id,s)
+{
+document.getElementById(id).src = s;
+}
+
+
+function diff_minutes(dt2, dt1) 
+ {
+
+  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+  diff /= 60;
+  return Math.abs(Math.round(diff));
+  
+ }
+ 
+ 
+ function Clicked(){
+ var endTime   = new Date();
+ var seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+ timeRecord[timeRecord.length] = seconds;
+ document.getElementById("times").innerHTML = timeRecord;
+ startTime = new Date();
+ }
+ 
+ function getNumTasks() 
+ {
+  initNumTasks = document.getElementById("numTasks").value;
+  
+  if(initNumTasks <= 0  ){
+  alert("Initial Number of tasks must be a strictly posisitve whole value");
+  initNumTasks =0;
+  return;
+  }
+  
+  if(initNumTasks != Math.round(initNumTasks)  ){
+  alert("Warning: Um...I'm not sure what you were going for with the whole fractional number of tasks thing so we are just going to take the ceiling.");
+  initNumTasks = Math.ceil(initNumTasks);
+  document.getElementById("numTasks").value = initNumTasks; 
+  }
+  
+  
+  numTasksRemain = initNumTasks;
+  //document.getElementById("InitNumTasks").innerHTML = "Initial Number of Tasks: " + initNumTasks; 
+  document.getElementById("TasksRemaing").innerHTML = "Tasks Remaining: " + numTasksRemain; 
+  document.getElementById("TimeRemaing").innerHTML = "";
+  document.getElementById("FinishTime").innerHTML = "";
+  timeRecord = [];
+  startTime = new Date(); //reset start time
+  }
+  
+  function resetAll()
+  {
+  
+  
+  }
+  
+  
+  function TaskCompleted() 
+ {
+  clearTimeout(updateExpectedTimeContinuous);
+  clearInterval(updateExpectedTimeContinuousLOOP);
+ 
+  numTasksRemain = numTasksRemain - 1;
+  document.getElementById("TasksRemaing").innerHTML = "Tasks Remaining: " + numTasksRemain; 
+  
+  
+  var endTime   = new Date();
+  var seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+  
+  timeRecord[timeRecord.length] = seconds;
+  currentTasksComplete = timeRecord.length;
+  
+  document.getElementById("TimeRemaing").innerHTML = ComputeHoursRemaing() + " hour(s) " + ComputeMinutesRemaing()  + " minute(s) " + ComputeSecondsRemaing() + " second(s)"; 
+  startTime = new Date(); //reset start time
+  ComputedExpectedFinishTime();
+  
+  updateExpectedTimeContinuous = setTimeout( TriggerContinuousUpdateExpectedTime , ComputeAverage()*1000);
+   //ComputeAverage()
+  }
+  
+  
+  function TriggerContinuousUpdateExpectedTime()
+  {
+  updateExpectedTimeContinuousLOOP = setInterval(ContinuousUpdateExpectedTime, 1000);
+  }
+  
+  function ContinuousUpdateExpectedTime()
+  {
+  var endTime   = new Date();
+  var seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+  timeRecord[currentTasksComplete] = seconds;
+  ComputedExpectedFinishTime();
+  timeRecord.shift();
+  
+  }
+  
+  function ComputeAverage(){
+  var sum = 0;
+  
+  for(var i = 0 ; i < timeRecord.length ; i++){
+  sum = sum + timeRecord[i];
+  }
+
+  return sum/timeRecord.length;
+  }
+  
+  
+  
+  
+  function ComputeTimeReamingAverage()
+  {
+  return ComputeAverage()*numTasksRemain;
+  }
+  
+  function ComputeSecondsRemaing()
+  {
+  var x = ComputeTimeReamingAverage() - 60*ComputeMinutesRemaing()- 3600*ComputeHoursRemaing();
+  return Math.floor(x);
+  }
+  
+  function ComputeMinutesRemaing()
+  {
+  var x = ComputeTimeReamingAverage() - 3600*ComputeHoursRemaing();
+  return Math.floor(x/60);
+  }
+  
+  function ComputeHoursRemaing()
+  {
+  return Math.floor(ComputeTimeReamingAverage()/(3600));
+  }
+  
+  function ComputedExpectedFinishTime()
+  {
+  var d = new Date();
+  
+  var secondsFromNow =  d.getSeconds() + ComputeSecondsRemaing();
+  var minutesFromNow =  d.getMinutes() + ComputeMinutesRemaing();
+  var hoursFromNow =  d.getHours() + ComputeHoursRemaing();
+  var future = new Date();
+  
+  var future = new Date(ComputeTimeReamingAverage()*1000 + d.getTime() );
+  
+  document.getElementById("FinishTime").innerHTML = "Estimated Finish Time: " + future.toLocaleTimeString();
+  
+  }
+  
+  
+	
+</script>
+
+
+</body>
+
+</html>
