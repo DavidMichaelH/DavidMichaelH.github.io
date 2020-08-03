@@ -14,7 +14,13 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-family:Candara,helvetica,arial,courier;
+  color:#2C3539;
   min-height: 100vh;
+}
+
+body{
+    background-color: #ff8c1a
 }
 
 img {
@@ -34,25 +40,32 @@ img {
 <title>Task Timer</title>
 
 <body>
-<h1> Task Timer </h1>
+<h1><img id = "TaskTimerLiteLogo" src="TaskTimerLiteLogo.png"></h1>
 
-<h1 id="clock"></h1>
+
 <h1 id="times"></h1>
 
-<h3> Initial Number of tasks: <input id = "numTasks" type="number" name="fname"></h3><br> 
+<h2> Initial Number of tasks: <input id = "numTasks" type="number" name="fname" style="font-size:25pt;height:30px;width:100px;"></h2><br> 
 
-<button onclick ="getNumTasks()" onmouseenter = "SetImageByID('ResetTasksButtonImage','ResetNumTasksMouseOver.png')" onmouseleave = "SetImageByID('ResetTasksButtonImage','ResetNumTasks.png')" style="border-color:white"><img id = "ResetTasksButtonImage" src="ResetNumTasks.png"></button><br>
 
+<!-- <button onclick ="getNumTasks()" onmouseenter = "SetImageByID('ResetTasksButtonImage','ResetNumTasksMouseOver.png')" onmouseleave = "SetImageByID('ResetTasksButtonImage','ResetNumTasks.png')" style="background-color:black"><img id = "ResetTasksButtonImage" src="ResetNumTasks.png"></button><br> -->
+<button id = "ResetTasks" onclick ="getNumTasks()" style="background-color:black" onmouseenter = "MouseEnter('ResetTasks')" onmouseleave = "MouseExit('ResetTasks')"><h1 id = "TaskComplete" style = "color:#ff8c1a;  font-family:Candara"> Start Tasks </h1> </button><br>
+ 
 <!-- <h3 id="InitNumTasks"></h3> -->
 <h1 id="TasksRemaing"></h1><br>
 
-<button onclick ="TaskCompleted()" onmouseenter = "SetImageByID('TaskCompletedButtonImage','TaskCompleteMouseOver.png')" onmouseleave = "SetImageByID('TaskCompletedButtonImage','TaskComplete.png')" style="border-color:white"><img id = "TaskCompletedButtonImage" src="TaskComplete.png"></button><br>
+<!-- <button onclick ="TaskCompleted()" onmouseenter = "SetImageByID('TaskCompletedButtonImage','TaskCompleteMouseOver.png')" onmouseleave = "SetImageByID('TaskCompletedButtonImage','TaskComplete.png')" style="background-color:black"><img id = "TaskCompletedButtonImage" src="TaskComplete.png"></button><br>-->
+
+<button id = "TaskCompleteButton" onclick ="TaskCompleted()" style="background-color:black" onmouseenter = "MouseEnter('TaskCompleteButton')" onmouseleave = "MouseExit('TaskCompleteButton')"><h1 id = "TaskComplete" style = "color:#ff8c1a;  font-family:Candara"> Task Completed </h1> </button><br>
+
+<button id = "PauseButton" onclick ="PauseTimer()" style="background-color:black" onmouseenter = "MouseExit('PauseButton')" onmouseleave = "MouseExit('PauseButton')"><h3 id = "TaskComplete" style = "color:#ff8c1a;  font-family:Candara"> Pause Timer </h3> </button><br>
  
  <h1 id="TimeRemaing"></h1><br>
 <h1 id="FinishTime"></h1><br>
+<h1 id="clock"></h1>
 <h1 id="Debug"></h1><br>
 
-<h1 id="tester" style="width:600px;height:250px;"></h1>
+<h1 id="tester" style="width:600px;height:250px;border:10px solid black;"></h1>
 
 
 </div>
@@ -68,7 +81,8 @@ var avgTimeRecord = [];
 var initNumTasks = 0;
 
 var numTasksRemain = 0;
-var currentTasksComplete = 0;
+var numTasksCompleted = 0;
+var currentArrayLength = 0;
 var startTime = new Date();
 var myVar = setInterval(myTimer, 1000);
 var updateExpectedTimeContinuous = 0;
@@ -77,7 +91,15 @@ var updateExpectedTimeContinuousLOOP = 0;
 //var updateExpectedTimeContinuousLOOP = new setInterval( ContinuousUpdateExpectedTime , 1000);
 //alert("test");
 
+function MouseEnter(id)
+{
+document.getElementById(id).style.backgroundColor = "#181818";
+}
 
+function MouseExit(id)
+{
+document.getElementById(id).style.backgroundColor = "black";
+}
 
 
 function myTimer() {
@@ -101,7 +123,8 @@ function diff_minutes(dt2, dt1)
  }
  
  
- function Clicked(){
+ function Clicked()
+ {
  var endTime   = new Date();
  var seconds = (endTime.getTime() - startTime.getTime()) / 1000;
  timeRecord[timeRecord.length] = seconds;
@@ -111,6 +134,12 @@ function diff_minutes(dt2, dt1)
  
  function getNumTasks() 
  {
+ 
+	if (!confirm('Are you sure you would like to begin a new sequence of tasks?')) {
+	return;
+	}
+ 
+ 
  
  if(updateExpectedTimeContinuous){
  clearTimeout(updateExpectedTimeContinuous);
@@ -158,16 +187,30 @@ function diff_minutes(dt2, dt1)
 	x: [],
 	y: [] }], {
 	margin: { t: 0 } } );
-  
+
   }
   
   
   function TaskCompleted() 
  {
+ 
+  
+  
   clearTimeout(updateExpectedTimeContinuous);
   clearInterval(updateExpectedTimeContinuousLOOP);
  
+
+ 
+	if(numTasksRemain < 1)
+	{
+	alert("You have no more tasks!");
+	return;
+	}
+ 
+ 
+ 
   numTasksRemain = numTasksRemain - 1;
+  numTasksCompleted = numTasksCompleted + 1;
   document.getElementById("TasksRemaing").innerHTML = "Tasks Remaining: " + numTasksRemain; 
   
   
@@ -175,7 +218,7 @@ function diff_minutes(dt2, dt1)
   var seconds = (endTime.getTime() - startTime.getTime()) / 1000;
   
   timeRecord[timeRecord.length] = seconds;
-  currentTasksComplete = timeRecord.length;
+  currentArrayLength = timeRecord.length;
   
   
   avgTimeRecord[avgTimeRecord.length] = ComputeAverage();
@@ -184,11 +227,76 @@ function diff_minutes(dt2, dt1)
   
   ComputedExpectedFinishTime();
   
-  updateExpectedTimeContinuous = setTimeout( TriggerContinuousUpdateExpectedTime , ComputeAverage()*1000);
+   updateExpectedTimeContinuous = setTimeout( TriggerContinuousUpdateExpectedTime , ComputeAverage()*1000);
    //ComputeAverage()
    PlotAvergageTimes();
    
+   
+   //Check if you finished
+   if(numTasksRemain == 0 )
+   {
+   
+   clearTimeout(updateExpectedTimeContinuous);
+	clearInterval(updateExpectedTimeContinuousLOOP);
+	 alert("You finished your tasks!");
+	if (confirm('Would you like to start a new task?')) {
+	// Save it!
+	console.log('Reset.');
+	resetPlot();
+	} 
+	else
+	{
+	// Do nothing!
+	console.log('Do nothing.');
+	}
+	 return;
+   }
+   
+   
+   
+   
   }
+  
+  
+  function PauseTimer()
+  {
+  
+  if(updateExpectedTimeContinuous){
+ clearTimeout(updateExpectedTimeContinuous);
+ updateExpectedTimeContinuous = 0;
+ }
+ 
+ if(updateExpectedTimeContinuousLOOP){
+ clearInterval(updateExpectedTimeContinuousLOOP);
+ updateExpectedTimeContinuousLOOP = 0;
+ }
+  
+  if(numTasksRemain > 0 )
+  {
+  var endTime   = new Date();
+  var seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+  timeRecord[timeRecord.length] = seconds;
+  
+  alert("Select OK to resume");
+  
+  
+  UnpauseTimer();
+
+  }
+  
+  }
+  
+  
+  function UnpauseTimer()
+  {
+  startTime = new Date();
+  if(numTasksCompleted > 0)
+  {
+  updateExpectedTimeContinuous = setTimeout( TriggerContinuousUpdateExpectedTime , ComputeAverage()*1000);
+  }
+  
+  }
+  
   
   
   function TriggerContinuousUpdateExpectedTime()
@@ -200,7 +308,7 @@ function diff_minutes(dt2, dt1)
   {
   var endTime   = new Date();
   var seconds = (endTime.getTime() - startTime.getTime()) / 1000;
-  timeRecord[currentTasksComplete] = seconds;
+  timeRecord[currentArrayLength] = seconds;
   ComputedExpectedFinishTime();
   timeRecord.pop();
   //document.getElementById("Debug").innerHTML = timeRecord; 
@@ -214,7 +322,7 @@ function diff_minutes(dt2, dt1)
   sum = sum + timeRecord[i];
   }
 
-  return sum/timeRecord.length;
+  return sum/numTasksCompleted ;
   }
   
   
@@ -270,7 +378,7 @@ function diff_minutes(dt2, dt1)
     Plotly.newPlot( TESTER, [{
 	x: I,
 	y: avgTimeRecord}], {
-	margin: { t: 0 } } );
+	margin: { t: 0 } }  );
 	
   }
   
