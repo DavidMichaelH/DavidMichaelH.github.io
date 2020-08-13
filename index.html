@@ -3,17 +3,20 @@
 <!--  https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm# -->
 
 <html>
+
 <title>Welcome and enjoy some games!</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 </style>
+       
 <body class="w3-light-grey w3-content" style="max-width:1600px">
-
+   
 
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
@@ -40,6 +43,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   </div>
 </nav>
 
+    
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
@@ -53,43 +57,72 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <div class="w3-container">
     <h1><b>Games and More!</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
+        
+        
       <span class="w3-margin-right">Filter:</span> 
-      <button class="w3-button w3-black">ALL</button>
-      <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>New</button>
-      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Hardcore Gaming</button>
-      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Just for fun</button>
+        
+        
+        <div id="myBtnContainer">
+      <button class="btn active w3-button w3-black" onclick="filterSelection('all')">ALL</button>
+      <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('cars')"><i class="fa fa-diamond w3-margin-right" ></i>New</button>
+            
+      <button class="btn w3-button w3-white  w3-hide-small" onclick="filterSelection('fruits')"><i class="fa fa-map-pin w3-margin-right" ></i>Hardcore Gaming</button>
+      <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('colors')"><i class="fa fa-map-pin w3-margin-right" ></i>Just for fun</button>
+        </div>
+        
     </div>
     </div>
+      
+      
+      
   </header>
-  
+    
+   
+    
+    
   <!-- First Photo Grid-->
   <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a href="RockPaperScissors.html" target="_blank"> <img src="RPS_Thumbnail.png" alt="RPS" style="width:100%" class="w3-hover-opacity"></a>
+      
+<div class="container">
+    <div class="w3-third w3-container w3-margin-bottom filterDiv cars">
+      <a href="RockPaperScissors.html" target="_blank"><img src="RPS_Thumbnail.png" alt="RPS" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
         <p><b>Rock-Paper-Scissors</b></p>
         <p>An implementaion of the cult classic and everybodys favorite, Rock-Paper-Scissors. Impress yourself and your friends with your ability to survive a head-2-head match with the most formidable computer opponent on the internet.</p>
       </div>
     </div>
-    <div class="w3-third w3-container w3-margin-bottom">
+          
+
+    <div class="w3-third w3-container w3-margin-bottom filterDiv fruits">
       <img src="TTT_Thumbnail.png" alt="TTT" style="width:100%" class="w3-hover-opacity">
       <div class="w3-container w3-white">
         <p><b>Tic-Tac-Toe</b></p>
         <p>Dive into an enthralling match of X's and O's.  Coming soon...</p>
       </div>
     </div>
-    <div class="w3-third w3-container">
+
+          
+    <div class="w3-third w3-container w3-margin-bottom filterDiv colors">
       <a href="RestaurantGame/index.html" target="_blank"> <img src="RestaurantWebImage.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
         <p><b>Demo Game (Alpha-ish version)</b></p>
         <p>Ever eaten at a restaurant and thought to yourself, "I could easily run this place." We'll now here is your chance. See if the service and food quality of your restaurant will draw new customers and keep old ones coming back in this exciting new Restaurant Sim.</p>
       </div>
     </div>
+      
+    
+    <div class="filterDiv cars">BMW</div>
+    
+    
+
+
+    
+      </div>
   </div>
   
   <!-- Second Photo Grid-->
   <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
+    <div class="w3-third w3-container w3-margin-bottom filterDiv colors fruits">
       <a href="TaskTimer/TaskTimer.html" target = "_blank" > <img src="TaskTimer/TaskTimerIcon.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
         <p><b>TaskTimerLite</b></p>
@@ -137,11 +170,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   //-->
 
   <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+      
     <h4><b>About this site</b></h4>
     <p>Just a collection of stuff haphazardly distributed and arbitrarly arranged according to no particular form or fashion.</p>
     <hr>
 	
 	
+      
+   
+      
     <!--
     <h4>Technical Skills</h4>
 	//-->
@@ -268,6 +305,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   </div>
   //-->
   
+    
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-32 w3-dark-grey">
@@ -312,19 +350,73 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 <!-- End page content -->
 </div>
-
+</div>
+    
+    
 <script>
+    
+/*
 // Script to open and close sidebar
-function w3_open() {
+function w3_open() 
+{
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("myOverlay").style.display = "block";
 }
  
-function w3_close() {
+function w3_close() 
+{
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
-</script>
+    
+*/
+    
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
 
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+    
+    
+    
+</script>
 </body>
+
 </html>
