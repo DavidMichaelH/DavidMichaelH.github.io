@@ -2,7 +2,7 @@
 <html>
     
     
-<title>Welcome and enjoy some games!</title>
+<title>Welcome and some Machine Learning!</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -70,7 +70,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <img src="GreenSquare.png" style="width:45%;" class="w3-round"><br><br>
+    <img src="IconsAndImages/GreenSquare.png" style="width:45%;" class="w3-round"><br><br>
     
       <p class = "w3-text-grey">
 Just a collection of stuff haphazardly distributed and arbitrarly arranged according to no particular form or fashion.</p>
@@ -78,7 +78,7 @@ Just a collection of stuff haphazardly distributed and arbitrarly arranged accor
   </div>
   <div class="w3-bar-block">
       
-    <a href="MachineLearningSite.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-laptop w3-margin-right"></i>Machine Learning</a> 
+    <a href="Pages/GameSite.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-gamepad fa-fw w3-margin-right"></i>Games</a> 
       
     <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>About</a> 
 
@@ -114,7 +114,7 @@ Just a collection of stuff haphazardly distributed and arbitrarly arranged accor
     <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
-    <h1><b>Games and More!</b></h1>
+    <h1><b>Machine Learning and More!</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
         
         
@@ -124,10 +124,13 @@ Just a collection of stuff haphazardly distributed and arbitrarly arranged accor
         <div id="myBtnContainer">
       <button class="btn active w3-button w3-black" onclick="filterSelection('All')" >All</button>
             
-      <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Simple')"  ><i class="fa fa-gamepad w3-margin-right"  ></i>Simple</button>
+      <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Examples')"  ><i class="fa fa-laptop w3-margin-right"  ></i>Examples</button>
             
-      <button class="btn w3-button w3-white  w3-hide-small" onclick="filterSelection('Sim')"><i class="fa fa-gamepad w3-margin-right" ></i>Sim</button>
-      <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Useful')"><i class="fa fa-laptop w3-margin-right" ></i>Utilities</button>
+            
+       <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Deep Learning')"><i class="fa fa-laptop w3-margin-right"  ></i>Deep Learning</button>
+        
+            
+      <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Unity')"><i class="fa fa-gamepad w3-margin-right" ></i>Unity</button>   
         </div>
         
     </div>
@@ -177,87 +180,84 @@ Just a collection of stuff haphazardly distributed and arbitrarly arranged accor
 <div class="container">
     
     
-    
-          
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Sim">
-      <a href="RestaurantGame/index.html" target="_blank"> <img src="\IconsAndImages\RestaurantWebImage.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+     <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
+      <a href="DeepQLearningDemo1/index.html" target="_blank"><img src="\IconsAndImages\DeepQLearningDemo1.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
-        <p><b>Restaurant</b></p>
-        <p>Ever eaten at a restaurant and thought to yourself, "I could easily run this place." We'll now here is your chance! </p>
-      </div>
-    </div>
-
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
-      <a href="Blastroid/Build5/index.html" target="_blank"> <img src="\Blastroid\BlastroidIcon2.png" alt="TTT" style="width:100%" class="w3-hover-opacity"> </a>
-      <div class="w3-container w3-white">
-        <p><b>Blastroid</b></p>
-        <p>See how long you can suvive navigating your starship in an asteriod belt located in a remote region in a neighoring galaxy. </p>
+        <p><b>Deep Q-Learning Demo</b></p>
+        <p>Play around with this interactive Deep Q-Learning Demo.</p>
       </div>
     </div>
     
     
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
-      <a href="Pong/Build1/index.html" target="_blank"> <img src="\IconsAndImages\PongGame.png" alt="TTT" style="width:100%" class="w3-hover-opacity"> </a>
-      <div class="w3-container w3-white">
-        <p><b>Pong</b></p>
-        <p>Want to Play Pong verse an Aritifical Neural Network? Then jump right in!</p>  <br><br>
-      </div>
-    </div>
-
-    
-    
-    
-    
-    
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
-      <a href="LinqKuatro/Build1/index.html" target = "_blank" ><img src="\IconsAndImages\Linq.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"> </a>
-      <div class="w3-container w3-white">
-        <p><b>4-in-a-Row</b></p>
-        <p> <br><br> Go head to head with the computer in an exciting match of Four-In-A-Row. See if you have what it takes!   </p>
-      </div>
-    </div>
-    
-    
-    
-    
-    
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
-      <a href="RockPaperScissors.html" target="_blank"><img src="\IconsAndImages\RPS_Thumbnail.png" alt="RPS" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>Rock-Paper-Scissors</b></p>
-        <p>An implementaion of the cult classic and everybodys favorite, Rock-Paper-Scissors. Impress yourself and your friends with your ability to survive a head-2-head match.</p>
-      </div>
-    </div>
-      
-    
-    
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Useful Simple">
-      <a href="TaskTimer/TaskTimer.html" target = "_blank" > <img src="TaskTimer\TaskTimerIcon.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>TaskTimerLite</b></p>
-        <p>Do you have a lot of repative tasks you need to carry out and way to estimate when you will be done. Then see if Task Timer is right for you!</p>
-      </div>
-    </div>
-    
-    
-    
- 
-
-      
-    
-            
     <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
-      <a href="https://colab.research.google.com/github/DavidMichaelH/DavidMichaelH.github.io/blob/master/QuantumMarkovChains.ipynb" target="_blank"><img src="IconsAndImages\QuantumIcon.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+      <a href="https://colab.research.google.com/gist/DavidMichaelH/cfc2759ec907681262b84c5e2516d59c/basicann.ipynb" target="_blank"><img src="IconsAndImages\MLIcons\ANN_ExamplePng.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
-        <p><b>Quantum Markov Chains</b></p>
-        <p>Play around with some Quantum Markov Chains.</p>    
+        <p><b>ANN Example</b></p>
+        <p>An implementaion of a dense Artificial Neural Network.</p>
       </div>
     </div>
     
     
-      
+    <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
+      <a href="https://colab.research.google.com/github/DavidMichaelH/DavidMichaelH.github.io/blob/master/CNN_Example.ipynb" target="_blank"><img src="IconsAndImages\MLIcons\CNN_ExamplePng.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>CNN Example</b></p>
+        <p>An implementaion of a Convolutional Neural Network. Coming soon...</p>
+      </div>
+    </div>
+        
     
-      
+    <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
+      <a target="_blank"> <img src="IconsAndImages\MLIcons\RNN_ExamplePng.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>RNN Example</b></p>
+        <p>An implementaion of an Recurrent Neural Network example. Coming soon...</p>
+      </div>
+    </div>
+
+    <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
+      <a target="_blank"> <img src="IconsAndImages\MLIcons\GAN_ExamplePng.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>GAN Example</b></p>
+        <p>An implementaion of an generative adversarial network example. Coming soon...</p>
+      </div>
+    </div>
+    
+    <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
+      <a href="https://colab.research.google.com/github/DavidMichaelH/DavidMichaelH.github.io/blob/master/DeepDream.ipynb" target="_blank"><img src="IconsAndImages\MLIcons\DreamPng.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Fun Example</b></p>
+        <p>An implementaion of a "Deep Dream"-Like Algorithm.</p>
+      </div>
+    </div>
+    
+    
+
+    
+    <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
+      <a href="https://colab.research.google.com/gist/DavidMichaelH/cfc2759ec907681262b84c5e2516d59c/basicann.ipynb" target="_blank"><img src="\IconsAndImages\ComingSoonLarge.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Exciting Project</b></p>
+        <p>Something interesting...</p>
+      </div>
+    </div>
+    
+    <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
+      <a href="https://colab.research.google.com/gist/DavidMichaelH/cfc2759ec907681262b84c5e2516d59c/basicann.ipynb" target="_blank"><img src="\IconsAndImages\ComingSoonLarge.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Exciting Project</b></p>
+        <p>Something interesting...</p>
+      </div>
+    </div>
+        
+    
+    <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
+      <a href="https://colab.research.google.com/github/DavidMichaelH/DavidMichaelH.github.io/blob/master/MultiArmedBandit.ipynb" target="_blank"><img src="\IconsAndImages\MultiArmedBandits.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Multi-Armed Bandit</b></p>
+        <p>An implementation of some common Multi-Armed Bandit Algorithms in python.</p>
+      </div>
+    </div>
 
     
       </div>
