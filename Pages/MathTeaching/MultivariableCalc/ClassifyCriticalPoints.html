@@ -1,0 +1,558 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script src="https://unpkg.com/mathjs@9.3.2/lib/browser/math.js" type="text/javascript"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <title>Classifying Critical Points Practice</title>
+
+</head>
+<style>
+    /* Red border */
+    hr.new1 {
+        border-top: 1px solid red;
+    }
+
+    /* Dashed red border */
+    hr.new2 {
+        border-top: 1px dashed red;
+    }
+
+    /* Dotted red border */
+    hr.new3 {
+        border-top: 1px dotted red;
+    }
+
+    /* Thick red border */
+    hr.new4 {
+        border: 1px solid red;
+    }
+
+    /* Large rounded green border */
+    hr.new5 {
+        border: 10px solid green;
+        border-radius: 5px;
+    }
+
+
+
+
+
+    /* Style the button that is used to open and close the collapsible content */
+    .collapsible {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    .active,
+    .collapsible:hover {
+        background-color: #ccc;
+    }
+
+    /* Style the collapsible content. Note: hidden by default */
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>
+
+
+<body onload="PageLoad()">
+
+    <h id="test"> </h> <br>
+    <h id="debug_1"> </h> <br>
+    <h id="debug_2"> </h> <br>
+
+
+    <hr>
+    <h1> Classifying Critical Points Refresher </h1>
+    <button type="button" class="collapsible">Show Refresher</button>
+    <div class="content">
+
+
+        <h3> First find all <em>critical points</em> which are the points \( (x,y) \) which solve, $$ \begin{cases}
+            f_x(x,y) = 0 \\ f_y(x,y) = 0 \end{cases} $$ simultaneously. </h3>
+        <h3> Next compute all second order partial derivatives, \(f_{xx},f_{yy}\), and \(f_{xy} \). </h3>
+
+
+        <h3> For each critical point, \( (a,b) \), evaluate the Hessian determinant applied to each critical point,
+            $$ D = f_{xx}(a,b) f_{yy}(a,b) - f_{xy}(a,b)^2 $$ </h3>
+
+        <h3> Then you can classify the critical point according to the following rules, </h3>
+        <ol>
+            <li>If \(D> 0\) and \(f_{xx}(a,b) >0 \) then \((a,b)\) is a local minimum, </li>
+            <li>If \(D > 0\) and \(f_{xx}(a,b) < 0 \) then \((a,b)\) is a local maximum, </li>
+            <li>If \(D < 0\) then \((a,b)\) is a saddle-point,</li>
+            <li>If \(D = 0\) then the second-derivative test failed.</li>
+        </ol>
+
+
+    </div>
+    <hr>
+
+    <h1> Generate Single Critical Point Examples </h1>
+
+
+    <button onclick="RandomQuadFormExample()">New Problem</button>
+
+    <h2> Find and classify the critical point of the function <h id="functionProblem"> </h>
+    </h2> <br>
+
+
+    <button type="button" class="collapsible">Show/Hide Answers</button>
+    <div class="content">
+        <h3> First we can compute the partial derivatives of \(f\) and set them equal to zero, <br>
+            <h id="Gradient"> </h>
+        </h3>
+
+        <h3> We can simplify these equations to become <br>
+            <h id="SystemOfEquations"> </h>
+        </h3>
+
+        <h3> We can solve these equations to find the only critical point, <h id="CriticalPoints"> </h>
+        </h3>
+
+
+        <h3> Next, we have to compute all second order partial derivatives of \(f\), <br>
+            <h id="SecondDers"> </h>
+        </h3>
+
+
+        <h3> Of course this then gives, <br>
+            <h id="SecondDersEvaluated"> </h>
+        </h3>
+
+
+        <h3>
+            <h id="HessianExplainResult"> </h> <br>
+        </h3>
+
+    </div>
+    <hr>
+
+    <script>
+        //alert('Hello, world!');
+
+        function PageLoad() {
+            //document.getElementById("test").innerHTML = "hellooooo";
+            RandomQuadFormExample();
+            //document.getElementById("test").innerHTML = "byeeeee";
+        }
+
+
+
+        function QuadFormDataToString(QuadFormData) {
+
+
+
+            Q = QuadFormData[0];
+            f = QuadFormData[1];
+            w = QuadFormData[2];
+
+
+
+            q1 = Q.subset(math.index(0, 0));
+            q2 = Q.subset(math.index(0, 1));
+            q3 = Q.subset(math.index(1, 1));
+
+
+
+            f1 = f.subset(math.index(0, 0));
+            f2 = f.subset(math.index(1, 0));
+
+            var values = [q1, q2, q3, f1, f2];
+            var variables = ["x^2", "xy", "y^2", "x", "y"];
+            startedString = false;
+
+
+
+
+            strOut = "";
+
+            for (var i = 0; i < values.length; i++) {
+
+
+
+                if (values[i] < 0) {
+
+
+                    if (values[i] == -1) {
+
+                        startedString = true;
+
+                        strOut = strOut.concat(" - ", variables[i]);
+
+
+
+                    }
+                    else {
+
+                        startedString = true;
+
+                        strOut = strOut.concat(values[i].toString(), variables[i]);
+
+                    }
+
+
+                }
+                else {
+                    if (values[i] > 0) {
+
+                        if (values[i] == 1) {
+
+                            if (startedString) {
+                                strOut = strOut.concat(" + ", variables[i]);
+                            }
+                            else {
+                                startedString = true;
+                                strOut = strOut.concat(variables[i]);
+                            }
+
+                        }
+                        else {
+
+                            if (startedString) {
+                                strOut = strOut.concat(" + ", values[i].toString(), variables[i]);
+                            }
+                            else {
+                                startedString = true;
+                                strOut = strOut.concat(values[i].toString(), variables[i]);
+                            }
+                        }
+
+
+                    }
+                }
+
+            }
+
+
+            if (w > 0) {
+                strOut = strOut.concat(" + ", w.toString());
+            } else {
+                if (w < 0) {
+                    strOut = strOut.concat(w.toString());
+                }
+            }
+            funcHeader = "$$ f(x,y) = ";
+            funcEnder = "$$";
+
+            strOut = funcHeader.concat(strOut);
+            strOut = strOut.concat(funcEnder);
+
+            return strOut;
+        }
+
+        function QuadFormGradientDataToString(QuadFormData) {
+
+            Q = QuadFormData[0];
+            f = QuadFormData[1];
+
+            q1 = Q.subset(math.index(0, 0));
+            q2 = Q.subset(math.index(0, 1));
+            q3 = Q.subset(math.index(1, 1));
+
+            f1 = f.subset(math.index(0, 0));
+            f2 = f.subset(math.index(1, 0));
+
+            strOut = ExpressionBuilder([2 * q1, q2], f1, ["x", "y"], "$$ \\begin{cases} f_x(x,y) = ", " = 0 \\\\");
+            strOut = strOut.concat(ExpressionBuilder([q2, 2 * q3], f2, ["x", "y"], " f_y(x,y) = ", "  = 0 \\end{cases} $$"));
+
+            return strOut;
+        }
+
+
+        function ExpressionBuilder(coeffs, constant, variables, ExprHeader, ExprEnder) {
+
+            startedString = false;
+
+            strOut = "";
+
+            for (var i = 0; i < coeffs.length; i++) {
+
+                if (coeffs[i] < 0) {
+
+
+                    if (coeffs[i] == -1) {
+
+                        startedString = true;
+
+                        strOut = strOut.concat(" - ", variables[i]);
+
+                    }
+                    else {
+
+                        startedString = true;
+
+                        strOut = strOut.concat(coeffs[i].toString(), variables[i]);
+
+                    }
+
+                }
+                else {
+                    if (coeffs[i] > 0) {
+
+                        if (coeffs[i] == 1) {
+
+                            if (startedString) {
+                                strOut = strOut.concat(" + ", variables[i]);
+                            }
+                            else {
+                                startedString = true;
+                                strOut = strOut.concat(variables[i]);
+                            }
+
+                        }
+                        else {
+
+                            if (startedString) {
+                                strOut = strOut.concat(" + ", coeffs[i].toString(), variables[i]);
+                            }
+                            else {
+                                startedString = true;
+                                strOut = strOut.concat(coeffs[i].toString(), variables[i]);
+                            }
+                        }
+
+
+                    }
+                }
+
+            }
+
+
+            if (constant > 0) {
+                strOut = strOut.concat(" + ", constant.toString());
+            } else {
+                if (constant < 0) {
+                    strOut = strOut.concat(constant.toString());
+                }
+            }
+
+
+            strOut = ExprHeader.concat(strOut);
+            strOut = strOut.concat(ExprEnder);
+
+            return strOut;
+        }
+
+
+        //Generate Quadratic Form Example for a given critical point and classification
+        // if SIGN > 0 then det(Q) > 0 , if SIGN < 0 then det(Q) < 0, if SIGN ==0 then no constraint on det(Q)
+        function RandomQuadFormExample() {
+
+            const ProbSaddlePoint = 0.2; //Probability the critical value is a saddle point
+            const ValueRange = 6;
+
+            //Location of the critical points
+            x0 = Math.floor(Math.random() * 2 * ValueRange) - ValueRange;
+            y0 = Math.floor(Math.random() * 2 * ValueRange) - ValueRange;
+
+            SIGN = 1;
+            if (Math.random() < ProbSaddlePoint) {
+                SIGN = -1;
+            }
+
+            QuadFormData = QuadFormExample(x0, y0, SIGN);
+
+
+
+            QuadFormShowProblemAndSolution(x0, y0, QuadFormData);
+
+
+            //document.getElementById("test").innerHTML = QuadFormData;
+
+            //MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            //MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+
+        function QuadFormShowProblemAndSolution(x0, y0, QuadFormData) {
+
+            //document.getElementById("functionProblem").innerHTML = QuadFormDataToString(QuadFormData);
+
+            Q = QuadFormData[0];
+            f = QuadFormData[1];
+
+            q1 = Q.subset(math.index(0, 0));
+            q2 = 2 * Q.subset(math.index(0, 1)); //This term appears twice! 
+            q3 = Q.subset(math.index(1, 1));
+
+            f1 = f.subset(math.index(0, 0));
+            f2 = f.subset(math.index(1, 0));
+
+            //Show the function
+            strOut = ExpressionBuilder([q1, q2, q3, f1, f2], w, ["x^2", "xy", "y^2", "x", "y"], "\\(  f(x,y) = ", " \\)");
+            document.getElementById("functionProblem").innerHTML = strOut;
+
+
+            //Show the gradient
+            strOut = ExpressionBuilder([2 * q1, q2], f1, ["x", "y"], "\\( \\begin{cases} f_x(x,y) = ", " = 0 \\\\");
+            strOut = strOut.concat(ExpressionBuilder([q2, 2 * q3], f2, ["x", "y"], " f_y(x,y) = ", "  = 0 \\end{cases} \\)"));
+            document.getElementById("Gradient").innerHTML = strOut;
+
+
+
+            //Obtain a simplified system of equations
+            w1 = math.gcd(2 * q1, q2, f1);
+            RHS_1 = "".concat(" = ", (-f1 / w1).toString(), "\\\\")
+            strOut = ExpressionBuilder([2 * q1 / w1, q2 / w1], 0, ["x", "y"], "\\( \\begin{cases} ", RHS_1);
+
+            w2 = math.gcd(2 * q3, q2, f2);
+            RHS_2 = "".concat(" = ", (-f2 / w2).toString(), " \\end{cases} \\)")
+
+            strOut = strOut.concat(ExpressionBuilder([q2 / w2, 2 * q3 / w2], 0, ["x", "y"], "", RHS_2));
+            document.getElementById("SystemOfEquations").innerHTML = strOut;
+
+            //Show the critical points,
+
+            document.getElementById("CriticalPoints").innerHTML = "\\( (".concat(x0.toString(), " , ", y0.toString(), ") \\) ");
+            //Show the second deriviatves
+
+            strOut = "\\( \\begin{cases}  ";
+            strOut = strOut.concat(" f_{xx}(x,y) = ", (2 * q1).toString(), " \\\\ ");
+            strOut = strOut.concat(" f_{yy}(x,y) = ", (2 * q3).toString(), " \\\\ ");
+            strOut = strOut.concat(" f_{xy}(x,y) = ", (q2).toString(), " \\end{cases} \\) ");
+            document.getElementById("SecondDers").innerHTML = strOut;
+
+            //Compute the second deriviatves evaluate at critical point 
+            point = "".concat("(", x0.toString(), " , ", y0.toString(), ")");
+            strOut = "\\( \\begin{cases}  ";
+            strOut = strOut.concat(" f_{xx}", point, "= ", (2 * q1).toString(), " \\\\ ");
+            strOut = strOut.concat(" f_{yy}", point, "= ", (2 * q3).toString(), " \\\\ ");
+            strOut = strOut.concat(" f_{xy}", point, "= ", (q2).toString(), " \\end{cases} \\) ");
+            document.getElementById("SecondDersEvaluated").innerHTML = strOut;
+
+            //Compute the Hessian 
+            HessianDeterminant = (2 * q1) * (2 * q3) - math.pow((q2), 2);
+
+            document.getElementById("HessianExplainResult").innerHTML = "";
+            if (HessianDeterminant < 0) {
+
+                document.getElementById("HessianExplainResult").innerHTML += "".concat("<h>We can see that \\(D = ", HessianDeterminant.toString(), " < 0 \\) </h> <br> ");
+                document.getElementById("HessianExplainResult").innerHTML += "".concat("<h> This tells us the critical point is a saddle point of \\(f\\) </h> <br> ");
+
+            } else {
+                document.getElementById("HessianExplainResult").innerHTML += "".concat("<h>We can see that \\(D = ", HessianDeterminant.toString(), " > 0 \\) </h> <br> ");
+
+                if (2 * q1 > 0) {
+                    document.getElementById("HessianExplainResult").innerHTML += "".concat("<h>We then notice that \\(f_{xx}", point, "= ", (2 * q1).toString(), " > 0 \\) </h> <br> ");
+                    document.getElementById("HessianExplainResult").innerHTML += "".concat("<h> This tells us the critical point is a local minimum of \\(f\\) </h> <br> ");
+                } else {
+                    document.getElementById("HessianExplainResult").innerHTML += "".concat("<h>We then notice that \\(f_{xx}", point, "= ", (2 * q1).toString(), " < 0 \\) </h> <br> ");
+                    document.getElementById("HessianExplainResult").innerHTML += "".concat("<h> This tells us the critical point is a local maximum of  \\(f\\) </h> <br> ");
+                }
+
+
+
+                MathJax.texReset();
+                MathJax.typeset();
+
+            }
+
+
+
+
+
+
+
+        }
+
+
+        //Generate Quadratic Form Example for a given critical point and classification
+        // if SIGN > 0 then det(Q) > 0 , if SIGN < 0 then det(Q) < 0, if SIGN ==0 then no constraint on det(Q)
+        function QuadFormExample(x0, y0, SIGN) {
+
+            const ValueRange = 6;
+
+            //Create the Q matrix
+            Q = RandomSymmetricMatrix(ValueRange, SIGN)
+
+            //Create the critical point vector 
+            X = math.matrix([[-2 * x0], [-2 * y0]]);
+
+            //Define f 
+            f = math.multiply(Q, X);
+            w = Math.floor(Math.random() * 2 * ValueRange) - ValueRange;
+
+            return [Q, f, w]
+
+            //MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            //MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+
+
+        // if SIGN > 0 then det(Q) > 0 , if SIGN < 0 then det(Q) < 0, if SIGN ==0 then no constraint on det(Q)
+        function RandomSymmetricMatrix(MatrixEntryRange, SIGN) {
+
+
+
+            a = Math.floor(Math.random() * 2 * MatrixEntryRange) - MatrixEntryRange;
+            b = Math.floor(Math.random() * 2 * MatrixEntryRange) - MatrixEntryRange;
+            c = Math.floor(Math.random() * 2 * MatrixEntryRange) - MatrixEntryRange;
+
+            if (SIGN == 0) {
+                alert("You are going wild with SIGN == 0? Are you sure you want that?")
+                //Create the Q matrix
+                Q = math.matrix([[a, b], [b, c]]);
+                return Q
+            }
+
+            while (SIGN * (a * c - Math.pow(b, 2)) <= 0) {
+                a = Math.floor(Math.random() * 2 * MatrixEntryRange) - MatrixEntryRange;
+                b = Math.floor(Math.random() * 2 * MatrixEntryRange) - MatrixEntryRange;
+                c = Math.floor(Math.random() * 2 * MatrixEntryRange) - MatrixEntryRange;
+            }
+
+            //Create the Q matrix
+            Q = math.matrix([[a, b], [b, c]]);
+
+
+            //document.getElementById("debug_1").innerHTML = "Det = ".concat("_ ", a * c - Math.pow(b, 2));
+            //document.getElementById("debug_2").innerHTML = "Det = ".concat(a, "_ ", b, "_ ", c);
+
+
+            return Q
+
+        }
+
+
+        // --------- Add Collapsible Regions --------------
+
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
