@@ -1,93 +1,121 @@
 <!DOCTYPE html>
 <html>
-    
-    
+
+
+<head>
+
+  <title> Game Site </title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NMLMNLQSWX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-NMLMNLQSWX');
+  </script>
+
+</head>
+
+
 <title>Welcome and enjoy some games!</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    
+
+
 <style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif
+  }
 
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-    
-.filterDiv {
-  float: left;
-  
-  color: #ffffff;
-  width: 300px;
-  line-height: 20px;
-  text-align: center;
-  margin: 2px;
-  display: none;
-}
+  .filterDiv {
+    float: left;
 
-.show {
-  display: block;
-}
+    color: #ffffff;
+    width: 300px;
+    line-height: 20px;
+    text-align: center;
+    margin: 2px;
+    display: none;
+  }
 
-.container {
-  margin-top: 20px;
-  overflow: hidden;
-}
+  .show {
+    display: block;
+  }
 
-/* Style the buttons */
-.btn {
-  border: none;
-  outline: none;
-  padding: 12px 16px;
-  background-color: #f1f1f1;
-  cursor: pointer;
-}
+  .container {
+    margin-top: 20px;
+    overflow: hidden;
+  }
 
-.btn:hover {
-  background-color: #ddd;
-}
+  /* Style the buttons */
+  .btn {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
 
-.btn.active {
-  background-color:black;
-  color: black;
-}
-    
+  .btn:hover {
+    background-color: #ddd;
+  }
+
+  .btn.active {
+    background-color: black;
+    color: black;
+  }
 </style>
-    
-    
-    
-     
+
+
+
+
 <body class="w3-light-grey w3-content" style="max-width:1600px">
-   
-    
-    
 
 
-<!-- Sidebar/menu -->
-  
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-  <div class="w3-container">
-    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
-      <i class="fa fa-remove"></i>
-    </a>
-    <img src="IconsAndImages/GreenSquare.png" style="width:45%;" class="w3-round"><br><br>
-    
-      <p class = "w3-text-grey">
-Just a collection of stuff haphazardly distributed and arbitrarly arranged according to no particular form or fashion.</p>
-      
-  </div>
-  <div class="w3-bar-block">
-      
-    <a href="MachineLearningSite.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-laptop w3-margin-right"></i>Machine Learning</a> 
-      
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>About</a> 
 
-    
-      
-    <a href="https://github.com/DavidMichaelH/" target="_blank" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-github fa-fw w3-margin-right"></i>My Github</a>
-      
-      
-  </div>
+
+
+  <!-- Sidebar/menu -->
+
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container">
+      <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey"
+        title="close menu">
+        <i class="fa fa-remove"></i>
+      </a>
+      <img src="IconsAndImages/GreenSquare.png" style="width:45%;" class="w3-round"><br><br>
+
+      <p class="w3-text-grey">
+        Just a collection of stuff haphazardly distributed and arbitrarly arranged according to no particular form or
+        fashion.</p>
+
+    </div>
+    <div class="w3-bar-block">
+
+      <a href="MachineLearningSite.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i
+          class="fa fa-laptop w3-margin-right"></i>Machine Learning</a>
+
+      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-user fa-fw w3-margin-right"></i>About</a>
+
+
+
+      <a href="https://github.com/DavidMichaelH/" target="_blank" onclick="w3_close()"
+        class="w3-bar-item w3-button w3-padding"><i class="fa fa-github fa-fw w3-margin-right"></i>My Github</a>
+
+
+    </div>
     <!--
   <div class="w3-panel w3-large">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -98,47 +126,56 @@ Just a collection of stuff haphazardly distributed and arbitrarly arranged accor
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
     -->
-    
-</nav>
+
+  </nav>
 
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+    title="close side menu" id="myOverlay"></div>
 
-<!-- !PAGE CONTENT! -->
-   
-<div class="w3-main" style="margin-left:300px">
+  <!-- !PAGE CONTENT! -->
 
-  <!-- Header -->
-  <header id="games">
-    <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
-    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-    <div class="w3-container">
-    <h1><b>Games and More!</b></h1>
-    <div class="w3-section w3-bottombar w3-padding-16">
-        
-        
-   <span class="fa fa-search w3-margin-right" class = "w3-text-grey" ><h class = "w3-text-grey" >Filter:</h> <h id ="whatsShownInFilter"  class = "w3-text-grey" > All </h></span> 
-        
-        
-        <div id="myBtnContainer">
-      <button class="btn active w3-button w3-black" onclick="filterSelection('All')" >All</button>
-            
-      <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Simple')"  ><i class="fa fa-gamepad w3-margin-right"  ></i>Simple</button>
-            
-      <button class="btn w3-button w3-white  w3-hide-small" onclick="filterSelection('Sim')"><i class="fa fa-gamepad w3-margin-right" ></i>Sim</button>
-      <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Useful')"><i class="fa fa-laptop w3-margin-right" ></i>Utilities</button>
+  <div class="w3-main" style="margin-left:300px">
+
+    <!-- Header -->
+    <header id="games">
+      <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;"
+          class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+      <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i
+          class="fa fa-bars"></i></span>
+      <div class="w3-container">
+        <h1><b>Games and More!</b></h1>
+        <div class="w3-section w3-bottombar w3-padding-16">
+
+
+          <span class="fa fa-search w3-margin-right" class="w3-text-grey">
+            <h class="w3-text-grey">Filter:</h>
+            <h id="whatsShownInFilter" class="w3-text-grey"> All </h>
+          </span>
+
+
+          <div id="myBtnContainer">
+            <button class="btn active w3-button w3-black" onclick="filterSelection('All')">All</button>
+
+            <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Simple')"><i
+                class="fa fa-gamepad w3-margin-right"></i>Simple</button>
+
+            <button class="btn w3-button w3-white  w3-hide-small" onclick="filterSelection('Sim')"><i
+                class="fa fa-gamepad w3-margin-right"></i>Sim</button>
+            <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Useful')"><i
+                class="fa fa-laptop w3-margin-right"></i>Utilities</button>
+          </div>
+
         </div>
-        
-    </div>
-    </div>
-      
-      
-      
-  </header>
-    
-    
-<!--
+      </div>
+
+
+
+    </header>
+
+
+    <!--
 <h2>Filter DIV Elements</h2>
 
 <div id="myBtnContainer">
@@ -149,8 +186,8 @@ Just a collection of stuff haphazardly distributed and arbitrarly arranged accor
   <button class="btn" onclick="filterSelection('colors')"> Colors</button>
 </div>
 -->
-    
-  <!--
+
+    <!--
 <div class="container">
   <div class="filterDiv cars">BMW</div>
   <div class="filterDiv colors fruits">Orange</div>
@@ -167,103 +204,116 @@ Just a collection of stuff haphazardly distributed and arbitrarly arranged accor
   <div class="filterDiv animals">Cow</div>
 </div>
 -->
-    
-    
-       
-    
-  <!-- First Photo Grid-->
-  <div class="w3-row-padding">
-      
-<div class="container">
-    
-    
-    
-          
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Sim">
-      <a href="RestaurantGame/index.html" target="_blank"> <img src="IconsAndImages/RestaurantWebImage.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>Restaurant</b></p>
-        <p>Ever eaten at a restaurant and thought to yourself, "I could easily run this place." We'll now here is your chance! </p>
-      </div>
-    </div>
-    
 
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
-      <a href="Blastroid/Build5/index.html" target="_blank"> <img src="Blastroid/BlastroidIcon2.png" alt="TTT" style="width:100%" class="w3-hover-opacity"> </a>
-      <div class="w3-container w3-white">
-        <p><b>Blastroid</b></p>
-        <p>See how long you can suvive navigating your starship in an asteriod belt located in a remote region in a neighoring galaxy. </p>
-      </div>
-    </div>
-    
-    
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
-      <a href="Pong/Build1/index.html" target="_blank"> <img src="IconsAndImages/PongGame.png" alt="TTT" style="width:100%" class="w3-hover-opacity"> </a>
-      <div class="w3-container w3-white">
-        <p><b>Pong</b></p>
-        <p>Want to Play Pong verse an Aritifical Neural Network? Then jump right in!</p>  <br><br>
+
+
+
+    <!-- First Photo Grid-->
+    <div class="w3-row-padding">
+
+      <div class="container">
+
+
+
+
+        <div class="w3-third w3-container w3-margin-bottom filterDiv Sim">
+          <a href="RestaurantGame/index.html" target="_blank"> <img src="IconsAndImages/RestaurantWebImage.png"
+              alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
+          <div class="w3-container w3-white">
+            <p><b>Restaurant</b></p>
+            <p>Ever eaten at a restaurant and thought to yourself, "I could easily run this place." We'll now here is
+              your chance! </p>
+          </div>
+        </div>
+
+
+        <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
+          <a href="Blastroid/Build5/index.html" target="_blank"> <img src="Blastroid/BlastroidIcon2.png" alt="TTT"
+              style="width:100%" class="w3-hover-opacity"> </a>
+          <div class="w3-container w3-white">
+            <p><b>Blastroid</b></p>
+            <p>See how long you can suvive navigating your starship in an asteriod belt located in a remote region in a
+              neighoring galaxy. </p>
+          </div>
+        </div>
+
+
+        <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
+          <a href="Pong/Build1/index.html" target="_blank"> <img src="IconsAndImages/PongGame.png" alt="TTT"
+              style="width:100%" class="w3-hover-opacity"> </a>
+          <div class="w3-container w3-white">
+            <p><b>Pong</b></p>
+            <p>Want to Play Pong verse an Aritifical Neural Network? Then jump right in!</p> <br><br>
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
+          <a href="LinqKuatro/Build1/index.html" target="_blank"><img src="IconsAndImages/Linq.png" alt="Coming Soon"
+              style="width:100%" class="w3-hover-opacity"> </a>
+          <div class="w3-container w3-white">
+            <p><b>4-in-a-Row</b></p>
+            <p> <br><br> Go head to head with the computer in an exciting match of Four-In-A-Row. See if you have what
+              it takes! </p>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
+          <a href="RockPaperScissors.html" target="_blank"><img src="IconsAndImages/RPS_Thumbnail.png" alt="RPS"
+              style="width:100%" class="w3-hover-opacity"></a>
+          <div class="w3-container w3-white">
+            <p><b>Rock-Paper-Scissors</b></p>
+            <p>An implementaion of the cult classic and everybodys favorite, Rock-Paper-Scissors. Impress yourself and
+              your friends with your ability to survive a head-2-head match.</p>
+          </div>
+        </div>
+
+
+
+        <div class="w3-third w3-container w3-margin-bottom filterDiv Useful Simple">
+          <a href="TaskTimer/TaskTimer.html" target="_blank"> <img src="TaskTimer/TaskTimerIcon.png" alt="Coming Soon"
+              style="width:100%" class="w3-hover-opacity"></a>
+          <div class="w3-container w3-white">
+            <p><b>TaskTimerLite</b></p>
+            <p>Do you have a lot of repative tasks you need to carry out and way to estimate when you will be done. Then
+              see if Task Timer is right for you!</p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
+          <a href="https://colab.research.google.com/github/DavidMichaelH/DavidMichaelH.github.io/blob/master/QuantumMarkovChains.ipynb"
+            target="_blank"><img src="IconsAndImages/QuantumIcon.png" alt="Coming Soon" style="width:100%"
+              class="w3-hover-opacity"></a>
+          <div class="w3-container w3-white">
+            <p><b>Quantum Markov Chains</b></p>
+            <p>Play around with some Quantum Markov Chains.</p>
+          </div>
+        </div>
+
+
+
+
+
+
+
       </div>
     </div>
 
-    
-    
-    
-    
-    
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
-      <a href="LinqKuatro/Build1/index.html" target = "_blank" ><img src="IconsAndImages/Linq.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"> </a>
-      <div class="w3-container w3-white">
-        <p><b>4-in-a-Row</b></p>
-        <p> <br><br> Go head to head with the computer in an exciting match of Four-In-A-Row. See if you have what it takes!   </p>
-      </div>
-    </div>
-    
-    
-    
-    
-    
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Simple">
-      <a href="RockPaperScissors.html" target="_blank"><img src="IconsAndImages/RPS_Thumbnail.png" alt="RPS" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>Rock-Paper-Scissors</b></p>
-        <p>An implementaion of the cult classic and everybodys favorite, Rock-Paper-Scissors. Impress yourself and your friends with your ability to survive a head-2-head match.</p>
-      </div>
-    </div>
-      
-    
-    
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Useful Simple">
-      <a href="TaskTimer/TaskTimer.html" target = "_blank" > <img src="TaskTimer/TaskTimerIcon.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>TaskTimerLite</b></p>
-        <p>Do you have a lot of repative tasks you need to carry out and way to estimate when you will be done. Then see if Task Timer is right for you!</p>
-      </div>
-    </div>
-    
-    
-    
- 
-
-      
-    
-            
-    <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
-      <a href="https://colab.research.google.com/github/DavidMichaelH/DavidMichaelH.github.io/blob/master/QuantumMarkovChains.ipynb" target="_blank"><img src="IconsAndImages/QuantumIcon.png" alt="Coming Soon" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>Quantum Markov Chains</b></p>
-        <p>Play around with some Quantum Markov Chains.</p>    
-      </div>
-    </div>
-    
-    
-      
-    
-      
-
-    
-      </div>
-  </div>
-  
 
     <!--
      <div class="w3-row-padding w3-padding-16" id="about">
@@ -275,104 +325,107 @@ Just a collection of stuff haphazardly distributed and arbitrarly arranged accor
     </div>
   </div>
 -->
-    
-  <div class="w3-container w3-padding-large" style="margin-bottom:32px" id="about">
-    <h4><b>About Me</b></h4>
-    <p>I am a PhD student in mathematics with a focus in probability theory. In my free time I enjoy making games, math-heavy software, various demonstrations of A.I. and applications I find to be useful to me. I recently created this page and plan to peridically upload new content as time permits me. </p>
-      
-      
-      
-      <p> <b> DISCLAIMER: THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.</b> </p>
-    <hr>
+
+    <div class="w3-container w3-padding-large" style="margin-bottom:32px" id="about">
+      <h4><b>About Me</b></h4>
+      <p>I am a PhD student in mathematics with a focus in probability theory. In my free time I enjoy making games,
+        math-heavy software, various demonstrations of A.I. and applications I find to be useful to me. I recently
+        created this page and plan to peridically upload new content as time permits me. </p>
+
+
+
+      <p> <b> DISCLAIMER: THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+          BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+          NONINFRINGEMENT.</b> </p>
+      <hr>
+
+    </div>
 
   </div>
-  
-    </div>
-    
-    
-<script>
-    
-    
-    
-function w3_open() 
-{
-    document.getElementById("mySidebar").style.display = "block";
-    document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() 
-{
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-}   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-filterSelection("All")
-function filterSelection(c) {
-    document.getElementById("whatsShownInFilter").innerHTML = c;
-  var x, i;
-  x = document.getElementsByClassName("filterDiv");
-  if (c == "All"){
-      document.getElementById("whatsShownInFilter").innerHTML = "";
-      c = "";
-  } 
-  for (i = 0; i < x.length; i++) {
-    w3RemoveClass(x[i], "show");
-    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-  }
-    
-    
-    
-}
 
-function w3AddClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-  }
-}
 
-function w3RemoveClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+  <script>
+
+
+
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
     }
-  }
-  element.className = arr1.join(" ");
-}
 
-// Add active class to the current button (highlight it)
-var btnContainer = document.getElementById("myBtnContainer");
-var btns = btnContainer.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function(){
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}
-</script>
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
 
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    filterSelection("All")
+    function filterSelection(c) {
+      document.getElementById("whatsShownInFilter").innerHTML = c;
+      var x, i;
+      x = document.getElementsByClassName("filterDiv");
+      if (c == "All") {
+        document.getElementById("whatsShownInFilter").innerHTML = "";
+        c = "";
+      }
+      for (i = 0; i < x.length; i++) {
+        w3RemoveClass(x[i], "show");
+        if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+      }
+
+
+
+    }
+
+    function w3AddClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+      }
+    }
+
+    function w3RemoveClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        while (arr1.indexOf(arr2[i]) > -1) {
+          arr1.splice(arr1.indexOf(arr2[i]), 1);
+        }
+      }
+      element.className = arr1.join(" ");
+    }
+
+    // Add active class to the current button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+  </script>
+
+
+
+
+
 </body>
+
 </html>
