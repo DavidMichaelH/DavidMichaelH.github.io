@@ -14,9 +14,6 @@
 
     gtag('config', 'G-NMLMNLQSWX');
   </script>
-
-
-
 </head>
 
 
@@ -29,19 +26,27 @@
 
 
 <style>
-  body,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Raleway", sans-serif
+  /* Style the buttons */
+  .btn {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
   }
 
+  .btn:hover {
+    background-color: #ddd;
+  }
+
+  .btn.active {
+    background-color: black;
+    color: black;
+  }
+
+  /* Style the filter container */
   .filterDiv {
     float: left;
-
     color: #ffffff;
     width: 300px;
     line-height: 20px;
@@ -89,46 +94,29 @@
 
   <!-- Sidebar/menu -->
 
-  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
     <div class="w3-container">
       <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey"
         title="close menu">
         <i class="fa fa-remove"></i>
       </a>
-      <img src="IconsAndImages/GreenSquare.png" style="width:45%;" class="w3-round"><br><br>
-
-      <p class="w3-text-grey">
-        Just a collection of stuff haphazardly distributed and arbitrarly arranged according to no particular form or
-        fashion.</p>
-
+      <img src="IconsAndImages/GreenSquare.png" alt="Green Square" style="width:45%;" class="w3-round"><br><br>
+      <p class="w3-text-grey">A collection of miscellaneous items.</p>
     </div>
     <div class="w3-bar-block">
-
-      <a href="GameSite.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i
-          class="fa fa-gamepad fa-fw w3-margin-right"></i>Games</a>
-
-      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
-          class="fa fa-user fa-fw w3-margin-right"></i>About</a>
-
-
-
+      <a href="GameSite.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">
+        <i class="fa fa-gamepad fa-fw w3-margin-right"></i>Games
+      </a>
+      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-user fa-fw w3-margin-right"></i>About
+      </a>
       <a href="https://github.com/DavidMichaelH/" target="_blank" onclick="w3_close()"
-        class="w3-bar-item w3-button w3-padding"><i class="fa fa-github fa-fw w3-margin-right"></i>My Github</a>
-
-
+        class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-github fa-fw w3-margin-right"></i>My Github
+      </a>
     </div>
-    <!--
-  <div class="w3-panel w3-large">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-  </div>
-    -->
-
   </nav>
+  
 
 
   <!-- Overlay effect when opening sidebar on small screens -->
@@ -141,78 +129,41 @@
 
     <!-- Header -->
     <header id="games">
-      <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;"
-          class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
-      <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i
-          class="fa fa-bars"></i></span>
+      <a href="#">
+        <img src="/w3images/avatar_g2.jpg" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity" width="65px">
+      </a>
+      <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()">
+        <i class="fa fa-bars"></i>
+      </span>
       <div class="w3-container">
         <h1><b>Machine Learning and More!</b></h1>
         <div class="w3-section w3-bottombar w3-padding-16">
-
-
-          <span class="fa fa-search w3-margin-right" class="w3-text-grey">
-            <h class="w3-text-grey">Filter:</h>
-            <h id="whatsShownInFilter" class="w3-text-grey"> All </h>
-          </span>
-
-
+          <span class="fa fa-search w3-margin-right"></span>
+          <h class="w3-text-grey">Filter:</h>
+          <h id="whatsShownInFilter" class="w3-text-grey"> All </h>
+    
           <div id="myBtnContainer">
             <button class="btn active w3-button w3-black" onclick="filterSelection('All')">All</button>
-
-            <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Examples')"><i
-                class="fa fa-laptop w3-margin-right"></i>Examples</button>
-
-
-            <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Deep Learning')"><i
-                class="fa fa-laptop w3-margin-right"></i>Deep Learning</button>
-
-
-            <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Unity')"><i
-                class="fa fa-gamepad w3-margin-right"></i>Unity</button>
+            <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Examples')">
+              <i class="fa fa-laptop w3-margin-right"></i>Examples
+            </button>
+            <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Deep Learning')">
+              <i class="fa fa-laptop w3-margin-right"></i>Deep Learning
+            </button>
+            <button class="btn w3-button w3-white w3-hide-small" onclick="filterSelection('Unity')">
+              <i class="fa fa-gamepad w3-margin-right"></i>Unity
+            </button>
           </div>
-
         </div>
       </div>
-
-
-
     </header>
+    
 
-
-    <!--
-<h2>Filter DIV Elements</h2>
-
-<div id="myBtnContainer">
-  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-  <button class="btn" onclick="filterSelection('cars')"> Cars</button>
-  <button class="btn" onclick="filterSelection('animals')"> Animals</button>
-  <button class="btn" onclick="filterSelection('fruits')"> Fruits</button>
-  <button class="btn" onclick="filterSelection('colors')"> Colors</button>
-</div>
--->
-
-    <!--
-<div class="container">
-  <div class="filterDiv cars">BMW</div>
-  <div class="filterDiv colors fruits">Orange</div>
-  <div class="filterDiv cars">Volvo</div>
-  <div class="filterDiv colors">Red</div>
-  <div class="filterDiv cars animals">Mustang</div>
-  <div class="filterDiv colors">Blue</div>
-  <div class="filterDiv animals">Cat</div>
-  <div class="filterDiv animals">Dog</div>
-  <div class="filterDiv fruits">Melon</div>
-  <div class="filterDiv fruits animals">Kiwi</div>
-  <div class="filterDiv fruits">Banana</div>
-  <div class="filterDiv fruits">Lemon</div>
-  <div class="filterDiv animals">Cow</div>
-</div>
--->
+ 
 
 
 
-
-    <!-- First Photo Grid-->
+    <!-- First Row-->
     <div class="w3-row-padding">
 
       <div class="container">
@@ -227,14 +178,14 @@
           </div>
         </div>
 
-
+      <!--
         <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
           <a href="https://colab.research.google.com/gist/DavidMichaelH/cfc2759ec907681262b84c5e2516d59c/basicann.ipynb"
             target="_blank"><img src="IconsAndImages/MLIcons/ANN_ExamplePng.png" alt="Coming Soon" style="width:100%"
               class="w3-hover-opacity"></a>
           <div class="w3-container w3-white">
             <p><b>ANN Example</b></p>
-            <p>An implementaion of a dense Artificial Neural Network.</p>
+            <p>An implementaion of a dense Artificial Neural Network.  Coming soon...</p>
           </div>
         </div>
 
@@ -248,97 +199,20 @@
             <p>An implementaion of a Convolutional Neural Network. Coming soon...</p>
           </div>
         </div>
-
-
-        <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
-          <a target="_blank"> <img src="IconsAndImages/MLIcons/RNN_ExamplePng.png" alt="Coming Soon" style="width:100%"
-              class="w3-hover-opacity"></a>
-          <div class="w3-container w3-white">
-            <p><b>RNN Example</b></p>
-            <p>An implementaion of an Recurrent Neural Network example. Coming soon...</p>
-          </div>
-        </div>
-
-        <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
-          <a target="_blank"> <img src="IconsAndImages/MLIcons/GAN_ExamplePng.png" alt="Coming Soon" style="width:100%"
-              class="w3-hover-opacity"></a>
-          <div class="w3-container w3-white">
-            <p><b>GAN Example</b></p>
-            <p>An implementaion of an generative adversarial network example. Coming soon...</p>
-          </div>
-        </div>
-
-        <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
-          <a href="https://colab.research.google.com/github/DavidMichaelH/DavidMichaelH.github.io/blob/master/DeepDream.ipynb"
-            target="_blank"><img src="IconsAndImages/MLIcons/DreamPng.png" alt="Coming Soon" style="width:100%"
-              class="w3-hover-opacity"></a>
-          <div class="w3-container w3-white">
-            <p><b>Fun Example</b></p>
-            <p>An implementaion of a "Deep Dream"-Like Algorithm.</p>
-          </div>
-        </div>
-
-
-
-
-        <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
-          <a href="https://colab.research.google.com/gist/DavidMichaelH/cfc2759ec907681262b84c5e2516d59c/basicann.ipynb"
-            target="_blank"><img src="IconsAndImages/ComingSoonLarge.png" alt="Coming Soon" style="width:100%"
-              class="w3-hover-opacity"></a>
-          <div class="w3-container w3-white">
-            <p><b>Exciting Project</b></p>
-            <p>Something interesting...</p>
-          </div>
-        </div>
-
-        <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
-          <a href="https://colab.research.google.com/gist/DavidMichaelH/cfc2759ec907681262b84c5e2516d59c/basicann.ipynb"
-            target="_blank"><img src="IconsAndImages/ComingSoonLarge.png" alt="Coming Soon" style="width:100%"
-              class="w3-hover-opacity"></a>
-          <div class="w3-container w3-white">
-            <p><b>Exciting Project</b></p>
-            <p>Something interesting...</p>
-          </div>
-        </div>
-
-
-        <div class="w3-third w3-container w3-margin-bottom filterDiv Examples">
-          <a href="https://colab.research.google.com/github/DavidMichaelH/DavidMichaelH.github.io/blob/master/MultiArmedBandit.ipynb"
-            target="_blank"><img src="IconsAndImages/MultiArmedBandits.png" alt="Coming Soon" style="width:100%"
-              class="w3-hover-opacity"></a>
-          <div class="w3-container w3-white">
-            <p><b>Multi-Armed Bandit</b></p>
-            <p>An implementation of some common Multi-Armed Bandit Algorithms in python.</p>
-          </div>
-        </div>
-
-
-      </div>
+      -->
     </div>
 
-
-    <!--
-     <div class="w3-row-padding w3-padding-16" id="about">
-    <div class="w3-col m6">
-      <img src="/w3images/avatar_g.jpg" alt="Me" style="width:100%">
-    </div>
-    <div class="w3-col m6">
-      <img src="/w3images/me2.jpg" alt="Me" style="width:100%">
-    </div>
-  </div>
--->
+  
+    
 
     <div class="w3-container w3-padding-large" style="margin-bottom:32px" id="about">
       <h4><b>About Me</b></h4>
-      <p>I am a PhD student in mathematics with a focus in probability theory. In my free time I enjoy making games,
-        math-heavy software, various demonstrations of A.I. and applications I find to be useful to me. I recently
-        created this page and plan to peridically upload new content as time permits me. </p>
+      <p>I am a math PhD candidate with expertise in probabilistic models and random optimization on graphs. 
+        I have experience working on a wide range of projects, including natural language processing, reinforcement learning, 
+        and statistical physics models.</p>
 
 
-
-      <p> <b> DISCLAIMER: THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
-          BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-          NONINFRINGEMENT.</b> </p>
+ 
       <hr>
 
     </div>
