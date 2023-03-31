@@ -10,52 +10,53 @@
 
     <style>
       /* Style the body */
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f2f2f2;
-      }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
 
-      /* Style the header */
-      header {
-        background-color: #333;
-        color: white;
-        padding: 60px;
-        text-align: center;
-      }
+/* Style the header */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10%;
+  text-align: center;
+}
 
-      /* Style the main content area */
-      .main-content {
-        margin: 60px;
-        padding: 60px;
-        background-color: white;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius: 10px;
-      }
+/* Style the main content area */
+.main-content {
+  margin: 10%;
+  padding: 10%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+}
 
-      /* Style the blog post title */
-      h1 {
-        font-size: 36px;
-        margin-bottom: 20px;
-        text-align: center;
-      }
+/* Style the blog post title */
+h1 {
+  font-size: 36px;
+  margin-bottom: 5%;
+  text-align: center;
+}
 
-      /* Style the blog post author and date */
-      .author-date {
-        font-size: 14px;
-        color: gray;
-        text-align: right;
-        margin-bottom: 20px;
-      }
+/* Style the blog post author and date */
+.author-date {
+  font-size: 14px;
+  color: gray;
+  text-align: right;
+  margin-bottom: 5%;
+}
 
-      /* Style the blog post content */
-      .post-content {
-        font-size: 18px;
-        line-height: 1.5;
-        text-align: justify;
-        margin-bottom: 20px;
-      }
+/* Style the blog post content */
+.post-content {
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 5%;
+}
+
     </style>
   </head>
   <body>
@@ -174,17 +175,20 @@
  	 	\[ \tilde{h}(x) =  \sum_{i=1}^n a_i \tilde{\sigma} (w_i^T x + b_i)   .\] 
  	 	
 Then we approximate using a Riemann integral
-\[  \tilde{\sigma} (w_i^T x + b_i) = \int_{\mathbb{R}} \varphi(y) \sigma(w_i^T x + b_i -y) dy  = \sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j )  + E_m(x) .\]  
+\[  \tilde{\sigma} (w_i^T x + b_i) = \int_{\mathbb{R}} \varphi(y) \sigma(w_i^T x + b_i -y) dy \]
+\[  = \sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j )  + E_m(x) .\]  
  	 	where \(E_m := \max_{x \in \Omega} E_m(x)\) represents an error term which vanishes as \(m \rightarrow \infty\). Perhaps the most important thing to notice here is that \(\sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j )\) represents a shallow neural network in \(\Sigma^{\sigma}\). 
  	 	Given this we can see that we can construct a neural network \(h\in \Sigma^{\sigma}\) defined as
     \[ h(x) =  \sum_{i=1}^n \sum_{j=1}^m a_i  \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j ) . \]
  	 	
- 	 	\[ \| h - \tilde{h} \|_{\infty} \leq \sum_{i=1}^n a_i \left |  \sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j ) -   \tilde{\sigma} (w_i^T x + b) \right | \leq \left (  \sum_{i=1}^n a_n \right ) E_m   \] 
+ 	 	\[ \| h - \tilde{h} \|_{\infty} \leq \sum_{i=1}^n a_i \left |  \sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j ) -   \tilde{\sigma} (w_i^T x + b) \right | \]
+    \[ \leq \left (  \sum_{i=1}^n a_n \right ) E_m   \] 
  	 	 Therefore we choose \(m\) so that 
  	 	 \[  E_m  \leq \dfrac{\epsilon}{2 \sum_{i=1}^n a_n } \]
  	 	 which all but gives the result. Indeed,
  	 	 
- 	 	 \[ \| f - h \|_{\infty} \leq \| f - h \|_{\infty}  + \|h - \tilde{h}  \|_{\infty}  \leq \dfrac{\epsilon}{2} +  \dfrac{\epsilon}{2} = \epsilon. \] 
+ 	 	 \[ \| f - h \|_{\infty} \leq \| f - h \|_{\infty}  + \|h - \tilde{h}  \|_{\infty} \]
+     \[ \leq \dfrac{\epsilon}{2} +  \dfrac{\epsilon}{2} = \epsilon. \] 
 	 
 	 
     </body>
