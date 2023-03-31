@@ -21,14 +21,14 @@
       header {
         background-color: #333;
         color: white;
-        padding: 20px;
+        padding: 60px;
         text-align: center;
       }
 
       /* Style the main content area */
       .main-content {
-        margin: 20px;
-        padding: 20px;
+        margin: 60px;
+        padding: 60px;
         background-color: white;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius: 10px;
@@ -68,48 +68,81 @@
         by David Harper on March 30, 2023
       </div>
       <div class="post-content">
+
+ 
        
-	The term "non-linearity" is frequently used in the deep learning community to emphasize the significance of incorporating a non-linear activation function within a neural network. However, this raises the question: what types of activation functions enable learning?
+	<p>The term "non-linearity" is frequently used in the deep learning community to emphasize the significance of incorporating a 
+    non-linear activation function within a neural network. However, this raises the question: what types of activation functions 
+    enable learning?
 	
-	Before diving in, I'd like to caution readers that this article assumes some familiarity with concepts from mathematical analysis. We will explore a relatively simple yet remarkable result regarding neural networks with a single hidden layer, which we will refer to as shallow networks for the sake of simplicity. Within this context, we will determine the specific activation functions that make learning possible.
+	Before diving in, I'd like to caution readers that this article assumes some familiarity with concepts from mathematical analysis. 
+  We will explore a relatively simple yet remarkable result regarding neural networks with a single hidden layer, which we will refer 
+  to as shallow networks for the sake of simplicity. Within this context, we will determine the specific activation functions that make 
+  learning possible.
 	
-	To clarify, when we say one function space can "learn" another, we essentially mean that one function space is dense in the other. In this article, we will construct a space of shallow neural networks and discuss a result that provides conditions for when this space is dense in the space of continuous functions on a compact set.
+	To clarify, when we say one function space can "learn" another, we essentially mean that one function space is dense in the other. 
+  In this article, we will construct a space of shallow neural networks and discuss a result that provides conditions for when this 
+  space is dense in the space of continuous functions on a compact set.</p>
 	
-	Let us use \(\sigma\) denote an activation function. We can express a shallow neural network as a function
+    
+	<p>Let us use \(\sigma\) denote an activation function. We can express a shallow neural network as a function
 	
 	\[ h(x) = \sum_{i=1}^n a_i \sigma(w_i^T x + b_i) \text{ for }  x, w_i, \in \mathbb{R}^d \text{ , } b_i \in \mathbb{R} \text{ for all }  i = 1 ... n .  \]
  
 	We can define the space of shallow neural networks with \(n\) neurons in the hidden layer by
 	
-	\[ \Sigma_{n}^{\sigma} = \left \{  h(x) = \sum_{i=1}^n a_i \sigma(w_i^T x + b) : a_i, b_i \in \mathbb{R} \text{ and } w_i \in \mathbb{R}^d \right \} .\]
+	\[ \Sigma_{n}^{\sigma} = \left \{  h(x) = \sum_{i=1}^n a_i \sigma(w_i^T x + b_i) : a_i, b_i \in \mathbb{R} \text{ and } w_i \in \mathbb{R}^d \right \} .\]
 	
 	Then the set of all shallow neural networks (with activation function \(\sigma\)) is
-	\[ \Sigma^{\sigma} = \bigcup_{n \geq 1 } \Sigma_{n}^{\sigma}  \]
-	
-	In this discussion, we reference a 1993 paper titled "Multilayer Feedforward Networks with a Nonpolynomial Activation Function Can Approximate Any Function" by authors Moshe Leshno, Vladimir Ya. Lin, Allan Pinkus, and Shimon Schocken. Although this paper is relatively old, considering the rapid pace at which machine learning advances, it remains a significant result.
-	
-	Throughout our discussion, we will consider \(\Omega \subset \mathbb{R}^d\) as a compact set. We will assume our activation functions are continuous; however, the authors of the paper assumed that the activation function could have a "very sparse" set of discontinuities (essentially, absolutely continuous in the sense of Lebesgue). Taking our activation functions to be continuous simplifies the arguments and does not significantly diminish the usefulness of the result, as most activation functions of interest are indeed continuous.
+	\[ \Sigma^{\sigma} = \bigcup_{n \geq 1 } \Sigma_{n}^{\sigma}  .\]
+</p>
+ 
+  <p>
+	In this discussion, we reference a 1993 paper titled "Multilayer Feedforward Networks with a Nonpolynomial Activation Function Can 
+  Approximate Any Function" by authors Moshe Leshno, Vladimir Ya. Lin, Allan Pinkus, and Shimon Schocken. Although this paper is 
+  relatively old, considering the rapid pace at which machine learning advances, it remains a significant result.
+</p>
+ 
+  <p>
+	Throughout our discussion, we will consider \(\Omega \subset \mathbb{R}^d\) as a compact set. We will assume our activation functions 
+  are continuous; however, the authors of the paper assumed that the activation function could have a "very sparse" set of 
+  discontinuities (essentially, absolutely continuous in the sense of Lebesgue). Taking our activation functions to be continuous 
+  simplifies the arguments and does not significantly diminish the usefulness of the result, as most activation functions of interest 
+  are indeed continuous.
+</p>
 
-
- 	 
-	Throughout the discussion we will be working with the norm \(\|f\|_{\infty} = \max_{x \in \Omega} |f(x)| \) 
-	
     <br>
 	<fieldset style="text-align:center; border: 1px solid black; padding: 10px;">
         <legend><b>Universal Approximation Theorem</b></legend>
-        <b>Theorem</b> Let \(\sigma \in C(\mathbb{R})\). Then \(\Sigma^{\sigma}\) is dense in \(C(\Omega)\) (equipped with the sup-norm) if and only if \(\sigma\) is not a polynomial.
+        <b>Theorem</b> Let \(\sigma \in C(\mathbb{R})\). Then \(\Sigma^{\sigma}\) is dense in \(C(\Omega)\) (equipped with the sup-norm \(\|f\|_{\infty} = \max_{x \in \Omega} |f(x)| \)) if and only if \(\sigma\) is not a polynomial.
       </fieldset>
       
       <br>
+      <br>
 
-	To begin the proof, let's demonstrate that if \(\sigma\) is a polynomial, then \(\Sigma^{\sigma}\) is \textit{not} dense in \(C(\Omega)\). At first glance, this might seem puzzling when compared to the Weierstrass approximation theorem. However, upon closer examination, we can see that there is no contradiction because the polynomial we choose is fixed. Accordingly any function of the form,
-	
-		\[ h(x) = \sum_{i=1}^n a_i \sigma(w_i^T x + b_i) \]
-		 
-	  will it itself be a polynomial with some degree equal to that of \(\sigma\). To complete the proof, we show that it is impossible to approximate a fixed polynomial \(f\) to arbitrary precision on \(\Omega\) with polynomials of lesser degree. Once this is established, it will conclude this part of the proof, given that \(f \in C(\Omega)\).
-	  
-	 
-		Here, we provide a sketch of an argument without delving into too many details. Suppose we have a polynomial \(f\) with a degree greater than that of \(\sigma\). Then, \(f\) is entirely determined by a collection of points and the values of \(f\) at those points. Let's assume we have such a collection: \({(x_i, f(x_i))}_{i=1}^{p}\). In fact, we can recover \(f\) from these points by constructing a linear system of \(p\) equations. To do this, define a generic polynomial with a degree equal to that of \(f\) and solve for the unknown coefficients by solving the system of \(p\) equations with \(p\) unknowns. We can formulate this as a problem in the form of \(Ac = b\), where \(b\) is a vector containing values like \(f(x_i)\) and \(c\) is a vector containing the coefficients of \(f\). The matrix \(A\) is invertible, so we can write \(c = A^{-1}b\). However, we can observe that \(c\) is continuous in the vector \(b\). Consequently, there exists some \(\epsilon > 0\) such that if the vector \(b'\) satisfies \(|b_i - b_i'| \leq \epsilon\), then we can assume that any coordinate which is nonzero for \(c\) will also be nonzero for \(c' = A^{-1}b'\). As we can see, this implies that no polynomial with a degree less than that of \(f\) could uniformly approximate \(f\) with an error better than \(\epsilon\).
+	<p>To begin the proof, let's demonstrate that if \(\sigma\) is a polynomial, then \(\Sigma^{\sigma}\) is <i>not</i>> dense in \(C(\Omega)\). 
+    At first glance, this might seem puzzling when compared to the Weierstrass approximation theorem. However, upon closer examination, 
+    we can see that there is no contradiction because the polynomial we choose is fixed. Accordingly any function of the form,
+    
+      \[ h(x) = \sum_{i=1}^n a_i \sigma(w_i^T x + b_i) \]
+       
+      will it itself be a polynomial with some degree equal to that of \(\sigma\). To complete the proof, we show that it is impossible to 
+      approximate a fixed polynomial \(f\) to arbitrary precision on \(\Omega\) with polynomials of lesser degree.
+      Once this is established, it will conclude this part of the proof, given that \(f \in C(\Omega)\).
+   
+  </p>
+		Here, we provide a sketch of an argument without delving into too many details. Suppose we have a polynomial \(f\) with a degree 
+    greater than that of \(\sigma\). Then, \(f\) is entirely determined by a collection of points and the values of \(f\) at those points. 
+    Let's assume we have such a collection: \({(x_i, f(x_i))}_{i=1}^{p}\). In fact, we can recover \(f\) from these points by constructing a linear system of \(p\) equations. 
+    To do this, define a generic polynomial with a degree equal to that of \(f\) and solve for the unknown coefficients by solving the system of \(p\) equations with \(p\) unknowns. 
+    We can formulate this as a problem in the form of \(Ac = b\), where \(b\) is a vector containing values like \(f(x_i)\) and \(c\) is a vector containing the coefficients of \(f\). 
+    The matrix \(A\) is invertible, so we can write \(c = A^{-1}b\). However, we can observe that \(c\) is continuous in the vector \(b\). 
+    Consequently, there exists some \(\epsilon > 0\) such that if the vector \(b'\) satisfies \(|b_i - b_i'| \leq \epsilon\), 
+    then we can assume that any coordinate which is nonzero for \(c\) will also be nonzero for \(c' = A^{-1}b'\). In particular those 
+    coordinates which correspond to the monomials of highest degree in \(f\) will be nonzero. As we can see, this implies that no polynomial 
+    with a degree less than that of \(f\) could uniformly approximate \(f\) with an error better than \(\epsilon\).
+
+    <br>
 		  
 	Now let's assume that \(\sigma\) is not a polynomial. We will present the proof that \(\Sigma^{\sigma}\) is dense in two steps. The first step is to establish the result assuming \(\sigma \in C^{\infty}(\Omega)\) (i.e., a smooth function). Then, the final step will be to show how to properly approximate a continuous \(\sigma\)  by a smooth function.  
 	
@@ -141,14 +174,12 @@
  	 	\[ \tilde{h}(x) =  \sum_{i=1}^n a_i \tilde{\sigma} (w_i^T x + b_i)   .\] 
  	 	
 Then we approximate using a Riemann integral
-\[  \tilde{\sigma} (w_i^T x + b_i) = \int_{\mathbb{R}} \varphi(y) \sigma(w_i^T x + b_i -y) dy  = \sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j )  + E_m \]  
- 	 	where \(E_m\) represents an error term which vanishes as \(m \rightarrow \infty\). Perhaps the most important thing to notice here is that \(\sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j )\) represents a shallow neural network in \(\Sigma^{\sigma}\). 
+\[  \tilde{\sigma} (w_i^T x + b_i) = \int_{\mathbb{R}} \varphi(y) \sigma(w_i^T x + b_i -y) dy  = \sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j )  + E_m(x) .\]  
+ 	 	where \(E_m := \max_{x \in \Omega} E_m(x)\) represents an error term which vanishes as \(m \rightarrow \infty\). Perhaps the most important thing to notice here is that \(\sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j )\) represents a shallow neural network in \(\Sigma^{\sigma}\). 
+ 	 	Given this we can see that we can construct a neural network \(h\in \Sigma^{\sigma}\) defined as
+    \[ h(x) =  \sum_{i=1}^n \sum_{j=1}^m a_i  \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j ) . \]
  	 	
- 	 	
- 	 	
- 	 	Then we can see 
- 	 	
- 	 	\[ \| h - \tilde{h} \|_{\infty} \leq \sum_{i=1}^n a_i \left |  \sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b - y_j ) -   \tilde{\sigma} (w_i^T x + b) \right | \leq \left (  \sum_{i=1}^n a_n \right ) E_m   \] 
+ 	 	\[ \| h - \tilde{h} \|_{\infty} \leq \sum_{i=1}^n a_i \left |  \sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j ) -   \tilde{\sigma} (w_i^T x + b) \right | \leq \left (  \sum_{i=1}^n a_n \right ) E_m   \] 
  	 	 Therefore we choose \(m\) so that 
  	 	 \[  E_m  \leq \dfrac{\epsilon}{2 \sum_{i=1}^n a_n } \]
  	 	 which all but gives the result. Indeed,
