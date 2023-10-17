@@ -1,0 +1,463 @@
+/* Base styles */
+h1 {
+    color: #e2e2e2;
+}
+
+h2 {
+    color: #e2e2e2;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+    color: hsl(0, 17%, 5%);
+    font-size: 20px;
+    margin-bottom: 4px;  /* Adjust space between title and subtitle */
+}
+
+h4 {
+    font-family: 'Roboto', sans-serif;
+    color: #5c5c5c;  /* Lighter color for subtitle */
+    font-size: 16px;
+    font-weight: 500;  /* Lighter font weight */
+    margin-top: 0;  /* Remove default top margin */
+}
+
+/* Research section specific styles */
+.research h1,
+.research h2,
+.research h3,
+.research h4 {
+    color: #e2e2e2;  /* Replace with the desired color for the research section */
+}
+
+/* Project section specific styles */
+.project h1,
+.project h2,
+.project h3,
+.project h4 {
+    color: #5c5c5c;  /* Replace with the desired color for the project section */
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 50px;
+    background-color: hsl(240, 13%, 6%);
+    
+}
+
+
+
+p{
+    color: #efefef;
+}
+
+
+
+ul {
+    /* list-style-type: none; */
+    padding: 20px;
+}
+li {
+    padding: 3px 3px;
+}
+
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;  /* Aligns the grid to the top of the main container */
+    min-height: 80vh;  /* Ensures the main container takes up at least the full height of the viewport */
+}
+
+
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    grid-auto-flow: row;  /* This enforces row-based flow */
+}
+
+
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 901px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+.grid-item {
+    border: 1px solid #ccc;
+    padding: 16px;
+    background-color: #f8f8f8;
+ 
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+ 
+ 
+    height: 190px;  /* Fixed height */
+    width: 340px;  /* Fixed height */
+    position: relative;  /* Position relative for absolute positioning of children */
+    overflow-y: auto;  /* Scrollbar for overflow content */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-content {
+/* Your styles for the project content */
+}
+
+
+.project {
+    margin-bottom: 20px;
+}
+
+.link-btn, .dropdown-btn {
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    flex-shrink: 0;  /* Prevent buttons from shrinking */
+}
+
+.link-btn:hover, .dropdown-btn:hover {
+    background-color: #3704f0;
+}
+
+.dropdown-content {
+    display: none;
+    background-color: #ffffff;
+    margin-top: 8px;
+    margin-left: 8px;
+    border: 1px solid #ffffff;
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.button-container {
+    display: flex;
+    gap: 8px;  /* Space between buttons */
+    justify-content: flex-start;  /* Align buttons to the left */
+    padding: auto;
+}
+
+
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;  /* Ensure the modal is above other page elements */
+}
+
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+}
+
+
+.close {
+    background-color: transparent;
+    color: #aaa;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.center-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin: 0;  /* Removes default body margin */
+}
+
+.centered-container {
+    /* Add border to the left and right sides */
+   
+     
+
+    /* Add padding to the left and right */
+    padding-left:  10%;
+    padding-right:  10%;
+}
+
+  
+
+
+.about-container {
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0px;
+    padding: 0px;
+    grid-auto-flow: row;  /* This enforces row-based flow */
+}
+
+
+
+@media (max-width: 600px) {
+    .about-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+    .about-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1000px) {
+    .about-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+.about-item {
+    
+    padding: 2px;
+    
+ 
+    margin-bottom: 0px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+ 
+ 
+    width: auto;  /* Fixed height */
+    position: relative;  /* Position relative for absolute positioning of children */
+    overflow-y: auto;  /* Scrollbar for overflow content */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.profile-pic {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;  /* Optional: for rounded image */
+}
+
+.about-text {
+    max-width: 500px;  /* Optional: to restrict text width */
+}
+
+
+.text-box {
+    border: 3px solid #c9d1d9;  /* Sets the thickness and color of the border */
+    padding: 20px;  /* Adds some space between the text and the border */
+    margin: 20px 0;  /* Adds some vertical space above and below the box */
+    background-color: rgba(61, 61, 61, 0.011);  /* Semi-transparent white background */
+    color: #dce5ef;  /* Text color */
+    border-radius: 8px;
+}
+
+
+section {
+    padding: 0px;
+    padding-top: 25px;  /* Adds extra padding at the top to account for the fixed navbar */
+    /* Additional styling for sections if needed */
+}
+
+.socials-button:hover {
+    background-color: #e7e3e34b;  /* Darker LinkedIn color on hover */
+}
+
+
+.socials-button {
+position: relative;
+display: inline-block;
+padding: 5px 5px;
+background-color: #f4f6f700;  /* LinkedIn color */
+color: white;
+text-decoration: none;
+border-radius: 4px;
+font-size: 24px;
+cursor: pointer;
+
+}
+
+
+
+/* Tooltip styling */
+.socials-button[data-tooltip]:hover:after {
+content: attr(data-tooltip);
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+margin-bottom: 10px;
+padding: 7px;
+border-radius: 4px;
+background-color: #333;
+color: #fff;
+font-size: 12px;
+white-space: nowrap;
+z-index: 1000;
+}
+
+
+.image-info {
+    position: relative;
+    display: inline-block;
+    padding: 5px 5px;
+    background-color: #f4f6f700;  /* LinkedIn color */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 24px;
+    cursor: pointer;
+    
+    }
+
+
+.image-info:hover img {
+    filter: blur(2px);
+}
+
+
+.image-info[data-tooltip]:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  /* Adjusted to center vertically as well */
+    max-width: 80vw;  /* Set to 80% of the viewport width, adjust as needed */
+    pointer-events: none;
+    z-index: 100;
+}
+
+
+
+.paper-container{
+    border: 1px solid #ccc;
+    padding: 3px;
+    background-color: #f8f8f8;
+ 
+    margin-bottom: 5px;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+ 
+    font-palette: #000000;
+    
+    position: relative;  /* Position relative for absolute positioning of children */
+    overflow-y: auto;  /* Scrollbar for overflow content */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.link-style{
+    color : rgb(30, 141, 196)
+}
+
+
+
+
+
+.navbar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* Assuming 4 navbar items */
+    grid-gap: 5px;  /* Adjust as needed */
+    max-width: 100%;  /* Adjust as needed */
+    margin: 0 auto;  /* Centers the grid horizontally */
+    
+    background-color: hsl(240, 13%, 6%);
+    color: white;  /* White text */
+    padding: 10px 0px;
+    width: 100%;  /* Ensures the navbar spans the full width of the page */
+    position: fixed;  /* Fixes the navbar to the top of the page */
+    top: 0;  /* Positions the navbar at the top of the page */
+    z-index: 1000;  /* Ensures the navbar is above other content */
+    /*ensure the items are spaced out across the navbar */
+    
+
+}
+
+
+
+
+
+.nav-button {
+    color: white;  /* White text */
+    text-decoration: none;  /* Removes underline */
+    font-size: 18px;  /* Font size */
+    transition: color 0.3s;  /* Smooth color transition */
+    padding: 10px;  /* Adjust as needed */
+    margin: 0 100px;  /* Adjust as needed */
+}
+
+.nav-button:hover {
+    color: #d4d4d4;  /* Lighter color on hover */
+}
+
+/* For screens smaller than 1000px */
+@media (max-width: 1000px) {
+    .nav-button {
+        padding: 5px 5px;  /* Reduced padding */
+        margin: 0 0px;  /* Adjust as needed */
+    }
+}
+
+/* For screens smaller than 600px */
+@media (max-width: 600px) {
+    .nav-button {
+        padding: 5px 5px;  /* Even more reduced padding */
+        margin: 0 0px;  /* Adjust as needed */
+    }
+    
+}
+
+/* For screens smaller than 400px */
+@media (max-width: 400px) {
+    .nav-button {
+        padding: 5px 5px;  /* Minimal padding */
+        margin: 0 0px;  /* Adjust as needed */
+    }
+}
