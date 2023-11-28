@@ -68,7 +68,7 @@ li {
     display: flex;
     justify-content: center;
     align-items: start;  /* Aligns the grid to the top of the main container */
-    min-height: 80vh;  /* Ensures the main container takes up at least the full height of the viewport */
+    min-height: 10vh;  /* Ensures the main container takes up at least the full height of the viewport */
 }
 
 
@@ -250,6 +250,12 @@ li {
     }
 }
 
+/*
+
+
+
+
+*/
 
 .about-item {
     
@@ -403,7 +409,7 @@ z-index: 1000;
 
 .navbar {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);  /* Assuming 4 navbar items */
+    grid-template-columns: repeat(6, 1fr);  /* Assuming 4 navbar items */
     grid-gap: 5px;  /* Adjust as needed */
     max-width: 100%;  /* Adjust as needed */
     margin: 0 auto;  /* Centers the grid horizontally */
@@ -416,8 +422,6 @@ z-index: 1000;
     top: 0;  /* Positions the navbar at the top of the page */
     z-index: 1000;  /* Ensures the navbar is above other content */
     /*ensure the items are spaced out across the navbar */
-    
-
 }
 
 
@@ -430,34 +434,42 @@ z-index: 1000;
     font-size: 18px;  /* Font size */
     transition: color 0.3s;  /* Smooth color transition */
     padding: 10px;  /* Adjust as needed */
-    margin: 0 100px;  /* Adjust as needed */
+    margin: 0 30px;  /* Adjust as needed */
+   
+
 }
 
 .nav-button:hover {
     color: #d4d4d4;  /* Lighter color on hover */
 }
 
+
+
 /* For screens smaller than 1000px */
 @media (max-width: 1000px) {
     .nav-button {
-        padding: 5px 5px;  /* Reduced padding */
+        padding: 2px 2px;  /* Reduced padding */
         margin: 0 0px;  /* Adjust as needed */
     }
 }
 
+
+
 /* For screens smaller than 600px */
 @media (max-width: 600px) {
     .nav-button {
-        padding: 5px 5px;  /* Even more reduced padding */
+        padding: 2px 2px;  /* Reduced padding */
         margin: 0 0px;  /* Adjust as needed */
     }
     
 }
 
+
+
 /* For screens smaller than 400px */
 @media (max-width: 400px) {
     .nav-button {
-        padding: 5px 5px;  /* Minimal padding */
+        padding: 2px 2px;  /* Reduced padding */
         margin: 0 0px;  /* Adjust as needed */
     }
 }
