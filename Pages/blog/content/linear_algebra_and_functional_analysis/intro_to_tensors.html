@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Research Trends</title>
+    <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <style>
+        /* Style the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10%;
+            text-align: center;
+        }
+
+        /* Style the main content area */
+        .main-content {
+            margin: 10%;
+            padding: 10%;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+        }
+
+        /* Style the blog post title */
+        h1 {
+            font-size: 36px;
+            margin-bottom: 5%;
+            text-align: center;
+        }
+
+        /* Style the blog post author and date */
+        .author-date {
+            font-size: 14px;
+            color: gray;
+            text-align: right;
+            margin-bottom: 5%;
+        }
+
+        /* Style the blog post content */
+        .post-content {
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: justify;
+            margin-bottom: 5%;
+            height: 100%;
+        }
+
+        /* Style the white background */
+        .white-bg {
+            overflow: auto;
+            background-color: white;
+            padding: 5%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin: 5%;
+            width: 80%;
+            min-height: 100vh;
+            height: auto;
+        }
+
+        /* Media queries */
+        @media only screen and (max-width: 768px) {
+            .main-content {
+                margin: 5%;
+                padding: 5%;
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .author-date {
+                text-align: center;
+            }
+
+            .post-content {
+                font-size: 12px;
+            }
+
+            .white-bg {
+                overflow: auto;
+                background-color: white;
+                padding: 5%;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                margin: 5%;
+                width: 80%;
+                min-height: 100vh;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Introduction to Tensors (Under construction)</h1>
+    </header>
+    <!-- <div class="main-content"> -->
+
+    <div class="author-date">
+        by David Harper on April 4, 2023
+    </div>
+    <div class="post-content">
+
+
+
+        <div class="white-bg">
+
+
+            <h1>Introduction</h1>
+            <p>
+                Tensor is a word that essentially everyone in the machine learning community has heard of if for no
+                other reason that the library TensorFlow. However, in the post I would like to understand the word
+                tensor as a mathematical object and discuss its applications in machine learning. Again, a fair warning
+                it reader, we will assume you have some advanced knowledge of abstract linear algebra.
+            </p>
+
+            <p>
+                Before we start perhaps its best to address the obvious question; Why should we care about tensors?
+                The most compelling reason to understand tensors in the context of deep learning is that they provide
+                 a unified and efficient way to represent and manipulate complex, multi-dimensional data. Tensors are 
+                 the fundamental building blocks of deep learning models, allowing for seamless integration of various 
+                 types of data, such as images, text, and speech. They enable efficient computation and optimization 
+                 of deep learning models through vectorization and parallelism, resulting in faster training and 
+                 improved performance. By understanding tensors, you gain a deeper insight into how deep learning models 
+                 work, how to design and implement them more effectively, and how to optimize their performance to 
+                 handle real-world tasks.
+            </p>
+
+            <p>The quick explanation that most of us are feed when we ask what a tensor is, is that we are told
+                is like a matrix but with more than two axis. This is not entirely wrong, but it leaves are fair
+                bit to desired in terms of motivations and understanding how we can work with tensors.
+            </p>
+
+
+            <p>Lets start by assuming we have two of your favorite vector spaces \(V\) and \(W\) over
+                a field but lets assume \(\mathbb{R}\) throughout. Let imagine that we have a symbol \(\otimes\)
+                which will be our <i>tensor product</i> and we want to define how it should behave for two
+                vectors \(v \in V\) and \(w\in W\). If its is to behave like a product it should obey certain axioms
+                that come across like a product, shouldn't it? I suppose it would be fair to expect a few things like,
+
+            <ul>
+                <li>\(\lambda (v \otimes w) = (\lambda v ) \otimes w \)</li>
+                <li>\(\lambda (v \otimes w) = v \otimes ( \lambda w) \)</li>
+                <li>\( v \otimes ( w_1 + w_2) = v \otimes w_1 + v \otimes w_2 \)</li>
+                <li>\( (v_1 + v_2) \otimes w = v_1 \otimes w + v_2 \otimes w \)</li>
+            </ul>
+            for all \(\lambda \in \mathbb{R}\) , \(v,v_1,v_2 \in V\) and \(w,w_1,w_2 \in W\).
+            </p>
+
+            <p>
+                Indeed this is basically sufficient to define the tensor product space. We can define the
+                tensor product \(V \otimes W\) as the collection of all linear combinations of the form
+                \(v \otimes w\) for \(v \in V\) and \(w \in W\). Suppose further your vector spaces \(V\)
+                and \(W\) have a basis \(B_{V}\) and \(B_W\) respectively. Then the set of all \(v \otimes w\)
+                with \(v \in B_{V}\) and \(w \in B_{W}\) form a basis for \(V \otimes W\).
+            </p>
+
+
+            <p> Another point of view on tensors is as those objects which live in a certain vector space we call the
+                tensor product of two or more vector spaces. What is a tensor product you ask? Well, in a sense
+                its the most natural definition for what you would mean if some asks you how to multiply two
+                vector spaces together. I imagine that idea might sound a little bizarre to some of you but we can
+                unpack that.
+            </p>
+
+
+            <p> With these two vector space we can define
+                what we call the <i>free vector space</i> \(F(V,W)\) which considered as a vector space
+                given by the span (<b>finite</b> linear combinations) of \((v,w) \in V \times W\). That is, at least
+                symbolically we might say
+                its elements have the form
+                \[ \sum_{v,w} \alpha_{v,w} (v,w) \]
+                where \(\alpha_{v,w} \in \mathbb{R}\) and \(\alpha_{v,w} = 0\) for all but finitely many terms.
+            </p>
+
+
+            <p>Matrices from Vectors: We can see how matrices come naturally from tensor products of vector spaces.
+                Consider the vector space \(\mathbb{R}^n\) which has a basis given in terms of the so-called standard
+                basis elements \(e_i\). (\(e_i\) is the vector of all zeros except for a one in the \(i\)-th position.)
+                We can define the vector space \(\mathbb{R}^{n \times n}\) as the tensor product of \(\mathbb{R}^n\)
+                with
+                itself. Indeed \(\mathbb{R}^n \otimes \mathbb{R}^{n}\) has a basis given by \(e_i \otimes e_j\) and so
+                consists of elements of the form \(\sum_{i,j} \alpha_{i,j} e_i \otimes e_j\) for
+                \(\alpha_{i,j} \in \mathbb{R}\). In this way we can see a natural correspondence with square
+                \(n\times n\)-matrices. Indeed in this context we can even see it makes sense to think of \(e_i \otimes
+                e_j\)
+                as the so-called outer product \(e_j e_i^T\) (or \(e_i e_j^T\) depending on preference).
+            </p>
+
+            <p>What are matrices really if not for those linear operators between vector spaces? Recall the notion of a
+                dual space which is the vector space of linear functionals on a vector space. That is given a vector
+                space
+                \(V\) we define its dual \(V^*\) as the set of all linear functionals on \(V\) to \(\mathbb{R}\).
+
+
+
+            <fieldset style="border: 1px solid black; padding: 10px;">
+                <fieldset style="border: 2px solid black; padding: 10px;">
+                    <b>Proposition:</b> Let \(V\) and \(W\) be finite dimensional vector spaces. Then we have the
+                    following result,
+                    \[ V^* \otimes W \cong \text{Hom}(V,W) .\]
+                </fieldset>
+                <br>
+                <i>Proof:</i> We construct an explict isomorphism between \(V^* \otimes W\) and \(\text{Hom}(V,W)\). We
+                define an isomorphism (bijective and linear)
+                \[ \phi: V^* \otimes W \to \text{Hom}(V,W) .\]
+                Lets start by fixing a basis of \(V,W\) as elements \(v_i,w_i\) respectively.
+
+                We can define a linear map \(\phi\) by its action on a pure tensor \(v^* \otimes w\) by
+                \[ \phi(v^* \otimes w)(v) = v^*(v) w \]
+                and so of course
+
+                \[ \phi \left ( \sum_{ij} \alpha_{ij} v_i^* \otimes w_j \right )(v) = \sum_{ij} \alpha_{ij} v_i^*(v) w_j
+                \]
+                can be computed sending \(T \in \text{Hom}(V,W)\) to
+
+                Next lets prove it is surjective. We let \(v_i^*\) be the dual basis of \(v_i\) in the sense that
+                \[ v = \sum_i v_i^*(v) v_i \]
+                for all \(v \in V\). Then we can see that for any \(T \in \text{Hom}(V,W)\)
+                \[ T(v) = \sum_i v_i^*(v) T(v_i) \]
+                We can express \(T(v_i) = \sum_j \alpha_{ij} w_j\) for some \(\alpha_{ij} \in \mathbb{R}\).
+                Substituting this into the above equation we get
+
+                \[ T(v) = \sum_{ij} \alpha_{ij} v_i^*(v) w_j = \phi \left ( \sum_{ij} \alpha_{ij} v_i^* \otimes w_j
+                \right )(v) \]
+
+                from which we can see it is surjective. 
+
+                <p style="text-align: right;">
+                    <span style="text-align: right;" style="font-size: 1.0em;">&block;</span>
+                  </p>
+
+            </fieldset>
+            </p>
+
+            <p><b>Convolution:</b> Convolution is a natural operation in the context of signal processing. Loosely
+                speaking, the action of convolution is born out of linear filters which posses a certain translation
+                invariance.
+                In particular given some space of signals \(f: \mathbb{Z}^d \rightarrow \mathbb{R}\) any linear map
+                \(T\)
+                from the space of signals to itself such that \(T(f)(x+ z) = T(f(\cdot + z)) \) for all \(z\) will be a
+                convolution.
+                By that we mean there will exist function \(h: \mathbb{Z}^d \rightarrow \mathbb{R}\) so that for any
+                signal \(f\)
+                \[ T(f)(x) = \sum_{y} h(x-y) f(y) .\]
+                We will often refer to \(h\) as the kernel or filter of the convolution \(T\).
+                <i>Proof Idea:</i> Let the Kroncker delta be denoted by \(\delta_{z} = \text{1}_{\{z=0\}}\).
+                Then we can write
+                \[ f(x) = \sum_{x} \delta_{x-y} f(y). \]
+                So of course
+                \[ T(f)(x) = \sum_{x} T(\delta_{\cdot-y})(x) f(y) = \sum_{x} T(\delta_{\cdot})(x-y) f(y) \]
+                so we set \(h(x) := T(\delta_{\cdot})(x)\).
+
+            <p style="text-align: right;">
+                <span style="text-align: right;" style="font-size: 1.0em;">&block;</span>
+            </p>
+            </p>
+
+
+            <h2>Tensors as multi-linear maps</h2>
+            <p>Another point of view on tensors is as multi-linear maps. For example, a rank-2 tensor is a map 
+                which takes in two vectors and outputs a scalar. A rank-3 tensor is a map which takes in three
+                vectors and outputs a scalar. In general, a rank-n tensor is a map which takes in n vectors and
+                outputs a scalar.
+
+                <fieldset style="border: 1px solid black; padding: 10px;">
+                    <fieldset style="border: 2px solid black; padding: 10px;">
+                        <b>Proposition:</b> If \(E_1,...,E_n\) and \(V\) are vector spaces over a field \(\mathbb{K}\),
+                        then the vector space \(\text{Hom}_{\mathbb{K}}(E_1 \otimes ... \otimes E_n ,V) \) is cannonically
+                        isomorphic (via restriction to pure tensors) to the vector space of all \(V\)-valued \(n\)-multilinear
+                        functions on \(E_1 \times ... \times E_n\). In particular the vector space of all \(n\)-multilinear
+                        forms on \(E_1 \times ... \times E_n\) is isomorphic to \((E_1 \otimes ... \otimes E_n)^*\).
+                        (See Knapp - Basic Algebra, Proposition 6.21. )
+                    </fieldset>
+                    
+
+                    <br> 
+                    <i>Proof (Special Case):</i> Let us consider a proof of a special case of the last remark. In particular assume all the vector spaces 
+                    are finite dimensional, that \(n=2\), and take \(V = \mathbb{K}\). Indeed the we should also see how this 
+                    result can be extended for general \(n \geq 1\). The hopeful takeaway from this proof is an intuition 
+                    for how tensors can correspond to multi-linear maps.
+                    We start by fixing a basis of \(E_1,E_2\) as elements of the form
+                     \(e_{i,1},e_{i,2}\). Corresponding to this we define a dual basis consisting of elements of the form
+                     \(e_{i,1}^*,e_{i,2}^*\). The property of the dual basis is that for \(v\in E_j\) we have
+                     \[ v = \sum_i e_{i,j}^*(v)e_{i,j}.\]
+
+                    Now let \(T \in \text{Hom}_{\mathbb{K}}(E_1 \otimes E_2 ,\mathbb{K}) \). We can write \(T\) as a linear map
+                    which is linear and maps all pure tensors \(v^* \otimes w^*\) to the bilinear form \(B_{v^* \otimes w^*}\)
+                    which act by \(B_{v^* \otimes w^*}(v,w) = v^*(v)w^*(w)\). Then we can extend \(T\) to all of \(E_1 \otimes E_2\)
+                    by linearity. 
+
+                    Now we show that \(T\) is an isomorphism. To do this we show that it is injective and surjective. To see that 
+                    it is surjective let us prove that the kernel only contains the zero tensor. Assume that \(T(v^* \otimes w^*) = 0\).
+                    Then we have \(v^*(v)w^*(w) = 0\) for all \(v,w\). But this is equivalent to \(v^*(v) = 0\) or \(w^*(w) = 0\).
+                    This however implies that \(v^* = 0\) or \(w^* = 0\). However this would imply that \(v^* \otimes w^* = 0\) 
+                    which is a contradiction. So \(T\) is injective.
+
+
+                    Now we show that \(T\) is surjective. To do this we show that every \(B \in \text{Hom}_{\mathbb{K}}(E_1 \otimes E_2 ,\mathbb{K}) \)
+                    can be written as \(T(v^* \otimes w^*)\) for some \(v^*,w^*\). Let us see how to express \(B\) in coordinates. 
+                    Given \(v,w\) we can write \(B(v,w) = \sum_{ij} B_{i,j} e_{i,1}^*(v)e_{j,2}^*(w)\) where \(B_{i,j} := B(e_{i,1},e_{j,2})\).
+                    So we can see the natural choice for the tensor \(v^* \otimes w^*\) is  
+       
+                    \[ v^* \otimes w^* = \sum_{ij} B_{i,j} e_{i,1}^* \otimes e_{j,2}^* . \]
+
+                    This completes the proof. 
+ 
+                    <p style="text-align: right;">
+                        <span style="text-align: right;" style="font-size: 1.0em;">&block;</span>
+                    </p>
+                </fieldset>
+                    Another takeyway from this is that for the vector space of all \(n\)-multilinear
+                    forms on finite dimensional vector spaces \(E_1 \times ... \times E_n\) is isomorphic to 
+                    \(E_1 \otimes ... \otimes E_n\). This is a corrolary of the fact that finite dimensional vector
+                    spaces are isomorphic to their dual. 
+
+            </p>
+            
+
+            <p>
+                Given 
+            </p>
+
+            <p>Convolution in Deep Learning. The term convolution appears most prominently in the context of 
+                the convolutional neural network, an architecture which is a cornerstone of modern deep learning.
+                Convolutional neural networks possess certain layers which perform convolution operations which 
+                make them particularly well suited for applications where the input data possess translational 
+                symmetries. For example, in the context of image processing, convolutional neural networks 
+                find many applications given an image is generally assumed to be equivalent under translations. 
+                For similar reasons, certain one dimensional signals such as audio and text may also be amenable 
+                to processing via convolutional neural networks. The field of Geometric Deep Learning extends 
+                this idea of translational symmetries to the context of group symmetries and other geometric structures.
+            </p>
+
+            <p>Given an image represented as rank-3 tensor consisting of two spatial directions and one to represent each
+                of the RGB values, \(\{x_{u,v,c}\}\) we can express the convolutional tensor whereby we convolve over 
+                the spatial components and rescale along the color component. 
+                \[ T(x)_{u,v,j} = \sum_{h=1}^H \sum_{w=1}^W \sum_{c=1}^C \alpha_{j,h,w,c} x_{u+h,v+w,c} \]
+              
+            </p>
+
+            Okay great! So what? Who cares? Well, what makes this a valuable observation is that various machine learning 
+            libraries contain highly optimized algorithms for performing operations on tensors. By recognizing that 
+            these equations take the form of tensor operations we can leverage these libraries such as NumPy to carry 
+            out these operations in a highly performant fashion. 
+
+      
+            \[ T \left (  \sum_{ij} \alpha_{ij} e_i \otimes e_j \right )_{st} = \sum_{ij} \alpha_{ij} T (e_i \otimes e_j)_{st}  \]
+             \[  = \sum_{ij} \alpha_{ij} T (e_1 \otimes e_1)_{s-i,t-j} \]
+
+            <p>I want to pause to recall an important concept and means to cook up new vector spaces
+                from old. Namely, the quotient space. If we have a vector space \(V\) and a subspace \(W \subset V\)
+                we can define the quotient space \(V/W\) as the set of all equivalence classes of elements in \(V\)
+                under the equivalence relation \(x \sim y \iff x - y \in W\). In other words, we can think of
+                \(V/W\) as the vector space derived from \(V\) by collapsing all elements in \(W\) to zero. We often
+                write the elements of \(V/W\) as \(v + W\), or [v], or when we are daring enough to risk confusion we
+                might even simply write \(v\) bearing in mind our definition of equivalence.
+            </p>
+            <p>Beginning with the free vector space we can cook up some new vector spaces. Suppose we define the
+                vector space \(R\) taken to be the span of elements of the form
+            <ul>
+                <li>\(\lambda (v,w) - (\lambda v,w) \)</li>
+                <li>\(\lambda (v,w) - (v, \lambda w) \)</li>
+                <li>\( (v,w_1 + w_2) - (v,w_1) - (v,w_2) \)</li>
+                <li>\( (v_1 + v_2,w) - (v_1,w) - (v_2,w) \)</li>
+            </ul>
+            for all \(\lambda \in \mathbb{R}\) , \(v,v_1,v_2 \in V\) and \(w,w_1,w_2 \in W\). That is essentially
+            we can see we would like these to be zero if this behave like a product. And so we can define
+
+            \[ V \otimes W = F(V,W) / R \]
+
+            </p>
+  
+
+       <h2>Tensor algebra</h2>
+       In order to perform computations between tensors we will need to fix a basis. We will identify tensors 
+       with the coordinates \(T_{i_1, \ldots, i_n}\) where \(i_1, \ldots, i_n\) are indices. 
+
+        <h3>Einstein Notation</h3> 
+ 
+         <h2>Tensor contraction</h2>
+            <p>Tensor contraction is a tensor operation which takes two tensors and produces a new tensor. The new tensor
+                is obtained by summing over the indices of the two tensors. For example suppose two tensors \(A\) and \(B\)
+                have same size along their \(i\)th and \(j\)th dimensions respectively then we can sum out 
+                the \(i\)th and \(j\)th dimensions of \(A\) and \(B\) to obtain a new tensor \(C\). 
+
+                \[ C_{i_1',...,i_{n+m-2}'} = \sum_{k } A_{i_1,...,i_{s-1},k,i_{s+1},...,i_n} B_{i_1,...,i_{t-1},k,i_{t+1},...,i_m} \]
+
+                We can write this using Numpy as 
+                <pre><code>
+                    def hello_world():
+                        print("Hello, World!")
+                    
+                    hello_world()
+                      </code></pre>
+                    </body>
+            </p>
+
+
+            <p>Example Python code:</p>
+            <p>Example Python code:</p>
+            <pre>
+            import numpy as np
+            
+            # create tensors A and B
+            A = np.random.rand(2, 3, 4, 5)
+            B = np.random.rand(3, 5)
+            
+            # perform tensor contraction to obtain C
+            C = np.tensordot(A, B, axes=([1, 3], [0, 1]))
+            
+            print("A shape:", A.shape)
+            print("B shape:", B.shape)
+            print("C shape:", C.shape)
+            </pre>
+            
+
+       <h2>Tensor decomposition</h2>
+
+       <h2>Tensor networks</h2>
+
+       <h2>Tensor calculus</h2>
+
+       <h2>Tensor-based models</h2>
+
+</body>
+
+
+
+<script>
+    window.addEventListener("load", function () {
+        var whiteBg = document.querySelector(".white-bg");
+        var maxHeight = Math.max.apply(Math, Array.from(whiteBg.children).map(function (child) {
+            return child.clientHeight;
+        }));
+        whiteBg.style.height = maxHeight + "px";
+    });
+
+
+
+</script>
+
+</html>

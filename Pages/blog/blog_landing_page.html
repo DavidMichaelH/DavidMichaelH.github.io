@@ -1,65 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Probably Approximately Correct</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      background-color: #f4f4f4;
-    }
-    header {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-    }
-    header a {
-      color: #fff;
-      text-decoration: none;
-    }
-    main {
-      padding: 2rem;
-      max-width: 960px;
-      margin: 2rem auto;
-    }
-    article {
-      background-color: #fff;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    article h2 {
-      margin-top: 0;
-    }
-    article p {
-      margin: 0;
-    }
-    article time {
-      display: block;
-      font-size: 0.8rem;
-      color: #777;
-      margin-bottom: 1rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: #333;
+        }
+        .section {
+            margin-top: 30px;
+            padding: 10px;
+        }
+        .link-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .link-list li {
+            margin: 10px 0;
+        }
+        .link-list a {
+            text-decoration: none;
+            color: #0066cc;
+            font-size: 18px;
+        }
+        .link-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1><a href="#">Probably Approximately Correct</a></h1>
-  </header>
-  <main>
-    <article>
-      <h2>Universal Approximation Theorem</h2>
-      <time datetime="2023-03-19">March 30, 2023</time>
-      <p>With what activation functions is learning possible?</p>
-      <a href="articles/shallow_learning_approximation.html">Read more</a>
-    </article>
-    
-    <!-- Add more blog entries here -->
-  </main>
+    <header>Probably Approximately Correct</header>
+    <div class="container">
+        <p><em>A collection of brief results and discussions of ideas from mathematical ideas.</em></p>
+        
+        <div class="section">
+            <h2>Results, Definitions, Examples by Topics</h2>
+            <ul class="link-list">
+              <li><a href="content/probability_and_statistics/landing_page.html">Probability & Statistics</a></li>
+                <li><a href="content/linear_algebra_and_functional_analysis/landing_page.html">Linear Algebra & Functional Analysis</a></li>
+                <li><a href="content/learning_and_estimation/landing_page.html">Learning & Estimation</a></li>
+                <li><a href="content/analysis_and_approximation/landing_page.html">Analysis & Approximation</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Featured Expository Articles</h2>
+            <ul class="link-list">
+                <li><a href="content/shallow_learning_approximation.html">Universal Approximation Theorem</a></li>
+                <li><a href="https://www.google.com">Gaussian Mean Location</a></li>
+                <li><a href="https://www.google.com">Random Energy Model</a></li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

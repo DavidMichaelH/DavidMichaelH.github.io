@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof: Symmetric Matrices Have Real Eigenvalues</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>Proof: Symmetric Matrices Have Real Eigenvalues</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p>Let \(V\) and \(W\) be finite dimensional vector spaces. Then we have the
+                following result,
+                \[ V^* \otimes W \cong \text{Hom}(V,W) .\]</p>
+        </div>
+        
+        <div class="proof">
+            <h2>Proof</h2>
+
+
+            We construct an explict isomorphism between \(V^* \otimes W\) and \(\text{Hom}(V,W)\). We
+            define an isomorphism (bijective and linear)
+            \[ \phi: V^* \otimes W \to \text{Hom}(V,W) .\]
+            Lets start by fixing a basis of \(V,W\) as elements \(v_i,w_i\) respectively.
+        
+            We can define a linear map \(\phi\) by its action on a pure tensor \(v^* \otimes w\) by
+            \[ \phi(v^* \otimes w)(v) = v^*(v) w \]
+            and so of course
+        
+            \[ \phi \left ( \sum_{ij} \alpha_{ij} v_i^* \otimes w_j \right )(v) = \sum_{ij} \alpha_{ij} v_i^*(v) w_j
+            \]
+            can be computed sending \(T \in \text{Hom}(V,W)\) to
+        
+            Next lets prove it is surjective. We let \(v_i^*\) be the dual basis of \(v_i\) in the sense that
+            \[ v = \sum_i v_i^*(v) v_i \]
+            for all \(v \in V\). Then we can see that for any \(T \in \text{Hom}(V,W)\)
+            \[ T(v) = \sum_i v_i^*(v) T(v_i) \]
+            We can express \(T(v_i) = \sum_j \alpha_{ij} w_j\) for some \(\alpha_{ij} \in \mathbb{R}\).
+            Substituting this into the above equation we get
+        
+            \[ T(v) = \sum_{ij} \alpha_{ij} v_i^*(v) w_j = \phi \left ( \sum_{ij} \alpha_{ij} v_i^* \otimes w_j
+            \right )(v) \]
+        
+            from which we can see it is surjective. \( \square \)
+        
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../blog_landing_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>

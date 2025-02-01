@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Research Trends</title>
+    <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <style>
+        /* Style the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10%;
+            text-align: center;
+        }
+
+        /* Style the main content area */
+        .main-content {
+            margin: 10%;
+            padding: 10%;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+        }
+
+        /* Style the blog post title */
+        h1 {
+            font-size: 36px;
+            margin-bottom: 5%;
+            text-align: center;
+        }
+
+        /* Style the blog post author and date */
+        .author-date {
+            font-size: 14px;
+            color: gray;
+            text-align: right;
+            margin-bottom: 5%;
+        }
+
+        /* Style the blog post content */
+        .post-content {
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: justify;
+            margin-bottom: 5%;
+            height: 100%;
+        }
+
+        /* Style the white background */
+        .white-bg {
+            overflow: auto;
+            background-color: white;
+            padding: 5%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin: 5%;
+            width: 80%;
+            min-height: 100vh;
+            height: auto;
+        }
+
+        /* Media queries */
+        @media only screen and (max-width: 768px) {
+            .main-content {
+                margin: 5%;
+                padding: 5%;
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .author-date {
+                text-align: center;
+            }
+
+            .post-content {
+                font-size: 12px;
+            }
+
+            .white-bg {
+                overflow: auto;
+                background-color: white;
+                padding: 5%;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                margin: 5%;
+                width: 80%;
+                min-height: 100vh;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Variational Autoencoders</h1>
+    </header>
+    <!-- <div class="main-content"> -->
+
+    <div class="author-date">
+        by David Harper on April 17, 2023
+    </div>
+    <div class="post-content">
+
+
+
+        <div class="white-bg">
+
+
+
+            <h1>Boosting: Challenging the All-or-Nothing Learning Concept</h1>
+
+            <h2>1. Introduction</h2>
+            <p>In this post we will dig deep into the idea of what we mean by <i>learning</i> and we will ask
+                ourselves whether or not there are concepts which can only be learned partially. We will
+                find that if something can be partially learned that it can be fully learning. We will be
+                introduced to an algorithm concept called <i>boosting</i> which has not only enormous practical
+                value but will enable us to prove this result by convert a collection of weak learners into
+                a single strong learner.
+
+            </p>
+
+            <h2>2. PAC Learning: A Brief Overview</h2>
+            <p> What do we mean when we say something is learnable? First, I suppose we need to clarify what are the
+                kinds of
+                things we would like to learn. For sake of simplicity, lets focus on classifications problems. In a
+                typical
+                classification problem, we aim to deduce the appropriate category for an object based on a given set of
+                features from that object. In the case when an object belongs to only one of two categories we can
+                think of our features as \(x \in \mathbb{R}^d\) and our categorical label as just \(y \in \{0,1\}\).
+
+                An example of such a problem is determining whether an image, represented by a vector of pixel values,
+                depicts a dog or not (represented by a binary class label).
+
+                We can consider the function \(c : \mathbb{R}^d \rightarrow \{0,1\}\) which assigns a label to a given
+                feature vector. Its common to refer to this function as a <i>concept</i>. This function might answer the
+                question, "Is this an image of a dog?" The true function is unknown to the learner, and our goal is to
+                learn
+                it using training data.
+            </p>
+
+            <p>
+                Another ingredient we need to define is a distribution over the feature space \(\mathbb{R}^d\). Lets
+                denote the distribution describing how the features \(x \in \mathbb{R}^d\) are drawn as \(\mathcal{D}\).
+
+                We can then define a hypothesis class \(\mathcal{H}\) which is the set of all functions
+                \(h: \mathbb{R}^d \rightarrow \{-1,1\}\) our learning algorithm could return. For example
+                \(\mathcal{H}\)
+                could be the collection of all neural networks with a sigmoid activation functions.
+
+                To measure the performance of our learning algorithm, we define an essential quantity:
+                \[ R(h) = \mathbb{P}_{x \sim \mathcal{D}}[ h(x) \not= c(y) ] \]
+                In the context of statistical learning theory \(R(h)\) is typically referred to as the risk function or
+                the generalization error.
+            </p>
+
+            <p>
+                Now let us touch on the idea of PAC learning. The definition we give will address two concerns we might
+                want
+                for a learning algorithm. It should work and work efficiently.
+                We will say that a concept is PAC learnable if there is algorithm
+                which can return for us a good approximation from the hypothesis class using a reasonable number of
+                training examples.
+            </p>
+
+            <p>
+                This idea might be intuitive but the last bit about a reasonable number of training examples might feel
+                a bit strange.
+                Of course this some criterion describing efficiency.
+            </p>
+            <p>
+            We say that a concept class \(\mathcal{C}\) is PAC learnable if there exists a learning 
+            algorithm \(A\) and a polynomial \(P=P(x,y)\) such that for any \(c \in \mathcal{C}\), \(\epsilon > 0\), \(\delta > 0\), 
+            and any distribution \(\mathcal{D}\) over the input space, given \(m\) training examples from an i.i.d. <i>training set</i> 
+            \(\{(x_i,c(x_i))\}_{i=1}^m\) drawn from the distribution \(\mathcal{D}\), where \(m \leq P(1/\epsilon,1/\delta)\), the 
+            algorithm \(A\) returns a hypothesis \(h \in \mathcal{H}\) satisfying:
+            \[\mathbb{P}[R(h) \leq \epsilon] \geq 1- \delta .\]
+            </p>
+
+            I want to unpack some of the aspects of this definition. 
+ 
+            <ul>
+                <li>The algorithm can find a hypothesis \(h\) that achieves low generalization error (\(R(h) \leq
+                    \epsilon\)) with high probability (at least \(1-\delta\)).</li>
+                <li>The algorithm does not require an excessive number of training examples, in the sense that the
+                    number of required samples is upper-bounded by a polynomial function of \(1/\epsilon\) and
+                    \(1/\delta\).</li>
+                <li>The criterion is meet for every concept in the concept class. It does permit however a concept 
+                    class to contain only a single concept, \(\mathcal{C} = \{c\}\). 
+                </li>
+                <li>The criterion holds for all distributions \(\mathcal{D}\) over the input space. Some practical 
+                    motivation for this is that we generally have no clue what the distribution our data comes from.
+                </li>
+            </ul>
+
+
+
+
+            <p>Challenging example. Suppose we define a function \(c: \mathbb{N} \rightarrow \{0,1\}\) where 
+                \(c(n) = X_n\) for some i.i.d Bernoulli random sequence \(X \sim \mathcal{B}(3/4)\). Suppose we consider 
+                a fixed distribution \(\mathcal{D}\) which is geometric with parameter \(1/2\). Then 
+            </p>
+
+
+            <h2>3. The All-or-Nothing Concept in Learning</h2>
+            <p>We want to explore weaker notion of learning. In the definition of learning we gave we might also refer
+                to that notion as strong learnability. Indeed if a concept is strongly learnable then we
+                are able to drive the generalization error to zero with high probability. What if we had an algorithm
+                that could do well but wasn't able to do arbitrarily well? Lets imagine suppose we have an algorithm that 
+                can always do better than random guessing, by that we mean we should be able to get generalization error 
+                strictly below \(1/2\).</p>
+
+
+            <p>
+                We say that a concept class \(\mathcal{C}\) is (efficiently) <em>weakly</em> learnable if there exists a learning
+                algorithm \(A\) and a polynomial
+                \(P=P(x)\) and \(\gamma > 0 \) such that for any \(\delta > 0\), given at most \(m\) training examples
+                from an i.i.d.
+                <i>training set</i>\(\{(x_i,c(x_i))\}_{i=1}^m\) drawn from the distribution \(\mathcal{D}\) where
+                \(m \leq P(1/\delta)\), \(A\) returns hypothesis \(h \in \mathcal{H}\) satisfying
+                \[\mathbb{P}[R(h) \leq 1/2 - \gamma] \geq 1- \delta .\]
+            </p>
+  
+
+            <p>Example: Suppose I toss a coin that comes up heads with probability \(3/4\). Can we weakly learn this? If
+                we simply always
+                guess \(h(x) = 1\) (heads) then we will be correct with probability \(3/4\). Indeed then,
+
+                \[ R(h) = \mathbb{P}_{x \sim \mathcal{D}}[ 1 \not= c(y) ] = 1/4 < 1/2 \] </p>
+                    <h2>4. Boosting: The Power of Combining Weak Learners</h2>
+                    <p>a. Introduce the idea of boosting and its role in overcoming the all-or-nothing concept in
+                        learning.</p>
+                    <p>b. Explain the basic principle behind boosting: combining multiple weak learners to create a
+                        strong
+                        learner.
+                    </p>
+                    <p>c. Discuss popular boosting algorithms, such as AdaBoost and Gradient Boosting, and how they
+                        work.</p>
+
+                    <h2>5. Theoretical Foundations of Boosting in PAC Learning</h2>
+                    <p>a. Describe how boosting relates to the PAC learning framework.</p>
+                    <p>b. Discuss the concept of weak learnability and how it is sufficient for strong learnability
+                        under the
+                        PAC
+                        framework.</p>
+                    <p>c. Explain the boosting conversion theorem, which provides the theoretical foundation for
+                        boosting in PAC
+                        learning.</p>
+
+                    <h2>6. The Implications of Boosting for Machine Learning</h2>
+                    <p>a. Discuss how boosting challenges the all-or-nothing concept in learning, allowing for more
+                        nuanced
+                        learning
+                        approaches.</p>
+                    <p>b. Highlight the practical applications of boosting algorithms in various fields, such as
+                        computer
+                        vision,
+                        natural language processing, and more.</p>
+                    <p>c. Provide examples of situations where boosting has significantly improved the performance of
+                        machine
+                        learning models.</p>
+
+                    <h2>7. Conclusion</h2>
+                    <p>a. Summarize the key points discussed in the blog post.</p>
+                    <p>b. Emphasize the importance of understanding the theoretical aspects of boosting and how they
+                        relate to
+                        the
+                        PAC learning framework.</p>
+                    <p>c. Encourage readers to explore boosting algorithms further and consider their applications in
+                        various
+                        machine learning problems.</p>
+
+                    <p>
+                        Throughout our discussion, we will consider \(\Omega \subset \mathbb{R}^d\) as a compact set. We
+                        will
+                        assume
+                        our activation functions
+                        are continuous; however, the authors of the paper assumed that the activation function could
+                        have a
+                        "very
+                        sparse" set of
+                        discontinuities (essentially, absolutely continuous in the sense of Lebesgue). Taking our
+                        activation
+                        functions
+                        to be continuous
+                        simplifies the arguments and does not significantly diminish the usefulness of the result, as
+                        most
+                        activation
+                        functions of interest
+                        are indeed continuous.
+                    </p>
+
+
+                    <p>To begin the proof, let's demonstrate that if \(\sigma\) is a polynomial, then
+                        \(\Sigma^{\sigma}\) is
+                        <i>not</i>> dense in \(C(\Omega)\).
+                        At first glance, this might seem puzzling when compared to the Weierstrass approximation
+                        theorem.
+                        However,
+                        upon closer examination,
+                        we can see that there is no contradiction because the polynomial we choose is fixed. Accordingly
+                        any
+                        function
+                        of the form,
+
+                        \[ h(x) = \sum_{i=1}^n a_i \sigma(w_i^T x + b_i) \]
+
+                        will it itself be a polynomial with some degree equal to that of \(\sigma\). To complete the
+                        proof, we
+                        show
+                        that it is impossible to
+                        approximate a fixed polynomial \(f\) to arbitrary precision on \(\Omega\) with polynomials of
+                        lesser
+                        degree.
+                        Once this is established, it will conclude this part of the proof, given that \(f \in
+                        C(\Omega)\).
+
+                    </p>
+
+
+                    Then we approximate using a Riemann integral
+
+                    \[ \tilde{\sigma} (w_i^T x + b_i) = \int_{\mathbb{R}} \varphi(y) \sigma(w_i^T x + b_i -y) dy \]
+
+                    \[ = \sum_{j=1}^m \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j ) + E_m(x) .\]
+
+                    where \(E_m := \max_{x \in \Omega} E_m(x)\) represents an error term which vanishes as \(m
+                    \rightarrow
+                    \infty\).
+                    Perhaps the most important thing to notice here is that \(\sum_{j=1}^m \Delta y_j \varphi(y_j)
+                    \sigma( w_i^T
+                    x
+                    + b_i - y_j )\) represents a shallow neural network in \(\Sigma^{\sigma}\).
+                    Given this we can see that we can construct a neural network \(h\in \Sigma^{\sigma}\) defined as
+
+                    \[ h(x) = \sum_{i=1}^n \sum_{j=1}^m a_i \Delta y_j \varphi(y_j) \sigma( w_i^T x + b_i - y_j ) . \]
+
+
+                    \[ \| h - \tilde{h} \|_{\infty} \leq \sum_{i=1}^n a_i \left | \sum_{j=1}^m \Delta y_j \varphi(y_j)
+                    \sigma(
+                    w_i^T
+                    x + b_i - y_j ) - \tilde{\sigma} (w_i^T x + b) \right | \]
+                    \[ \leq \left ( \sum_{i=1}^n a_n \right ) E_m \]
+                    Therefore we choose \(m\) so that
+                    \[ E_m \leq \dfrac{\epsilon}{2 \sum_{i=1}^n a_n } \]
+                    which all but gives the result. Indeed,
+
+                    \[ \| f - h \|_{\infty} \leq \| f - h \|_{\infty} + \|h - \tilde{h} \|_{\infty} \]
+                    \[ \leq \dfrac{\epsilon}{2} + \dfrac{\epsilon}{2} = \epsilon. \]
+                    <!--  </div> -->
+
+</body>
+
+
+
+<script>
+    window.addEventListener("load", function () {
+        var whiteBg = document.querySelector(".white-bg");
+        var maxHeight = Math.max.apply(Math, Array.from(whiteBg.children).map(function (child) {
+            return child.clientHeight;
+        }));
+        whiteBg.style.height = maxHeight + "px";
+    });
+
+
+
+</script>
+
+</html>

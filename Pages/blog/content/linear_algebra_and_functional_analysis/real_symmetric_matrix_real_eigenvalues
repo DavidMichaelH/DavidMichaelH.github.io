@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof: Symmetric Matrices Have Real Eigenvalues</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <link rel="stylesheet" href="style_brief.css">
+
+</head>
+<body>
+    <header>Proof: Symmetric Matrices Have Real Eigenvalues</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p>Every symmetric matrix with real entries has only real eigenvalues.</p>
+        </div>
+        
+        <div class="proof">
+            <h2>Proof</h2>
+            <p>Let \( A \) be an \( n \times n \) real symmetric matrix. We aim to show that all eigenvalues of \( A \) are real.</p>
+            <p>Consider an eigenvalue \( \lambda \) and an associated eigenvector \( \mathbf{v} \), so that:</p>
+            <p style="text-align:center;"> \( A\mathbf{v} = \lambda \mathbf{v} \)</p>
+            <p>Taking the dot product with \( \mathbf{v} \), we get:</p>
+            <p style="text-align:center;"> \( \mathbf{v}^T A \mathbf{v} = \lambda \mathbf{v}^T \mathbf{v} \) </p>
+            <p>Since \( A \) is symmetric, we also have:</p>
+            <p style="text-align:center;"> \( \mathbf{v}^T A \mathbf{v} = (A \mathbf{v})^T \mathbf{v} = (\lambda \mathbf{v})^T \mathbf{v} = \lambda^* \mathbf{v}^T \mathbf{v} \).</p>
+            <p>Thus, we obtain:</p>
+            <p style="text-align:center;"> \( \lambda \mathbf{v}^T \mathbf{v} = \lambda^* \mathbf{v}^T \mathbf{v} \).</p>
+            <p>Since \( \mathbf{v}^T \mathbf{v} \) (the squared norm of \( \mathbf{v} \)) is positive, we conclude \( \lambda = \lambda^* \), meaning \( \lambda \) is real.</p>
+            <p>Thus, all eigenvalues of \( A \) are real. \( \square \)</p>
+        </div>
+
+        <a href="linear_algebra.html" class="back-button">Back to Subject Section</a>
+        <a href="../blog_landing_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>
