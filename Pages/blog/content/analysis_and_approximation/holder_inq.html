@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hölder's Inequality</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>Hölder's Inequality</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p>Let \(f \in \mathbb{L}^p(\mathbb{R})\) and \(g \in \mathbb{L}^q(\mathbb{R})\) where \(\frac{1}{p}+\frac{1}{q}=1\) for \(p,q \geq 1\). Then,
+                \[ \|fg\|_1 \leq \|f\|_p\|g\|_q.\]
+            </div>
+        
+        <div class="proof">
+            <h2>Proof</h2> 
+            First we can see that for \(a,b > 0\) we have 
+
+            \[ ab \leq \dfrac{a^p}{p} + \dfrac{b^q}{q} .\]
+
+            This is in face a direct consequence of Jensen's inequality. 
+
+            \[ \log (ab ) = \dfrac{1}{p} \log (a^p)  + \dfrac{1}{q} \log (a^q)  \]
+            \[ \leq \log \left (\dfrac{a^p}{p} + \dfrac{a^q}{q}  \right ) . \]
+            This gives the inequality. 
+
+            Now, we first prove the result for \(f,g\) such that \(\|f\|_p = \|g\|_q = 1\). 
+
+        <div class="desktop-equation">
+
+            \[\|fg\|_1 = \int_{\mathbb{R}} |f(x)g(x)| dx \leq   \dfrac{1}{p} \int_{\mathbb{R}} |f(x)g(x)|^p dx  +  \dfrac{1}{q} \int_{\mathbb{R}} |f(x)g(x)|^q dx    \]
+        </div>
+        <!-- Mobile Version -->
+        <div class="mobile-equation">
+
+            \[\|fg\|_1 = \int_{\mathbb{R}} |f(x)g(x)| dx \]
+            \[\leq   \dfrac{1}{p} \int_{\mathbb{R}} |f(x)g(x)|^p dx  +  \dfrac{1}{q} \int_{\mathbb{R}} |f(x)g(x)|^q dx    \]
+            
+        </div>
+
+        \[ \leq   \dfrac{1}{p} +  \dfrac{1}{q} = 1 \]]
+
+        Thus we can see that in general give arbitrary \(f\) and \(g\)
+
+        \[\left \| \frac{f}{\|f\|_p} \frac{g}{\|g\|_q}  \right \|_1 \leq 1 \]
+        which gives 
+
+        \[\left \| fg \right \|_1 \leq \|f\|_p \|g\|_q. \]
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../blog_landing_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>
