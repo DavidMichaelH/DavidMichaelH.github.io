@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoeffding's Inequality</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>Hoeffding's Inequality</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p>Let \(X_1,...,X_n\) be independent random variables with \(m_k \leq X_k \leq M_k\). Then for any \(t > 0\),</p>
+                \[ \mathbb{P} \left ( \sum_{k=1}^{n} ( X_k - \mathbb{E} X_k ) \geq t \right ) \leq \exp \left ( -\dfrac{2t^2}{ \sum_{k=1}^{n} \Delta_k^2 } \right ), \]</p>
+            <p>where \(\Delta_k = M_k - m_k\).</p>
+            </div>
+        
+        <div class="proof">
+            <h2>Proof</h2>
+            We use a symmetrization technique with Rademacher random variables. Let 
+\[
+\xi_1,\ldots,\xi_n
+\]
+be independent Rademacher random variables, i.e.,
+\[
+\mathbb{P}(\xi_k = 1) = \mathbb{P}(\xi_k = -1) = \frac{1}{2}.
+\]
+Further, let \(X_1',\ldots,X_n'\) be independent copies of \(X_1,\ldots,X_n\).
+
+
+
+We start by applying Markov's inequality to the event \(\left\{\sum_{k=1}^{n}(X_k-\mathbb{E}X_k)\ge t\right\}\)
+\[
+\mathbb{P} \left ( \sum_{k=1}^{n} ( X_k - \mathbb{E} X_k ) \geq t \right )  \leq \exp(-\lambda t)  \mathbb{E} \exp \left ( \lambda \sum_{k=1}^{n} ( X_k - \mathbb{E} X_k ) \right ).
+\]
+
+
+\[
+= \exp(-\lambda t)  \exp \left (- \lambda  \mathbb{E}  \sum_{k=1}^{n} X_k  \right ) \mathbb{E} \exp \left ( \lambda \sum_{k=1}^{n}  X_k  \right ).
+\]
+
+
+
+Using Jensen's inequality we bring out the expectation to obtain
+\[
+\leq  \exp(-\lambda t)  \mathbb{E}  \exp \left (- \lambda   \sum_{k=1}^{n} X_k  \right ) \mathbb{E} \exp \left ( \lambda \sum_{k=1}^{n}  X_k  \right ).
+\]
+
+
+
+Since \(X_1',\ldots,X_n'\) are independent copies of \(X_1,\ldots,X_n\), we can equivalently write
+\[
+= \exp(-\lambda t)  \mathbb{E}  \exp \left (- \lambda   \sum_{k=1}^{n} X_k'  \right ) \mathbb{E} \exp \left ( \lambda \sum_{k=1}^{n}  X_k  \right ).
+\]
+
+\[
+= \exp(-\lambda t)  \mathbb{E}  \exp \left (\lambda   \sum_{k=1}^{n} (X_k-X_k') \right ).
+\]
+
+
+ 
+We introduce the Rademacher variables \(\xi_k\) to symmetrize the sum
+\[
+= \exp(-\lambda t)  \mathbb{E}  \exp \left (\lambda   \sum_{k=1}^{n} \xi_k (X_k-X_k') \right ).
+\]
+
+
+
+Using independence of the \(\xi_k\)'s, we factorize the expectation
+\[
+=  \exp(-\lambda t)  \prod_{k=1}^{n} \mathbb{E}  \exp \left (\lambda   \xi_k (X_k-X_k') \right ).
+\]
+
+We then condition on \(X_k\) and \(X_k'\) and use the properties of the Rademacher variables
+\[
+=  \exp(-\lambda t)  \prod_{k=1}^{n} \mathbb{E}  \left[ \mathbb{E}[  \exp \left (\lambda   \xi_k (X_k-X_k') \right )  \mid X_k,X_k' ] \right].
+\]
+\[
+=  \exp(-\lambda t)  \prod_{k=1}^{n} \mathbb{E}  \left[ \cosh \left ( \lambda    (X_k-X_k')  \right ) \right].
+\]
+
+
+
+Evaluating the inner expectation and applying the inequality \(\cosh(u) \le \exp\left(\frac{u^2}{2}\right)\) gives
+\[
+=  \exp(-\lambda t)  \prod_{k=1}^{n} \mathbb{E} \left [ \exp \left (  \frac{\lambda^2}{2} (X_k-X_k')^2 \right ) \right ].
+\]
+
+
+Finally, using \(|X_k-X_k'|\le \Delta_k\), we obtain
+\[
+\leq  \exp(-\lambda t)  \prod_{k=1}^{n} \mathbb{E} \left [ \exp \left (  \frac{\lambda^2}{2} \Delta_k^2 \right ) \right ].
+\]
+
+\[
+=  \exp \left ( -\lambda t + \frac{\lambda^2}{2} \sum_{k=1}^{n}  \Delta_k^2 \right ).
+\]
+
+
+
+Then we minimize over \(\lambda\) to get the desired result.
+
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../blog_landing_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>
