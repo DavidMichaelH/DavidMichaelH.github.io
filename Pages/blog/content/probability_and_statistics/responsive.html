@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathJax Responsive Example</title>
+    <script type="text/javascript" async
+      src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .desktop-equation {
+            display: block;
+        }
+        .mobile-equation {
+            display: none;
+        }
+        @media (max-width: 600px) {
+            .desktop-equation {
+                display: none;
+            }
+            .mobile-equation {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>MathJax Responsive Example</h1>
+    <div class="math-container">
+        <p>Here is a mathematical equation:</p>
+        <!-- Desktop Version -->
+        <div class="desktop-equation">
+            \[
+            f(x) = \int_{a}^{b} \frac{1}{1 + x^2} \, dx
+            \]
+        </div>
+        <!-- Mobile Version -->
+        <div class="mobile-equation">
+            \[
+            f(x) = \int_{a}^{b} \frac{1}{1 + x^2} \, dx
+            \]
+        </div>
+        <p>Another equation:</p>
+        <!-- Desktop Version -->
+        <div class="desktop-equation">
+            \[
+            \int_0^1 |f(x) g(x)| \, dx \leq \|f\|_2 \|g\|_2
+            \]
+        </div>
+        <!-- Mobile Version -->
+        <div class="mobile-equation">
+            \[
+            \begin{aligned}
+            &\int_0^1 |f(x) g(x)| \, dx \\
+            &\leq \|f\|_2 \|g\|_2
+            \end{aligned}
+            \]
+        </div>
+    </div>
+</body>
+</html>

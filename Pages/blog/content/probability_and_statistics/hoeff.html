@@ -34,10 +34,22 @@ Further, let \(X_1',\ldots,X_n'\) be independent copies of \(X_1,\ldots,X_n\).
 
 
 
-We start by applying Markov's inequality to the event \(\left\{\sum_{k=1}^{n}(X_k-\mathbb{E}X_k)\ge t\right\}\)
-\[
+We start by applying Markov's inequality,
+
+<div class="desktop-equation">
+    \[
 \mathbb{P} \left ( \sum_{k=1}^{n} ( X_k - \mathbb{E} X_k ) \geq t \right )  \leq \exp(-\lambda t)  \mathbb{E} \exp \left ( \lambda \sum_{k=1}^{n} ( X_k - \mathbb{E} X_k ) \right ).
 \]
+
+</div>
+<!-- Mobile Version -->
+<div class="mobile-equation">
+    \[
+\mathbb{P} \left ( \sum_{k=1}^{n} ( X_k - \mathbb{E} X_k ) \geq t \right )  \]
+\[ \leq \exp(-\lambda t)  \mathbb{E} \exp \left ( \lambda \sum_{k=1}^{n} ( X_k - \mathbb{E} X_k ) \right ).
+\]
+
+</div>
 
 
 \[

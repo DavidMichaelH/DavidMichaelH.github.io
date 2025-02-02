@@ -1,3 +1,4 @@
+/* Existing CSS */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -52,8 +53,16 @@ h2 {
     background-color: #004c99;
 }
 
-/* 🔹 Responsive Font Scaling for Smaller Screens */
-@media screen and (max-width: 600px) {
+/* Responsive Equation Display */
+.desktop-equation {
+    display: block;
+}
+
+.mobile-equation {
+    display: none;
+}
+
+@media (max-width: 600px) {
     body {
         font-size: 14px;
     }
@@ -74,5 +83,11 @@ h2 {
     .back-button {
         font-size: 14px;
         padding: 8px 12px;
+    }
+    .desktop-equation {
+        display: none;
+    }
+    .mobile-equation {
+        display: block;
     }
 }
