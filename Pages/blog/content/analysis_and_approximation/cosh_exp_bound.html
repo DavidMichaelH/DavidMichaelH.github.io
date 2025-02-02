@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof: Symmetric Matrices Have Real Eigenvalues</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>An Upper Bound for the Hyperbolic Cosine Function</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p>Let \( x \in \mathbb{R} \). Then, the following inequality holds:</p>
+            <p style="text-align: center;"> 
+                \( \cosh(x) \leq \exp \left ( \frac{1}{2} x^2 \right ) \).
+            </p>
+        </div>
+        
+        <div class="proof">
+            <h2>Proof</h2>
+            We prove this by comparing the Taylor series expansions of \( \cosh(x) \) and \( \exp \left ( \frac{1}{2} x^2 \right) \).
+            Recall that:
+            \[
+            \cosh(x) = \sum_{k=0}^{\infty} \frac{x^{2k}}{(2k)!}, \quad
+            \exp \left( \frac{1}{2} x^2 \right) = \sum_{k=0}^{\infty} \frac{x^{2k}}{2^k k!}
+            \]
+            It suffices to show that for all \( k \), we have:
+            \[
+            (2k)! \geq 2^k k!.
+            \]
+            We prove this by induction.
+
+        </br>
+            <strong>Base Case:</strong> For \( k=0 \), we have \( (2\cdot 0)! = 1 \) and \( 2^0 0! = 1 \), so the inequality holds.
+        </br>
+            <strong>Inductive Step:</strong> Assume for some \( k \geq 0 \) that
+            \[
+            2^k k! \leq (2k)!.
+            \]
+            Then, for \( k+1 \):
+            \[
+            2^{k+1} (k+1)! =  (2k+2) \cdot 2^k k! \leq  (2k+2) \cdot (2k)!
+            \]
+            and since \( (2k+2)(2k+1)(2k)! = (2k+2)! \), it follows that:
+            \[
+            2^{k+1} (k+1)! \leq (2k+2)!.
+            \]
+            Thus, by induction, the inequality holds for all \( k \).
+
+            Applying this inequality to the Taylor series, we obtain:
+            \[
+            \cosh(x) = \sum_{k=0}^{\infty} \dfrac{x^{2k}}{(2k)!} \leq  \sum_{k=0}^{\infty} \dfrac{x^{2k}}{2^k k!} =  \exp \left ( \frac{1}{2} x^2 \right ) .
+            \]  
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../blog_landing_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>
