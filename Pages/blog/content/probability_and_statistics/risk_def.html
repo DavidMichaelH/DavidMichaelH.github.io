@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimax and Bayes Risk in Statistical Estimation</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <link rel="stylesheet" href="../style_brief.css">
+</head>
+<body>
+    <header>Minimax and Bayes Risk in Statistical Estimation</header>
+    <div class="container">
+        <!-- Definition of Minimax Risk -->
+        <div class="definition">
+            <h2>Definition: Risk</h2>
+            <p>In statistical decision theory, the <strong>risk</strong> of an estimator is the expected 
+                loss under a given loss function. Formally, if \( \theta \) is the parameter to be 
+                estimated, \( X \) is the data, the risk of an estimator \( \theta(X) \) is defined as:
+                \[
+                R(\hat{\theta},\theta) = \mathbb{E} L(\hat{\theta}(X),\theta).
+                \]
+            </p>
+        </div>
+
+        <!-- Example of Minimax Risk -->
+        <div class="example">
+            <h2>Example: Mean Squared Error</h2>
+
+            <ul>
+                <li>Mean Squared Error: \(L(x,y) = (x-y)^2\) </li>
+                <li>Mean Absolute Error: \(L(x,y) = |x-y|\) </li>
+            </ul>
+
+        </div>
+
+        <div class="definition">
+            <h2>Definition: Minimax Risk</h2>
+            <p>In statistical decision theory, the <strong>minimax risk</strong> is the smallest possible 
+                maximum risk over all estimators. Formally, if \( R \) is risk function then:
+                \[
+                \inf_{\hat{\theta}} \sup_{\theta}  R(\hat{\theta}, \theta)
+                \]
+                An estimator \( \hat{\theta_0} \) is called a <strong>minimax estimator</strong> if it achieves this minimax risk, i.e.,
+                \[
+                \sup_{\theta} R(\hat{\theta_0},\theta ) = \inf_{\hat{\theta}} \sup_{\theta}  R(\hat{\theta}, \theta)
+                \]
+            </p>
+        </div>
+
+        <!-- Example of Minimax Risk -->
+        <div class="example">
+            <h2>Example: Minimax Estimator</h2>
+            <p>Consider estimating the mean \( \theta \) of a normal distribution \( N(\theta, \sigma^2) \) with known variance \( \sigma^2 \). The sample mean \( \bar{X} \) is a minimax estimator under squared error loss because it minimizes the maximum risk over all possible values of \( \theta \). This is due to its constant risk function:
+                \[
+                R(\theta, \bar{X}) = \frac{\sigma^2}{n}
+                \]
+                which does not depend on \( \theta \).
+            </p>
+        </div>
+
+        <!-- Definition of Bayes Risk -->
+        <div class="definition">
+            <h2>Definition: Bayes Risk</h2>
+            <p>The <strong>Bayes risk</strong> is the expected risk of an estimator with respect to a prior distribution \( \pi(\theta) \) over the parameter space. It is defined as:
+                \[
+                r(\pi, \delta) = \int_{\Theta} R(\theta, \delta) \, \pi(\theta) \, d\theta
+                \]
+                An estimator \( \delta_{\pi} \) that minimizes the Bayes risk is called a <strong>Bayes estimator</strong>.
+            </p>
+        </div>
+
+        <!-- Example of Bayes Risk -->
+        <div class="example">
+            <h2>Example: Bayes Estimator</h2>
+            <p>Suppose \( X \sim N(\theta, \sigma^2) \) and we place a prior distribution \( \theta \sim N(\mu_0, \tau^2) \) on \( \theta \). The Bayes estimator under squared error loss is the posterior mean:
+                \[
+                \delta_{\pi}(X) = \frac{\tau^2}{\tau^2 + \sigma^2/n} \bar{X} + \frac{\sigma^2/n}{\tau^2 + \sigma^2/n} \mu_0
+                \]
+                This estimator balances the sample information \( \bar{X} \) and the prior information \( \mu_0 \), weighted by their respective variances.
+            </p>
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>

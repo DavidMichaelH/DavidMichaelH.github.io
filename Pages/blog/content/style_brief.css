@@ -39,6 +39,27 @@ h2 {
     padding-left: 15px;
 }
 
+/* New Styles for Definition and Example */
+.definition {
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 10px;
+    border-left: 4px solid #28a745; /* Green border */
+    margin-bottom: 20px;
+    background: #e9f7ef; /* Light green background */
+    padding-left: 15px;
+}
+
+.example {
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 10px;
+    border-left: 4px solid #ffc107; /* Yellow border */
+    margin-bottom: 20px;
+    background: #fff3cd; /* Light yellow background */
+    padding-left: 15px;
+}
+
 .back-button {
     display: inline-block;
     margin-top: 20px;
@@ -77,7 +98,7 @@ h2 {
     h2 {
         font-size: 18px;
     }
-    .theorem, .proof {
+    .theorem, .proof, .definition, .example {
         font-size: 12px;
     }
     .back-button {

@@ -7,6 +7,16 @@
     <script type="text/javascript" async
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
+
+    <script>
+        window.MathJax = {
+        tex: {
+            tags: 'all' // Automatically number all displayed equations
+        }
+        };
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  
     <link rel="stylesheet" href="../style_brief.css">
 
 </head>
@@ -23,33 +33,37 @@
             <h2>Proof</h2> 
             First we can see that for \(a,b > 0\) we have 
 
-            \[ ab \leq \dfrac{a^p}{p} + \dfrac{b^q}{q} .\]
+            \[ ab \leq \dfrac{a^p}{p} + \dfrac{b^q}{q}  \tag{1} \label{eq:ineq}. \]
 
-            This is in face a direct consequence of Jensen's inequality. 
+
+            This can be shown via Jensen's inequality. We see
 
             \[ \log (ab ) = \dfrac{1}{p} \log (a^p)  + \dfrac{1}{q} \log (a^q)  \]
             \[ \leq \log \left (\dfrac{a^p}{p} + \dfrac{a^q}{q}  \right ) . \]
-            This gives the inequality. 
+            
 
-            Now, we first prove the result for \(f,g\) such that \(\|f\|_p = \|g\|_q = 1\). 
+
+            This gives the inequality \((\ref{eq:ineq})\). 
+
+            Now, we prove the result for \(f,g\) such that \(\|f\|_p = \|g\|_q = 1\). 
 
         <div class="desktop-equation">
 
-            \[\|fg\|_1 = \int_{\mathbb{R}} |f(x)g(x)| dx \leq   \dfrac{1}{p} \int_{\mathbb{R}} |f(x)g(x)|^p dx  +  \dfrac{1}{q} \int_{\mathbb{R}} |f(x)g(x)|^q dx    \]
+            \[\|fg\|_1 = \int_{\mathbb{R}} |f(x)g(x)| dx \leq   \dfrac{1}{p} \int_{\mathbb{R}} |f(x)|^p dx  +  \dfrac{1}{q} \int_{\mathbb{R}} |g(x)|^q dx    \]
         </div>
         <!-- Mobile Version -->
         <div class="mobile-equation">
 
             \[\|fg\|_1 = \int_{\mathbb{R}} |f(x)g(x)| dx \]
-            \[\leq   \dfrac{1}{p} \int_{\mathbb{R}} |f(x)g(x)|^p dx  +  \dfrac{1}{q} \int_{\mathbb{R}} |f(x)g(x)|^q dx    \]
+            \[ \leq   \dfrac{1}{p} \int_{\mathbb{R}} |f(x)|^p dx  +  \dfrac{1}{q} \int_{\mathbb{R}} |g(x)|^q dx    \]
             
         </div>
 
-        \[ \leq   \dfrac{1}{p} +  \dfrac{1}{q} = 1 \]]
+        \[ \leq   \dfrac{1}{p} +  \dfrac{1}{q} = 1 .\]
 
         Thus we can see that in general give arbitrary \(f\) and \(g\)
 
-        \[\left \| \frac{f}{\|f\|_p} \frac{g}{\|g\|_q}  \right \|_1 \leq 1 \]
+        \[\left \| \frac{f}{\|f\|_p} \frac{g}{\|g\|_q}  \right \|_1 \leq 1 ,\]
         which gives 
 
         \[\left \| fg \right \|_1 \leq \|f\|_p \|g\|_q. \]
@@ -58,7 +72,7 @@
         </div>
 
         <a href="landing_page.html" class="back-button">Back to Subject Section</a>
-        <a href="../../blog_landing_page.html" class="back-button">Back to Home Page</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
     </div>
 </body>
 </html>
