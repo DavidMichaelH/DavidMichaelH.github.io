@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moment Generating Function Bound Implies Zero Mean</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+  <script src="../mathjax-config.js" async></script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>Moment Generating Function Bound Implies Zero Mean</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p>Suppose that there is \(c>0\) so that for all \(t \in \mathbb{R}\) we have that 
+
+                \[ \mathbb{E} \exp( t X) \leq \exp( c t^2) .\]
+                Show that \(\mathbb{E} X = 0\).
+            </div>
+        
+        <div class="proof">
+            <h2>Proof</h2> 
+             
+            Suppose the bound holds. Then
+            
+            \[ 
+            \mathbb{E} \exp( t X) = 1 + t \mathbb{E} X + t^2 \sum_{k=2}^{\infty} \dfrac{t^{k-2}}{k!} \mathbb{E} X^k
+            \]
+
+            \[
+            \leq 1 + 0 + t^2 \sum_{k=2}^{\infty} \dfrac{c^k t^{2(k-1)}}{k!}  =  \exp( c t^2) .
+            \]
+ 
+
+            Thus 
+
+            \[
+            \mathbb{E} X + t \sum_{k=2}^{\infty} \dfrac{t^{k-2}}{k!} \mathbb{E} X^k  
+            \leq  t \sum_{k=2}^{\infty} \dfrac{c^k t^{2(k-1)}}{k!} .
+            \]
+            Ltting \(t \to 0\) we have that \(\mathbb{E} X \leq 0\).
+
+            Now we can rerun the same argument after swapping \(t\) with \(-t\). 
+
+            This gives      
+
+            \[ 
+            \mathbb{E} \exp( -t X) = 1 - t \mathbb{E} X + t^2 \sum_{k=2}^{\infty} \dfrac{(-1)^kt^{k-2}}{k!} \mathbb{E} X^k
+            \]
+
+            \[
+            \leq 1 + 0 + t^2 \sum_{k=2}^{\infty} \dfrac{c^k t^{2(k-1)}}{k!}  =  \exp( c t^2) .
+            \]
+
+            \[
+            - \mathbb{E} X + t \sum_{k=2}^{\infty} \dfrac{t^{k-2}}{k!} \mathbb{E} X^k  
+            \leq  t \sum_{k=2}^{\infty} \dfrac{c^k t^{2(k-1)}}{k!} .
+            \]
+            Again letting \(t \to 0\) we have that \(-\mathbb{E} X \leq 0\) or indeed \(\mathbb{E} X \geq 0\)
+            and so \(\mathbb{E} X = 0\).
+
+
+
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>
