@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jensen's Equality Implies Constancy</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="../mathjax-config.js" async></script>
+  <link rel="stylesheet" href="../style_brief.css">
+</head>
+<body>
+  <header>Jensen's Equality Implies Constancy</header>
+  <div class="container">
+
+    <div class="theorem">
+      <h2>Theorem</h2>
+      <p>
+        Let \(f:\mathbb{R}\to\mathbb{R}\) be a strictly convex function and \(X\) a random variable with \(E[f(X)]\) finite.
+        Then if
+        \[
+        \mathbb{E}[f(X)] = f(\mathbb{E}[X]),
+        \]
+        it follows that \(X\) is almost surely constant.
+      </p>
+    </div>
+        
+    <div class="proof">
+      <h2>Proof</h2> 
+      <p>
+        Suppose, for the sake of contradiction, that \(X\) is not constant and that 
+        \(\mathbb{E}[f(X)] = f(\mathbb{E}[X])\). Then both the events
+        \(\{X > \mathbb{E}[X]\}\) and \(\{X \le \mathbb{E}[X]\}\) have positive probability.
+      </p>
+      <p>
+        Set
+        \[
+        a = E[X \mid X > E[X]] \quad \text{and} \quad b = E[X \mid X \le E[X]].
+        \]
+        Of course,
+        \[
+        E[X] = a\,P(X > E[X]) + b\,P(X \le E[X]).
+        \]
+      </p>
+      <p>
+        Note that if \(X\) is nonconstant, then there exists some \(s < E[X]\) with \(P(X < s) > 0\). Thus, on the event 
+        \(\{X \le E[X]\}\) we have
+        \[
+        E[X \mid X \le E[X]] < E[X],
+        \]
+        so that \(b < E[X]\) and, similarly, \(a > E[X]\). Hence, we have \(a \neq b\).
+      </p>
+      <p>
+        Now, using the conditional version of Jensen's inequality, we obtain
+        \[
+        E[f(X)] \ge f(a) \, P(X > E[X]) + f(b) \, P(X \le E[X]).
+        \]
+        On the other hand, applying Jensen's inequality to the mixture gives
+        \[
+        f(E[X]) = f\Bigl(a\,P(X > E[X]) + b\,P(X \le E[X])\Bigr).
+        \]
+        Strict convexity of \(f\) implies that if \(a \neq b\) then
+        \[
+        f\Bigl(a\,P(X > E[X]) + b\,P(X \le E[X])\Bigr) < f(a) \, P(X > E[X]) + f(b) \, P(X \le E[X]).
+        \]
+        Hence,
+        \[
+        f(E[X]) < E[f(X)],
+        \]
+        which contradicts the assumption \(E[f(X)] = f(E[X])\). Therefore, \(X\) must be constant almost surely.
+      </p>
+      <p style="text-align: right; font-size: 2.0em;">&square;</p>
+    </div>
+
+    <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+    <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+  </div>
+</body>
+</html>

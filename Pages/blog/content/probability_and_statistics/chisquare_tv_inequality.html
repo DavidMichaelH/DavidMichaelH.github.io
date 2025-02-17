@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi-squared to Total Variation Inequality</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="../mathjax-config.js" async></script>
+  <link rel="stylesheet" href="../style_brief.css">
+</head>
+<body>
+  <header>Chi-squared to Total Variation Inequality</header>
+  <div class="container">
+
+    <div class="theorem">
+      <h2>Theorem</h2>
+      <p>
+        Let \(P\) and \(Q\) be probability measures on \(\mathcal{X}\) that are both absolutely continuous
+        with respect to a measure \(\mu\). 
+
+        \[ TV(P,Q) \leq \dfrac{1}{2} \sqrt{  \chi^2(P||Q)} . \]
+      </p>
+    </div>
+        
+    <div class="proof">
+      <h2>Proof</h2> 
+      <p>
+        
+        Indeed 
+
+        \[ 
+        TV(P,Q) = \dfrac{1}{2}\mathbb{E}_Q\left | \frac{p(X)}{q(X)} - 1 \right | 
+        \]
+
+        \[
+        \leq \dfrac{1}{2} \sqrt{ \mathbb{E}_Q\left( \frac{p(X)}{q(X)} - 1 \right)^2 } = \dfrac{1}{2} \sqrt{ \chi^2(P||Q) }.
+        \]
+      </p>
+      <p style="text-align: right; font-size: 2.0em;">&square;</p>
+    </div>
+
+    <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+    <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+  </div>
+</body>
+</html>

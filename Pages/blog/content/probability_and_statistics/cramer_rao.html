@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cramer-Rao Bound</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="../mathjax-config.js" async></script>
+  <link rel="stylesheet" href="../style_brief.css">
+</head>
+<body>
+  <header>Cramer-Rao Bound</header>
+  <div class="container">
+
+    <div class="theorem">
+      <h2>Theorem</h2>
+      <p>
+        Let \(\hat{\theta}\) be an unbiased estimator of \(\theta\). Then
+        \[ \text{Var}(\hat{\theta}) \geq \dfrac{1}{I(\theta)} \]
+        where \(I(\theta)\) is the Fisher information.
+      </p>
+    </div>
+        
+    <div class="proof">
+      <h2>Proof</h2> 
+      <p>
+        Let \(L(\theta) = f(X|\theta) = \prod_{i=1}^n f(x_i|\theta)\) be the likelihood function. Trivially, we have
+        \[ 0 =  \int_{\mathbb{R}^d} (\hat{\theta} - \theta) f(X|\theta) dX  .\]
+        Thus
+        \[ 0 = \dfrac{\partial}{\partial \theta}\int_{\mathcal{X}^n} (\hat{\theta} - \theta) f(X|\theta) dX  \]
+
+        \[ 
+            = \int_{\mathcal{X}^n} (\hat{\theta} - \theta) f(X|\theta) \dfrac{\partial \log L(\theta) }{\partial \theta}  dX - 1
+        \]
+
+        Thus Cauchy-Schwarz gives
+
+        \[ 1 \leq \int_{\mathcal{X}^n}(\hat{\theta} - \theta)^2 f(X|\theta) dX \int_{\mathcal{X}^n}\left( \dfrac{\partial \log L(\theta) }{\partial \theta} \right)^2 f(X|\theta) dX .\]
+
+        Now 
+        \[ \dfrac{\partial \log L(\theta) }{\partial \theta} = \dfrac{\partial}{\partial \theta} \sum_{i=1}^n \log f(x_i|\theta) 
+        \]
+        \[
+        = \sum_{i=1}^n \dfrac{\partial}{\partial \theta} \log f(x_i|\theta) 
+        \]
+
+        Consider that \(\mathbb{E} \left[ \dfrac{\partial}{\partial \theta} \log f(x_i|\theta) \right] = 0\)
+
+        \[
+        \mathbb{E} \left[ \dfrac{\partial}{\partial \theta} \log f(x_i|\theta) \right] 
+        =  \mathbb{E} \left[   \dfrac{1}{f(x_i|\theta)} \dfrac{\partial  f(x_i|\theta) }{\partial \theta} \right] \]
+        
+        \[
+        = \int_{\mathcal{X}} \dfrac{1}{f(x_i|\theta)}  \dfrac{\partial  f(x_i|\theta) }{\partial \theta} f(x_i|\theta)  dx_i
+        = \dfrac{\partial    }{\partial \theta} \int_{\mathcal{X}}     f(x_i|\theta)  dx_i = \dfrac{\partial  }{\partial \theta}  1 = 0
+        
+        \]
+ 
+
+        Therefore
+
+        \[
+        \int_{\mathcal{X}^n}\left( \dfrac{\partial \log L(\theta) }{\partial \theta} \right)^2 f(X|\theta) dX  = \sum_{i=1}^n \int_{\mathcal{X}} \left( \dfrac{\partial \log f(x_i|\theta) }{\partial \theta} \right)^2 f(x_i|\theta) dx_i = I(\theta).
+
+        \]
+
+        from which we have the desired result.
+ 
+        
+    
+      </p>
+      <p style="text-align: right; font-size: 2.0em;">&square;</p>
+    </div>
+
+    <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+    <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properties of f-Divergences: Non-Negativity and Equality Condition</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="../mathjax-config.js" async></script>
+  <link rel="stylesheet" href="../style_brief.css">
+</head>
+<body>
+  <header>Properties of f-Divergences: Non-Negativity and Equality Condition</header>
+  <div class="container">
+
+    <div class="theorem">
+      <h2>Theorem</h2>
+      <p>
+        Let \(P\) and \(Q\) be probability measures on \(\mathcal{X}\) that are both absolutely continuous
+        with respect to a measure \(\mu\). Let \(f:\mathbb{R}\to\mathbb{R}\) be a convex function satisfying \(f(1)=0\). Then the \(f\)-divergence between \(P\) and \(Q\) is defined as
+        \[
+        D_f(P\|Q) = \mathbb{E}_Q\left[ f\left( \frac{p(X)}{q(X)} \right) \right]
+        = \int f\left( \frac{p(x)}{q(x)} \right) q(x) \, d\mu(x).
+        \]
+        The \(f\)-divergence is non-negative, and moreover, if \(f\) is strictly convex then
+        \(D_f(P\|Q)=0\) if and only if \(P = Q\).
+      </p>
+    </div>
+        
+    <div class="proof">
+      <h2>Proof</h2> 
+      <p>
+        The claim that \(D_f(P\|Q)\) is non-negative follows immediately from Jensen's inequality. Indeed, since \(f\) is convex, we have
+        \[
+        \begin{aligned}
+          D_f(P\|Q) &= \int f\left( \frac{p(x)}{q(x)} \right) q(x) \, d\mu(x) \\
+          &\geq f\left( \int \frac{p(x)}{q(x)}\, q(x) \, d\mu(x) \right) \\
+          &= f(1) = 0.
+        \end{aligned}
+        \]
+      </p>
+      <p>
+        Now, suppose that 
+        \[
+        D_f(P\|Q) = \mathbb{E}_Q\left[ f\left( \frac{p(X)}{q(X)} \right) \right] = 0.
+        \]
+        Then, by another <a href="strict_convexity_jensens_inequality.html">result</a> on strict convexity and Jensen's inequality, it must be that
+        \[
+        \frac{p(X)}{q(X)} = \mathbb{E}_Q\left[\frac{p(X)}{q(X)}\right] = 1 \quad \text{almost surely},
+        \]
+        which implies that \(p(x)=q(x)\) almost everywhere, and hence \(P = Q\).
+      </p>
+      <p style="text-align: right; font-size: 2.0em;">&square;</p>
+    </div>
+
+    <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+    <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+  </div>
+</body>
+</html>
