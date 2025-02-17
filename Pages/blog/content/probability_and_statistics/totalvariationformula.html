@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Representation of Total Variation Distance</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="../mathjax-config.js" async></script>
+  <link rel="stylesheet" href="../style_brief.css">
+</head>
+<body>
+  <header>Formula for Total Variation Distance</header>
+  <div class="container">
+
+    <div class="theorem">
+      <h2>Theorem</h2>
+      <p>
+        Let \(P\) and \(Q\) be probability measures on \(\mathcal{X}\) that are absolutely continuous with respect to the measure
+        \[
+        \mu = \frac{P+Q}{2}.
+        \]
+        Let the total variation distance between \(P\) and \(Q\) be denoted by 
+        \[
+        TV(P,Q)= \sup_{A \in \mathcal{F}} |P(A) - Q(A)|.
+        \]
+        Then,
+        \[
+        TV(P,Q) = \frac{1}{2} \int |p(x) - q(x)|\, d\mu,
+        \]
+        where \(p = \frac{dP}{d\mu}\) and \(q = \frac{dQ}{d\mu}\).
+      </p>
+    </div>
+        
+    <div class="proof">
+      <h2>Proof</h2> 
+      <p>
+        First, let \(A\) be a set that achieves the supremum in the definition of the total variation distance. Then, without loss of generality,
+        \[
+        TV(P,Q) = P(A) - Q(A).
+        \]
+        Then indeed,
+        \[
+        TV(P,Q) = \int_A dP - \int_A dQ = \int_A (p - q)\, d\mu.
+        \]
+        We can write this as
+        \[
+        = \int_{A \cap \{p>q\}} |p-q|\, d\mu - \int_{A \cap \{p < q\}} |p-q|\, d\mu.
+        \]
+        This expression is maximized when we take
+        \[
+        A = \{ x : p(x) > q(x) \}.
+        \]
+        Similarly,
+        \[
+        TV(P,Q) = P(A)-Q(A) = Q(A^c)-P(A^c) = \int_{\{q > p\}} |p-q|\, d\mu.
+        \]
+        Thus, we have
+        \[
+        TV(P,Q) = \frac{1}{2}\int_{\{p>q\}} |p-q|\, d\mu + \frac{1}{2}\int_{\{q>p\}} |p-q|\, d\mu,
+        \]
+        \[
+        = \frac{1}{2} \int |p-q|\, d\mu.
+        \]
+      </p>
+      <p style="text-align: right; font-size: 2.0em;">&square;</p>
+    </div>
+
+    <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+    <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+  </div>
+</body>
+</html>
