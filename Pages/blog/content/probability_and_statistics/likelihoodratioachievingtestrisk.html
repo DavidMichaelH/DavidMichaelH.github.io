@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Likelihood Ratio Test Achieving Minimax Testing Risk</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="../mathjax-config.js" async></script>
+  <link rel="stylesheet" href="../style_brief.css">
+</head>
+<body>
+  <header>Likelihood Ratio Achieving Testing Risk</header>
+  <div class="container">
+    <div class="introduction">
+      <p>
+        In binary hypothesis testing, one aims to minimize the sum of Type I and Type II errors. Under the setting where data are drawn from one of two distributions \(P\) and \(Q\), and assuming that these measures are absolutely continuous with respect to a common reference measure, it turns out that the likelihood ratio test achieves the minimax risk of
+        \[
+        1 - TV(P,Q),
+        \]
+        where \(TV(P,Q)\) denotes the total variation distance between \(P\) and \(Q\).
+      </p>
+    </div>
+    <div class="theorem">
+      <h2>Theorem</h2>
+      <p>
+        Consider a hypothesis testing problem given by
+        \[
+        H_0 : X \sim P,
+        \]
+        \[
+        H_1 : X \sim Q,
+        \]
+        where \(P\) and \(Q\) are probability measures on \(\mathcal{X}\) that are absolutely continuous with respect to the measure
+        \[
+        \mu = \frac{P+Q}{2}.
+        \]
+        Then, the likelihood ratio test is minimax optimal.
+      </p>
+    </div>
+        
+        <div class="proof">
+            <h2>Proof</h2> 
+             Let \(\mu = \dfrac{P+Q}{2}\) and \(p=\dfrac{dP}{d\mu}\) and \(q=\dfrac{dQ}{d\mu}\). Then the likelihood ratio can be given by
+             $$ A = \{ x : p(x) \geq q(x) \} .$$
+
+            \[   P(A^c) + Q(A) = \int \textbf{1}_{p < q} d P +  \int \textbf{1}_{p \geq q} d Q  \]
+            \[ \int \textbf{1}_{p < q} p d\mu+  \int \textbf{1}_{p \geq q} q d\mu = \int p \wedge q d \mu   \] 
+
+            Using the identity
+            $$ \min(a,b) = \dfrac{a+b-|a-b|}{2}$$
+            we have that
+            
+            \[ \int p \wedge q d \mu = \int \dfrac{p+q-|p-q|}{2} d \mu = \int \dfrac{p+q}{2} d \mu - \int \dfrac{|p-q|}{2} d \mu \]
+             \[ = 1 - TV(P,Q) .\]
+             As we stated, this is the minimax lower bound for this testing problem.
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>

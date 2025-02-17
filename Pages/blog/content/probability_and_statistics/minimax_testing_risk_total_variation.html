@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moment Generating Function Bound Implies Zero Mean</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+  <script src="../mathjax-config.js" async></script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>Lower Bound Minimax Testing Risk</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p>Consider a hypothesis testing problem given by
+                $$ H_0 : X \sim P $$
+                $$ H_1 : X \sim Q $$
+                where \(P\) and \(Q\) are probability measures on \(\mathcal{X}\).  The minimax testing risk satisfies,
+
+                $$ \inf_A [ P(A^c) + Q(A) ] \geq 1-TV(P,Q) .$$
+          
+            </div>
+        
+        <div class="proof">
+            <h2>Proof</h2> 
+             
+             
+            $$ \inf_A [ P(A^c) + Q(A) ] \geq 1- \sup_A [ P(A) - Q(A) ] $$ 
+            $$ \geq 1- \sup_A | P(A) - Q(A) | = 1- TV(P,Q). $$
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>
