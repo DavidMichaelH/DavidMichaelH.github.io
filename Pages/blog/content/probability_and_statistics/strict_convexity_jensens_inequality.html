@@ -61,9 +61,23 @@
         f(E[X]) = f\Bigl(a\,P(X > E[X]) + b\,P(X \le E[X])\Bigr).
         \]
         Strict convexity of \(f\) implies that if \(a \neq b\) then
+        
+
+        <div class="desktop-equation">
+          \[
+          f\Bigl(a\,P(X > E[X]) + b\,P(X \le E[X])\Bigr) < f(a) \, P(X > E[X]) + f(b) \, P(X \le E[X]).
+          \]
+      </div>
+      <!-- Mobile Version -->
+      <div class="mobile-equation">
+
         \[
-        f\Bigl(a\,P(X > E[X]) + b\,P(X \le E[X])\Bigr) < f(a) \, P(X > E[X]) + f(b) \, P(X \le E[X]).
+        f\Bigl(a\,P(X > E[X]) + b\,P(X \le E[X])\Bigr) \]
+        \[ < f(a) \, P(X > E[X]) + f(b) \, P(X \le E[X]).
         \]
+          
+      </div>
+
         Hence,
         \[
         f(E[X]) < E[f(X)],

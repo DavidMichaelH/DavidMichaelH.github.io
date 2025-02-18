@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cramer-Rao Bound</title>
+  <title>Cramér-Rao Bound</title>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
@@ -11,14 +11,16 @@
   <link rel="stylesheet" href="../style_brief.css">
 </head>
 <body>
-  <header>Cramer-Rao Bound</header>
+  <header>Cramér-Rao Bound</header>
   <div class="container">
 
     <div class="theorem">
       <h2>Theorem</h2>
       <p>
         Let \(\hat{\theta}\) be an unbiased estimator of \(\theta\). Then
-        \[ \text{Var}(\hat{\theta}) \geq \dfrac{1}{I(\theta)} \]
+        \[
+        \operatorname{Var}(\hat{\theta}) \geq \frac{1}{I(\theta)},
+        \]
         where \(I(\theta)\) is the Fisher information.
       </p>
     </div>
@@ -26,50 +28,68 @@
     <div class="proof">
       <h2>Proof</h2> 
       <p>
-        Let \(L(\theta) = f(X|\theta) = \prod_{i=1}^n f(x_i|\theta)\) be the likelihood function. Trivially, we have
-        \[ 0 =  \int_{\mathbb{R}^d} (\hat{\theta} - \theta) f(X|\theta) dX  .\]
-        Thus
-        \[ 0 = \dfrac{\partial}{\partial \theta}\int_{\mathcal{X}^n} (\hat{\theta} - \theta) f(X|\theta) dX  \]
+        Let 
+        \[
+        L(\theta) = f(X|\theta) = \prod_{i=1}^n f(x_i|\theta)
+        \]
+        be the likelihood function. Let \(\ell(\theta) = \log L(\theta) \) and 
+        \(\ell_i(\theta) = \log f(x_i|\theta)\). be the log-likelihood
+        functions. Since \(\hat{\theta}\) is unbiased, we have
+        \[
+        0 = \int_{\mathcal{X}^n} (\hat{\theta} - \theta) \, f(X|\theta) \, dX.
+        \]
+        Differentiating both sides with respect to \(\theta\) (and interchanging the derivative and the integral) gives
+        \[
+        0 = \frac{\partial}{\partial \theta} \int_{\mathcal{X}^n} (\hat{\theta} - \theta) \, f(X|\theta) \, dX.
+        \]
+        This becomes
+        \[
+        0 = \int_{\mathcal{X}^n} (\hat{\theta} - \theta) \, f(X|\theta) \, \frac{\partial \ell(\theta)}{\partial \theta} \, dX - 1.
+        \]
+        Applying the Cauchy–Schwarz inequality then gives
+        \[
+        1 \leq \int_{\mathcal{X}^n} (\hat{\theta} - \theta)^2 f(X|\theta) \, dX \int_{\mathcal{X}^n} \left( \frac{\partial \ell(\theta)}{\partial \theta} \right)^2 f(X|\theta) \, dX.
+        \]
+      </p>
+      <p>
+        Notice that
+        \[
+        \frac{\partial \ell(\theta)}{\partial \theta} = \frac{\partial}{\partial \theta} \sum_{i=1}^n \ell_i(\theta)
+        = \sum_{i=1}^n \frac{\partial}{\partial \theta} \ell_i(\theta).
+        \]
+        Also, since
+        \[
+        \mathbb{E}\left[\frac{\partial}{\partial \theta} \ell_i(\theta)\right] = 0,
+        \]
+        it follows that
 
+        
+        
+
+
+        <div class="desktop-equation">
+
+            \[
+        \int_{\mathcal{X}^n} \left( \frac{\partial \ell(\theta)}{\partial \theta} \right)^2 f(X|\theta) \, dX 
+        = \sum_{i=1}^n \int_{\mathcal{X}} \left( \frac{\partial \ell_i(\theta)}{\partial \theta} \right)^2 f(x_i|\theta) \, dx_i = I(\theta).
+        \]
+        </div>
+        <!-- Mobile Version -->
+        <div class="mobile-equation">
+
+            \[
+        \int_{\mathcal{X}^n} \left( \frac{\partial \ell(\theta)}{\partial \theta} \right)^2 f(X|\theta) \, dX \]
         \[ 
-            = \int_{\mathcal{X}^n} (\hat{\theta} - \theta) f(X|\theta) \dfrac{\partial \log L(\theta) }{\partial \theta}  dX - 1
+        = \sum_{i=1}^n \int_{\mathcal{X}} \left( \frac{\partial \ell_i(\theta)}{\partial \theta} \right)^2 f(x_i|\theta) \, dx_i = I(\theta).
         \]
-
-        Thus Cauchy-Schwarz gives
-
-        \[ 1 \leq \int_{\mathcal{X}^n}(\hat{\theta} - \theta)^2 f(X|\theta) dX \int_{\mathcal{X}^n}\left( \dfrac{\partial \log L(\theta) }{\partial \theta} \right)^2 f(X|\theta) dX .\]
-
-        Now 
-        \[ \dfrac{\partial \log L(\theta) }{\partial \theta} = \dfrac{\partial}{\partial \theta} \sum_{i=1}^n \log f(x_i|\theta) 
-        \]
+        </div>
+      </p>
+      <p>
+        Therefore, we obtain
         \[
-        = \sum_{i=1}^n \dfrac{\partial}{\partial \theta} \log f(x_i|\theta) 
+        \operatorname{Var}(\hat{\theta}) \geq \frac{1}{I(\theta)},
         \]
-
-        Consider that \(\mathbb{E} \left[ \dfrac{\partial}{\partial \theta} \log f(x_i|\theta) \right] = 0\)
-
-        \[
-        \mathbb{E} \left[ \dfrac{\partial}{\partial \theta} \log f(x_i|\theta) \right] 
-        =  \mathbb{E} \left[   \dfrac{1}{f(x_i|\theta)} \dfrac{\partial  f(x_i|\theta) }{\partial \theta} \right] \]
-        
-        \[
-        = \int_{\mathcal{X}} \dfrac{1}{f(x_i|\theta)}  \dfrac{\partial  f(x_i|\theta) }{\partial \theta} f(x_i|\theta)  dx_i
-        = \dfrac{\partial    }{\partial \theta} \int_{\mathcal{X}}     f(x_i|\theta)  dx_i = \dfrac{\partial  }{\partial \theta}  1 = 0
-        
-        \]
- 
-
-        Therefore
-
-        \[
-        \int_{\mathcal{X}^n}\left( \dfrac{\partial \log L(\theta) }{\partial \theta} \right)^2 f(X|\theta) dX  = \sum_{i=1}^n \int_{\mathcal{X}} \left( \dfrac{\partial \log f(x_i|\theta) }{\partial \theta} \right)^2 f(x_i|\theta) dx_i = I(\theta).
-
-        \]
-
-        from which we have the desired result.
- 
-        
-    
+        which is the desired result.
       </p>
       <p style="text-align: right; font-size: 2.0em;">&square;</p>
     </div>

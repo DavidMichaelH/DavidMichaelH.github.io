@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLE Minimizes the Average Risk Under a Uniform Prior</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="../mathjax-config.js" async></script>
+  <link rel="stylesheet" href="../style_brief.css">
+</head>
+<body>
+  <header>MLE Minimizes the Average Risk Under a Uniform Prior</header>
+  <div class="container">
+
+    <div class="theorem">
+      <h2>Theorem</h2>
+      <p>
+        Let the risk of an classifier
+        \[
+        f: \mathcal{X} \to \{1,2,\ldots,n\}
+        \]
+        be defined by
+        \[
+        R(f) = \frac{1}{n} \sum_{k=1}^n P_k[f(X) \not= k],
+        \]
+        \[
+         = 1 - \frac{1}{n} \sum_{k=1}^n P_k[f(X) = k],
+        \]
+        where for each \(k=1,\dots,n\), \(P_k\) is the distribution of \(X\) under hypothesis \(k\). 
+        
+        Assume there is a measure \(P\) on \(\mathcal{X}\) such that for each \(k=1,\dots,n\), \(P_k \ll P\).
+        Then it the maximum likelihood estimator (MLE)
+        \[
+        f_{\text{MLE}}(X) = \arg\max_{1 \le k \le n} \dfrac{d P_k}{dP} (X)
+        \]
+        
+
+        minimizes this risk, in otherwords is Bayes optimal under the uniform prior. 
+        Here \(\dfrac{d P_k}{dP}\) is the Radon-Nikodym derivative of \(P_k\) with respect to \(P\),
+         
+      </p>
+    </div>
+        
+    <div class="proof">
+      <h2>Proof</h2> 
+      <p>
+        
+        We will show that for any classifier \(f\), the risk is bounded below as
+        \[
+         R(f) \ge 1 - \frac{1}{n}\sum_{x\in\mathcal{X}} \max_{1\le k\le n} P_k[X=x]
+        \]
+        and that the maximum likelihood estimator (MLE)
+        
+        \[
+        f_{\text{MLE}}(x) = \arg\max_{1 \le k \le n} P_k[X=x]
+        \]
+        
+        attains this lower bound.
+         
+        First, observe that
+
+
+        \[
+        \sum_{k=1}^n P_k[f(X)=k] = \sum_{k=1}^n \mathbb{E}_{ P_k}[ \mathbb{E}_{ P_k} [\textbf{1}_{f(X)=k } | X] ] 
+        \]
+
+        \[
+        = \sum_{k=1}^n  \mathbb{E}_P \left [ \dfrac{d P_k}{dP} (X) \mathbb{E}_{ P_k} [ \textbf{1}_{f(X)=k } | X] \right ] 
+        \]
+
+        \[
+        = \mathbb{E}_P \left [  \sum_{k=1}^n  \dfrac{d P_k}{dP} (X) \textbf{1}_{f(X)=k } \right ] 
+        \]
+
+        \[
+        = \mathbb{E}_P \left [  \sum_{k=1}^n  \dfrac{d P_k}{dP} (X) \textbf{1}_{f(X)=k }  \right ] 
+        \]
+
+        \[
+        \leq \mathbb{E}_P \left [  \max_{k} \dfrac{d P_k}{dP} (X)  \right ] 
+        \]
+
+        Now we claim 
+
+        \[
+        \sum_{k=1}^n  \dfrac{d P_k}{dP} (X) \textbf{1}_{f_{\text{MLE}}(X)=k } = \max_{k} \dfrac{d P_k}{dP} (X) 
+        \]
+
+        and so substituting this into the above inequality we can recover the desired result.
+ 
+      </p>
+      <p style="text-align: right; font-size: 2.0em;">&square;</p>
+    </div>
+
+    <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+    <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+  </div>
+</body>
+</html>

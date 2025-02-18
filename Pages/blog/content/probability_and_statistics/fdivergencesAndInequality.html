@@ -19,10 +19,27 @@
       <p>
         Let \(P\) and \(Q\) be probability measures on \(\mathcal{X}\) that are both absolutely continuous
         with respect to a measure \(\mu\). Let \(f:\mathbb{R}\to\mathbb{R}\) be a convex function satisfying \(f(1)=0\). Then the \(f\)-divergence between \(P\) and \(Q\) is defined as
-        \[
+        
+
+        <div class="desktop-equation">
+
+            \[
+            D_f(P\|Q) = \mathbb{E}_Q\left[ f\left( \frac{p(X)}{q(X)} \right) \right]
+            = \int f\left( \frac{p(x)}{q(x)} \right) q(x) \, d\mu(x).
+            \]
+        </div>
+        <!-- Mobile Version -->
+        <div class="mobile-equation">
+
+            \[
         D_f(P\|Q) = \mathbb{E}_Q\left[ f\left( \frac{p(X)}{q(X)} \right) \right]
+        \]
+        \[
         = \int f\left( \frac{p(x)}{q(x)} \right) q(x) \, d\mu(x).
         \]
+        </div>
+
+
         The \(f\)-divergence is non-negative, and moreover, if \(f\) is strictly convex then
         \(D_f(P\|Q)=0\) if and only if \(P = Q\).
       </p>
