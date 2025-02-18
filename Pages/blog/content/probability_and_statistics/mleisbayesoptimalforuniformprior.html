@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MLE Minimizes the Average Risk Under a Uniform Prior</title>
+  <title>MLE Minimizes Bayes Risk Under a Uniform Prior</title>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../style_brief.css">
 </head>
 <body>
-  <header>MLE Minimizes the Average Risk Under a Uniform Prior</header>
+  <header>MLE Minimizes Bayes Risk Under a Uniform Prior</header>
   <div class="container">
 
     <div class="theorem">
@@ -82,14 +82,18 @@
         \leq \mathbb{E}_P \left [  \max_{k} \dfrac{d P_k}{dP} (X)  \right ] 
         \]
 
-        Now we claim 
+        Now be definition of the MLE we have that 
 
         \[
         \sum_{k=1}^n  \dfrac{d P_k}{dP} (X) \textbf{1}_{f_{\text{MLE}}(X)=k } = \max_{k} \dfrac{d P_k}{dP} (X) 
         \]
 
-        and so substituting this into the above inequality we can recover the desired result.
- 
+        and so substituting this into the above inequality and working backwards we can show that for 
+        any classifier \(f\), we have 
+
+        \[
+        R(f) \geq R(f_{\text{MLE}}) = 1 - \frac{1}{n}\sum_{x\in\mathcal{X}} \max_{1\le k\le n} P_k[X=x].
+        \]
       </p>
       <p style="text-align: right; font-size: 2.0em;">&square;</p>
     </div>
