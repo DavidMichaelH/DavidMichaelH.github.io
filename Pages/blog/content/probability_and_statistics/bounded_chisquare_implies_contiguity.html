@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lower Bound Minimax Testing Risk</title>
+    <title>Bounded \(\chi^2\) Implies Contiguity</title>
     <script type="text/javascript" async
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
@@ -14,25 +14,23 @@
 
 </head>
 <body>
-    <header>Lower Bound Minimax Testing Risk</header>
+    <header>Bounded \(\chi^2\) Implies Contiguity</header>
     <div class="container">
         <div class="theorem">
             <h2>Theorem</h2>
-            <p>Consider a hypothesis testing problem given by
-                $$ H_0 : X \sim P $$
-                $$ H_1 : X \sim Q $$
-                where \(P\) and \(Q\) are probability measures on \(\mathcal{X}\).  The minimax testing risk satisfies,
-
-                $$ \inf_A [ P(A^c) + Q(A) ] \geq 1-TV(P,Q) .$$
-          
+            <p>We say that \(P_n\) is contiguous with respect to \(Q_n\) if for any \(E_n\) such that
+                \(Q_n(E_n) \rightarrow 0\) we have \(P_n(E_n) \rightarrow 0\). Suppose that 
+                \(\textbf{C} := \sup_n \chi^2(P_n\|Q_n) < \infty\), then \(P_n\) is contiguous with respect to \(Q_n\).
             </div>
         
         <div class="proof">
             <h2>Proof</h2> 
-             
-             
-            $$ \inf_A [ P(A^c) + Q(A) ] \geq 1- \sup_A [ P(A) - Q(A) ] $$ 
-            $$ \geq 1- \sup_A | P(A) - Q(A) | = 1- TV(P,Q). $$
+           Suppose that \(Q_n(E_n) \rightarrow 0\). Then
+            
+            \[ P_n(E_n) = \mathbb{E}_{P_n} \text{1}_{E_n} = \mathbb{E}_{Q_n} \text{1}_{E_n} \dfrac{dP_n}{dQ_n} \]
+             \[ \leq \sqrt{ \mathbb{E_n}_{Q_n}  \left ( \dfrac{dP_n}{dQ_n} \right)^2  Q_n(E_n)  } \leq \sqrt{ ( \chi^2(P_n\|Q_n) +1 ) Q_n(E)  } \]
+             \[ \leq \sqrt{ (\textbf{C} + 1) Q_n(E_n)} \rightarrow 0 .\]
+              
             <p style="text-align: right; font-size: 2.0em;">&square;</p>
  
         </div>

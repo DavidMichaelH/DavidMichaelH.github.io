@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>\(\chi^2\) Formula For Mixture Models</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+  <script src="../mathjax-config.js" async></script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>\(\chi^2\) Formula For Mixture Models</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p> Define the mixture model \(P_{\pi} = \int P_{\theta} d\pi(\theta)\) 
+                \[ \chi( P_{\pi} |Q) = \mathbb{E} G(\theta,\theta') - 1  \]
+                where 
+
+                \[ G(\theta,\theta') = \int_X \dfrac{dP_{\theta}}{dQ} \dfrac{dP_{\theta'}}{dQ} dQ \]
+
+            </div>
+        
+        <div class="proof">
+            <h2>Proof</h2> 
+            \[ \chi( P_{\pi} |Q) = \int_X \left (\dfrac{dP_{\pi}}{dQ} \right)^2 dQ -1  \]
+            \[  = \int_X \left (\int \dfrac{ d P_{\theta} }{dQ} d\pi(\theta) \right)^2 dQ -1  \] 
+            \[  = \int_X \int_{\Theta} \int_{\Theta} \dfrac{ d P_{\theta} }{dQ} \dfrac{ d P_{\theta'} }{dQ} d\pi(\theta)  d\pi(\theta')   dQ -1  \] 
+            \[  =  \int_{\Theta} \int_{\Theta} \left ( \int_X \dfrac{ d P_{\theta} }{dQ} \dfrac{ d P_{\theta'} }{dQ} dQ  \right ) d\pi(\theta)  d\pi(\theta')  -1  \] 
+
+            \[ = \mathbb{E} G(\theta,\theta') - 1 \]
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>

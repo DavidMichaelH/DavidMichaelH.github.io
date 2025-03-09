@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contiguity implies impossibility of detection</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+  <script src="../mathjax-config.js" async></script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>Contiguity implies impossibility of detection</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p>We say that \(P_n\) is contiguous with respect to \(Q_n\) if for any \(E_n\) such that
+                \(Q_n(E_n) \rightarrow 0\) we have \(P_n(E_n) \rightarrow 0\). Then suppose that
+                \(P_n\) is contiguous with respect to \(Q_n\). Let  \(\phi\) be a classifier 
+                for the hypothesis testing problem given by
+                $$ H_0 : X \sim P_n $$
+                $$ H_1 : X \sim Q_n .$$
+                
+                Then the testing risk
+                \[ \mathcal{R}_n(\phi) =  P_n(\phi = 1) + Q_n(\phi = 0) \]
+                cannot tend to zero.
+            </div>
+        
+        <div class="proof">
+            <h2>Proof</h2> 
+            Letting \(E_n = \{\phi = 0\}= \{\phi = 1\}^c \). Thus if \(Q_n(\phi = 0) \rightarrow 0\), then
+            \(P_n(\phi = 1) \rightarrow 1\). Therefore \(\mathcal{R}_n(\phi) \not\rightarrow 0\).
+             
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>
