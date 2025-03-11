@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>\(\chi^2\) Bound for Planted Signal Models</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+  <script src="../mathjax-config.js" async></script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>\(\chi^2\) Bound for Planted Signal Models</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p>
+                We consider a generic model for a planted signal.
+                Let 
+                \[ P_{x}(y) = \prod_{i < j} \left [ \textbf{1}_{x_i=x_j} P(y_{ij}) + \textbf{1}_{x_i \not=x_j} Q(y_{ij}) \right ] \]
+                \[ P_1(y) = \mathbb{E}_x P_{x}(y) \]
+                where the expectation is taken over the uniform distribution on \(\{-1,1\}^n\). Then for any \(P_0\) such that
+                \[ P_0(y) = \prod_{i < j} \left [ \dfrac{P(y_{ij}) + Q(y_{ij}) }{2} \right ] \]
+                \[ \chi^2(P_{1}||P_0) +1 \leq \mathbb{E} \exp \left ( \dfrac{\rho}{2} \langle x,x' \rangle \right )  \]
+                where 
+
+                $$ \rho = \dfrac{1}{2} \int \left [\dfrac{d(P-Q)}{d(P+Q)} \right ]^2 d(P+Q).$$
+
+            </div>
+        
+        <div class="proof">
+            <h2>Proof</h2> 
+           
+            \[ G(x,x') = \int  \prod_{i < j}  \dfrac{\left [ \textbf{1}_{x_i=x_j} P(y_{ij}) + \textbf{1}_{x_i \not=x_j} Q(y_{ij}) \right ]\left [ \textbf{1}_{x_i'=x_j'} P(y_{ij}) + \textbf{1}_{x_i' \not=x_j'} Q(y_{ij}) \right ] }{\dfrac{P(y_{ij}) + Q(y_{ij}) }{2}  } \]
+
+            \[ = \int  \prod_{i < j}  \dfrac{\left [ \dfrac{ P(y_{ij}) +  Q(y_{ij}) }{2} +\dfrac{ P(y_{ij}) -  Q(y_{ij}) }{2} x_i x_j  \right ]\left [ \dfrac{ P(y_{ij}) +  Q(y_{ij}) }{2} +\dfrac{ P(y_{ij}) -  Q(y_{ij}) }{2} x_i' x_j'  \right ]}{\dfrac{P(y_{ij}) + Q(y_{ij}) }{2}  } \]
+
+            \[ =  \prod_{i < j} [ 1 + \rho x_{i}x_{j} x_{i}'x_{j}'  ] \leq \exp \left ( \dfrac{\rho}{2} \langle x,x' \rangle^2 \right ) \]
+            where
+            
+            $$ \rho = \dfrac{1}{2} \int \left [\dfrac{d(P-Q)}{d(P+Q)} \right ]^2 d(P+Q).$$
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>

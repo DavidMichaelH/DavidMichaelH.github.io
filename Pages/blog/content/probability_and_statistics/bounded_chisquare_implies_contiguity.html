@@ -28,7 +28,19 @@
            Suppose that \(Q_n(E_n) \rightarrow 0\). Then
             
             \[ P_n(E_n) = \mathbb{E}_{P_n} \text{1}_{E_n} = \mathbb{E}_{Q_n} \text{1}_{E_n} \dfrac{dP_n}{dQ_n} \]
-             \[ \leq \sqrt{ \mathbb{E_n}_{Q_n}  \left ( \dfrac{dP_n}{dQ_n} \right)^2  Q_n(E_n)  } \leq \sqrt{ ( \chi^2(P_n\|Q_n) +1 ) Q_n(E)  } \]
+
+            <div class="desktop-equation">
+                \[ \leq \sqrt{ \mathbb{E}_{Q_n}  \left ( \dfrac{dP_n}{dQ_n} \right)^2  Q_n(E_n)  } \leq \sqrt{ ( \chi^2(P_n\|Q_n) +1 ) Q_n(E)  } \]
+             
+            </div>
+            <!-- Mobile Version -->
+            <div class="mobile-equation">
+      
+                \[ \leq \sqrt{ \mathbb{E}_{Q_n}  \left ( \dfrac{dP_n}{dQ_n} \right)^2  Q_n(E_n)  } \]
+                \[ \leq \sqrt{ ( \chi^2(P_n\|Q_n) +1 ) Q_n(E)  } \]
+             
+            </div>
+        
              \[ \leq \sqrt{ (\textbf{C} + 1) Q_n(E_n)} \rightarrow 0 .\]
               
             <p style="text-align: right; font-size: 2.0em;">&square;</p>
