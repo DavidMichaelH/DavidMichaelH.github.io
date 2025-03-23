@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Likelihood Ratio Test Achieving Minimax Testing Risk</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="../mathjax-config.js" async></script>
+  <link rel="stylesheet" href="../style_brief.css">
+</head>
+<body>
+  <header>Likelihood Ratio Achieving Testing Risk</header>
+  <div class="container">
+    <div class="introduction">
+      <p>
+        
+      </p>
+    </div>
+    <div class="theorem">
+      <h2>Theorem</h2>
+      <p>
+        Let \(H_0,H_1\) denote two classes of measures indicating competing hypotheses. Define
+        \[ \alpha(H_0,H_1) :=  \inf \{\mathsf{TV}(P_0,P_1) : P_i \in H_i \}  \] 
+
+        which we might refer to as the "minimal total variation distance" (or "separation") between 
+        the two classes. Then,
+        \[ \inf_{\phi} \sup_{i} \sup_{P \in H_i} \mathbb{P}( \phi(X) \not= y ) \geq \dfrac{1 - \alpha(H_0,H_1) }{2} .\]
+
+      </p>
+    </div>
+        
+        <div class="proof">
+            <h2>Proof</h2> 
+            \[ \inf_{\phi} \sup_{i} \sup_{P \in H_i} \mathbb{P}( \phi(X) \not= y ) \]
+            \[ \geq \inf_{\phi}  \dfrac{1}{2} \left (P_0( \phi(X) \not= y )  + P_1( \phi(X) \not= y ) \right ) \]   
+            \[ \geq  \dfrac{1-\mathsf{TV}(P_0,P_1) }{2} \]      
+            Letting \(\mathsf{TV}(P_0,P_1)  \rightarrow \alpha(H_0,H_1)\) we have the desired result.
+        
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>

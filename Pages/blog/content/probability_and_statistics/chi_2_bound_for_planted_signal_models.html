@@ -35,11 +35,51 @@
         <div class="proof">
             <h2>Proof</h2> 
            
-            \[ G(x,x') = \int  \prod_{i < j}  \dfrac{\left [ \textbf{1}_{x_i=x_j} P(y_{ij}) + \textbf{1}_{x_i \not=x_j} Q(y_{ij}) \right ]\left [ \textbf{1}_{x_i'=x_j'} P(y_{ij}) + \textbf{1}_{x_i' \not=x_j'} Q(y_{ij}) \right ] }{\dfrac{P(y_{ij}) + Q(y_{ij}) }{2}  } \]
+            
+            <div class="desktop-equation">
+                \[ G(x,x') = \int  \prod_{i < j}  \frac{\left [ \textbf{1}_{x_i=x_j} P(y_{ij}) + \textbf{1}_{x_i \not=x_j} Q(y_{ij}) \right ]\left [ \textbf{1}_{x_i'=x_j'} P(y_{ij}) + \textbf{1}_{x_i' \not=x_j'} Q(y_{ij}) \right ] }{\frac{P(y_{ij}) + Q(y_{ij}) }{2}  } \]
 
-            \[ = \int  \prod_{i < j}  \dfrac{\left [ \dfrac{ P(y_{ij}) +  Q(y_{ij}) }{2} +\dfrac{ P(y_{ij}) -  Q(y_{ij}) }{2} x_i x_j  \right ]\left [ \dfrac{ P(y_{ij}) +  Q(y_{ij}) }{2} +\dfrac{ P(y_{ij}) -  Q(y_{ij}) }{2} x_i' x_j'  \right ]}{\dfrac{P(y_{ij}) + Q(y_{ij}) }{2}  } \]
+            </div>
+            <!-- Mobile Version -->
+            <div class="mobile-equation">
+                \[ G(x,x') = \int 
+                \prod_{i < j} \left[
+                \begin{aligned}
+                \frac{
+                    \left[ \textbf{1}_{\{x_i = x_j\}}\,P(y_{ij}) + \textbf{1}_{\{x_i \neq x_j\}}\,Q(y_{ij}) \right] \\
+                \quad\quad \times \left[ \textbf{1}_{\{x'_i = x'_j\}}\,P(y_{ij}) + \textbf{1}_{\{x'_i \neq x'_j\}}\,Q(y_{ij}) \right]
+                }{
+                    \frac{P(y_{ij})+Q(y_{ij})}{2}
+                }
+                \end{aligned}
+                \right] 
+                \]
 
-            \[ =  \prod_{i < j} [ 1 + \rho x_{i}x_{j} x_{i}'x_{j}'  ] \leq \exp \left ( \dfrac{\rho}{2} \langle x,x' \rangle^2 \right ) \]
+            </div>
+
+            \[ = \int  \prod_{i < j}  \dfrac{\left [ \frac{ P(y_{ij}) +  Q(y_{ij}) }{2} +\frac{ P(y_{ij}) -  Q(y_{ij}) }{2} x_i x_j  \right ]\left [ \frac{ P(y_{ij}) +  Q(y_{ij}) }{2} +\frac{ P(y_{ij}) -  Q(y_{ij}) }{2} x_i' x_j'  \right ]}{\frac{P(y_{ij}) + Q(y_{ij}) }{2}  } \]
+            
+            <div class="desktop-equation">
+                \[ =  \prod_{i < j}   \left [   \int  \frac{P(y_{ij}) +  Q(y_{ij}) }{2} + \int  \frac{P(y_{ij}) -  Q(y_{ij}) }{2}  x_i x_j   + \int  \dfrac{P(y_{ij}) +  Q(y_{ij}) }{2}  x_i' x_j' + \int \dfrac{(P-Q)^2}{2(P+Q)} x_i x_j x_i' x_j'  \right ]  \]
+            </div>
+            <!-- Mobile Version -->
+            <div class="mobile-equation">
+                \[ \prod_{i < j} 
+                \left [
+                \begin{aligned}
+                &\int \frac{P(y_{ij}) + Q(y_{ij})}{2}\,dy_{ij} \\[1mm]
+                &\quad + \int \frac{P(y_{ij}) - Q(y_{ij})}{2}\, x_i x_j\,dy_{ij} \\[1mm]
+                &\quad + \int \frac{P(y_{ij}) + Q(y_{ij})}{2}\, x_i' x_j'\,dy_{ij} \\[1mm]
+                &\quad + \int \frac{(P-Q)^2}{2(P+Q)}\, x_i x_j x_i' x_j'\,dy_{ij}
+                \end{aligned}
+                \right].
+                \]
+             
+            </div>
+            
+           
+
+            \[ = \int \prod_{i < j}  [ 1 + \rho x_{i}x_{j} x_{i}'x_{j}'  ] \leq \exp \left ( \dfrac{\rho}{2} \langle x,x' \rangle^2 \right ) \]
             where
             
             $$ \rho = \dfrac{1}{2} \int \left [\dfrac{d(P-Q)}{d(P+Q)} \right ]^2 d(P+Q).$$

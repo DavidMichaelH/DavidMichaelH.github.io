@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupling and Total Variation</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+  <script src="../mathjax-config.js" async></script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>Coupling and Total Variation</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Theorem</h2>
+            <p> Let \(P,Q\) denote probability measures on a common measurable space \((\Omega,\Sigma)\). 
+                Then
+                \[ \mathsf{TV}(P,Q) = \inf_{\pi}  \mathbb{P}(X \not = Y) .\]
+                where the infimum is taken over all couplings \(\pi\) of \(P\) and \(Q\). Moreover, the infimum is achieved.
+
+
+
+            </div>
+        
+        <div class="proof">
+            <h2>Proof</h2> 
+            We explictly construct a coupling of \((X,Y)\) as follows.   
+
+            Conveniently define the measure 
+
+            \[  \lambda(A) = \int_A \min \{d \mu , d \nu \} \]
+            where \(\lambda(\Omega) = 1 - \mathsf{TV}(\mu,\nu)\). L
+            et \(\overline{\lambda}\) be the measure \(\lambda\) normalized to have total mass 1.
+
+            Define the measures
+            \[ \overline{P}(A) = \dfrac{P(A) - \lambda(A)}{1 - \lambda(\Omega)} \]
+            \[ \overline{Q}(A) = \dfrac{Q(A) - \lambda(A)}{1 - \lambda(\Omega)} \]
+
+            Then, we can define the coupling \((X,Y)\) as follows. First, with probability \(1- \mathsf{TV}(P,Q)\)
+            we have \(X=Y\). In this case sample from the measure \(\overline{\lambda}\). Otherwise, sample \(X\)
+            from \(\overline{P}\) and \(Y\) from \(\overline{Q}\) independently. 
+
+            
+            We see next that this coupling achieves the desired result.
+
+            <br><br>
+            Clearly \(\mathbb{P}(X \not = Y) = 1 - \mathsf{TV}(P,Q)\) by construction. Hence, it remains to show that
+            the marginals of \((X,Y)\) are \(P\) and \(Q\).
+
+            <br><br>
+            Then, we have that
+            \[ P(X \in A) = (1- \mathsf{TV}(P,Q)) \cdot \overline{\lambda}(A) +  \mathsf{TV}(P,Q) \cdot \overline{P}(A)  \]
+
+            \[ = \int_A \min \{d \mu , d \nu \}  + P(A) - \int_A \min \{d \mu , d \nu \}  \]
+            \[ = P(A) .\]
+
+            The proof for \(Q\) is similar. This completes the proof.
+
+
+ 
+
+
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>
