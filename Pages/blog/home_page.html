@@ -15,6 +15,7 @@
             line-height: 1.65;
             }
 
+            /* Header Bar */
             header {
             background-color: #222;
             color: white;
@@ -24,16 +25,17 @@
             text-align: center;
             }
 
+            /* Main Content Container */
             .container {
             max-width: 720px;
             margin: 3rem auto;
             padding: 2rem;
             background: white;
             border: 1px solid #ddd;
-            box-shadow: none;
             border-radius: 4px;
             }
 
+            /* Headings */
             h1, h2, h3 {
             font-weight: normal;
             color: #111;
@@ -54,11 +56,13 @@
             color: #333;
             }
 
+            /* Section Styling */
             .section {
             margin-top: 2rem;
             padding: 0.2rem;
             }
 
+            /* Link List (Unordered List of Pages) */
             .link-list {
             list-style-type: none;
             padding-left: 0;
@@ -69,17 +73,22 @@
             margin-bottom: 0.6rem;
             }
 
+            /* Refined Link Styling */
             .link-list a {
-            text-decoration: underline;
-            color: #000;
-            font-size: 1rem;
+            text-decoration: none;
+            color: inherit;
+            border-bottom: 1px solid #aaa;
+            padding-bottom: 1px;
+            transition: border-color 0.2s ease, color 0.2s ease;
             }
 
             .link-list a:hover {
+            border-bottom-color: #000;
             background-color: #f0f0f0;
-            text-decoration: none;
+            cursor: pointer;
             }
 
+            /* Back Navigation Button */
             .back-button {
             display: inline-block;
             margin-top: 2rem;
@@ -95,6 +104,7 @@
             .back-button:hover {
             background-color: #111;
             }
+
 
     </style>
 </head>
