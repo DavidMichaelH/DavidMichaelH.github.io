@@ -1,114 +1,72 @@
-/* Existing CSS */
+/* Core Layout */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Georgia, "Times New Roman", serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: #f5f5f5;
+    color: #111;
+    font-size: 1.05rem;
+    line-height: 1.7;
     text-align: center;
-}
-
-header {
+  }
+  
+  header {
+    background-color: #222;
+    color: white;
+    padding: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: white;
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: none;
+  }
+  
+  /* Headings */
+  h1, h2 {
+    font-weight: normal;
+    line-height: 1.4;
+    color: #111;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Semantic Blocks */
+  .theorem, .proof, .definition, .example {
+    font-size: 1rem;
+    line-height: 1.65;
+    padding: 1rem 1.2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid #999;
+    background: #f7f7f7;
+  }
+  
+  /* Subtle Color Variants */
+  .theorem     { border-color: #444; background: #f9f9f9; }
+  .proof       { border-color: #666; background: #f4f4f4; }
+  .definition  { border-color: #2a623d; background: #f0f5f1; }
+  .example     { border-color: #a67c00; background: #fef9e6; }
+  
+  /* Back Button */
+  .back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
     background-color: #333;
     color: white;
-    padding: 20px;
-    font-size: 24px;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: left;
-}
-
-h2 {
-    color: #333;
-    font-size: 22px;
-}
-
-.theorem, .proof {
-    font-size: 18px;
-    line-height: 1.6;
-    padding: 10px;
-    border-left: 4px solid #0066cc;
-    margin-bottom: 20px;
-    background: #f1f1f1;
-    padding-left: 15px;
-}
-
-/* New Styles for Definition and Example */
-.definition {
-    font-size: 18px;
-    line-height: 1.6;
-    padding: 10px;
-    border-left: 4px solid #28a745; /* Green border */
-    margin-bottom: 20px;
-    background: #e9f7ef; /* Light green background */
-    padding-left: 15px;
-}
-
-.example {
-    font-size: 18px;
-    line-height: 1.6;
-    padding: 10px;
-    border-left: 4px solid #ffc107; /* Yellow border */
-    margin-bottom: 20px;
-    background: #fff3cd; /* Light yellow background */
-    padding-left: 15px;
-}
-
-.back-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #0066cc;
-    color: white;
     text-decoration: none;
-    border-radius: 5px;
-}
-
-.back-button:hover {
-    background-color: #004c99;
-}
-
-/* Responsive Equation Display */
-.desktop-equation {
-    display: block;
-}
-
-.mobile-equation {
-    display: none;
-}
-
-@media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
-    header {
-        font-size: 20px;
-        padding: 15px;
-    }
-    .container {
-        max-width: 90%;
-        padding: 15px;
-    }
-    h2 {
-        font-size: 18px;
-    }
-    .theorem, .proof, .definition, .example {
-        font-size: 12px;
-    }
-    .back-button {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-    .desktop-equation {
-        display: none;
-    }
-    .mobile-equation {
-        display: block;
-    }
-}
+    border-radius: 3px;
+    transition: background-color 0.2s
+  

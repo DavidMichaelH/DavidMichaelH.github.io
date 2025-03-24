@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exploring PCA Structure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- MathJax (LaTeX) -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Code highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- Custom site styles -->
+  <link rel="stylesheet" href="../../style_applied_entry.css">
+</head>
+<body>
+
+  <h1>Exploring PCA Structure in Senate Voting</h1>
+
+  <div class="meta" style="font-size: 0.9rem; color: #666; margin-bottom: 2rem;">
+    March 2025 · Tags: PCA, dimensionality reduction, partisanship
+  </div>
+
+  <p>
+    This is a first look at how much of Senate voting behavior can be captured by low-rank structure. I’m trying PCA to see if ideological separation shows up as a dominant component.
+  </p>
+
+  <h2>Initial Observations</h2>
+  <p>
+    The first two principal components already reveal a clear separation between party affiliations:
+  </p>
+
+  <img src="pca-votes-plot.png" alt="PCA projection of votes" style="max-width: 100%; margin: 1rem 0;" />
+
+  <p>
+    Interestingly, a few senators are located off the main party clusters — this could suggest moderate voting behavior or attendance irregularities.
+  </p>
+
+  <h2>Code Snippet</h2>
+  <pre><code class="language-python">
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+pca = PCA(n_components=2)
+Z = pca.fit_transform(vote_matrix)
+plt.scatter(Z[:, 0], Z[:, 1])
+plt.title("PCA Projection of Senate Voting")
+plt.show()
+  </code></pre>
+
+  <h2>Next Ideas</h2>
+  <ul>
