@@ -1,4 +1,11 @@
-body {
+:root {
+    --accent-green: #2e4d2c;
+    --accent-green-light: #eef4ee;
+    --accent-green-border: #b3cbb2;
+    --secondary-heading: #44403c; /* warm, neutral */
+  }
+  
+  body {
     font-family: "Georgia", "Times New Roman", serif;
     max-width: 720px;
     margin: 4rem auto;
@@ -12,7 +19,6 @@ body {
   /* Headings */
   h1, h2, h3 {
     font-weight: normal;
-    color: #000;
     line-height: 1.3;
     margin-top: 3rem;
     margin-bottom: 1rem;
@@ -22,12 +28,19 @@ body {
     font-size: 1.8rem;
     border-bottom: 1px solid #ccc;
     padding-bottom: 0.3rem;
+    color: var(--accent-green);
   }
   
   h2 {
     font-size: 1.3rem;
     margin-top: 2rem;
     margin-bottom: 0.8rem;
+    color: var(--secondary-heading);
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+    color: #555;
   }
   
   /* Lists */
@@ -40,18 +53,18 @@ body {
     margin-bottom: 0.4rem;
   }
   
-  /* Links – elegant, not default underlined */
+  /* Links – typographic underline */
   a {
     text-decoration: none;
-    color: inherit;
-    border-bottom: 1px solid #aaa;
+    color: var(--accent-green);
+    border-bottom: 1px solid var(--accent-green-border);
     padding-bottom: 1px;
     transition: border-color 0.2s ease, color 0.2s ease;
   }
   
   a:hover {
-    border-bottom-color: #000;
-    background-color: #f2f2f2;
+    border-bottom-color: var(--accent-green);
+    background-color: var(--accent-green-light);
     cursor: pointer;
   }
   
@@ -62,21 +75,24 @@ body {
     margin: 3rem 0;
   }
   
-  /* Notes and emphasis blocks */
+  /* Notes and commentary blocks */
   .note {
     font-style: italic;
-    color: #444;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    color: var(--accent-green);
+    background: var(--accent-green-light);
+    padding: 1rem;
+    border-left: 4px solid var(--accent-green-border);
+    margin: 2rem 0;
+    border-radius: 4px;
   }
   
-  /* Back navigation button */
+  /* Back button */
   .back-button {
     display: inline-block;
     margin-top: 2rem;
     padding: 0.6rem 1rem;
     font-size: 0.95rem;
-    background-color: #333;
+    background-color: var(--accent-green);
     color: white;
     text-decoration: none;
     border-radius: 3px;
@@ -84,6 +100,6 @@ body {
   }
   
   .back-button:hover {
-    background-color: #111;
+    background-color: #20371f;
   }
   
