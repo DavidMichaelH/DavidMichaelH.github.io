@@ -54,8 +54,16 @@
 
             <br><br>
             Then, we have that
-            \[ P(X \in A) = (1- \mathsf{TV}(P,Q)) \cdot \overline{\lambda}(A) +  \mathsf{TV}(P,Q) \cdot \overline{P}(A)  \]
-
+            
+            <div class="desktop-equation">
+                \[ P(X \in A) = (1- \mathsf{TV}(P,Q)) \cdot \overline{\lambda}(A) +  \mathsf{TV}(P,Q) \cdot \overline{P}(A)  \]
+            </div>
+            <!-- Mobile Version -->
+            <div class="mobile-equation">
+      
+                \[ P(X \in A) = (1- \mathsf{TV}(P,Q)) \cdot \overline{\lambda}(A) \]
+                \[  +  \mathsf{TV}(P,Q) \cdot \overline{P}(A)  \]
+            </div>
             \[ = \int_A \min \{d \mu , d \nu \}  + P(A) - \int_A \min \{d \mu , d \nu \}  \]
             \[ = P(A) .\]
 

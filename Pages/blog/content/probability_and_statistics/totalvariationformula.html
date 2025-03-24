@@ -64,17 +64,33 @@
         <div class="mobile-equation">
 
             \[
-            TV(P,Q) = P(A)-Q(A) = Q(A^c)-P(A^c) \]
+            TV(P,Q) = P(A)-Q(A) \]
+            \[ = Q(A^c)-P(A^c) \]
             \[
              = \int_{\{q > p\}} |p-q|\, d\mu.
             \]
             
         </div>
-        
+
+
         Thus, we have
-        \[
+        
+        <div class="desktop-equation">
+          \[
         TV(P,Q) = \frac{1}{2}\int_{\{p>q\}} |p-q|\, d\mu + \frac{1}{2}\int_{\{q>p\}} |p-q|\, d\mu,
         \]
+      </div>
+      <!-- Mobile Version -->
+      <div class="mobile-equation">
+
+        \[
+        TV(P,Q) = \frac{1}{2}\int_{\{p>q\}} |p-q|\, d\mu  \]
+        \[ + \frac{1}{2}\int_{\{q>p\}} |p-q|\, d\mu,
+        \]
+          
+      </div>
+        
+       
         \[
         = \frac{1}{2} \int |p-q|\, d\mu.
         \]
