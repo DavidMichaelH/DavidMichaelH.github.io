@@ -1,4 +1,14 @@
 
+---
+layout: default
+title: Home
+---
+
+# Welcome
+
+This is my home page.
+
+
 Gets rendered into a beautiful HTML page with headers, code formatting, math, etc.
 
 ---
