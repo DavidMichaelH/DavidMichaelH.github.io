@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lower Bound Minimax Testing Risk</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+  <script src="../mathjax-config.js" async></script>
+    <link rel="stylesheet" href="../style_brief.css">
+
+</head>
+<body>
+    <header>Counter Example</header>
+    <div class="container">
+        <div class="theorem">
+            <h2>Claim</h2>
+            <p> Pairwise independence does not imply joint independence. </p>
+          
+            </div>
+        
+        <div class="proof">
+            <h2>Counter Example</h2> 
+            Let \(X, Y \sim \text{Rad}(1/2)\) be independent random variables. Define \(X_3 = X_1\cdot X_2 \). Then \(X_1, X_2, X_3\) are pairwise independent
+            but not jointly independent. This can be seen from a simple table:
+            
+
+
+            <table>
+                <tr>
+                    <th> \(X_1\) </th>
+                    <th> \(X_2\) </th>
+                    <th> \(X_3\) </th>
+                </tr>
+                <tr>
+                    <td> 1 </td>
+                    <td> 1 </td>
+                    <td> 1 </td>
+                </tr>
+                <tr>
+                    <td> -1 </td>
+                    <td> 1 </td>
+                    <td> -1 </td>
+                </tr>
+                <tr>
+                    <td> 1 </td>
+                    <td> -1 </td>
+                    <td> -1 </td>
+                </tr>
+                <tr>
+                    <td> -1 </td>
+                    <td> -1 </td>
+                    <td> 1 </td>
+                </tr>
+
+            </table>
+            <p style="text-align: right; font-size: 2.0em;">&square;</p>
+ 
+        </div>
+
+        <a href="landing_page.html" class="back-button">Back to Subject Section</a>
+        <a href="../../home_page.html" class="back-button">Back to Home Page</a>
+    </div>
+</body>
+</html>
