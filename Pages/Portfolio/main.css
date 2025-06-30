@@ -113,7 +113,7 @@ li {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
  
  
-    height: 190px;  /* Fixed height */
+    height: 200px;  /* Fixed height */
     width: 340px;  /* Fixed height */
     position: relative;  /* Position relative for absolute positioning of children */
     overflow-y: auto;  /* Scrollbar for overflow content */
