@@ -1,0 +1,2047 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weighted Slot Reel Spinner with Extra-Slow Timing Controls</title>
+  <style>
+    :root {
+      --bg: #ffe9f6;
+      --ink: #211936;
+      --muted: #695f7d;
+      --paper: #fffdf7;
+      --paper-pink: #fff4fb;
+      --paper-blue: #edfbff;
+      --line: #211936;
+      --shadow: 8px 8px 0 #211936;
+      --soft-shadow: 0 10px 0 rgba(33, 25, 54, 0.12);
+      --item-h: 76px;
+      --radius: 28px;
+      font-family: ui-rounded, "SF Pro Rounded", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      position: fixed;
+      z-index: -1;
+      content: "";
+      pointer-events: none;
+    }
+
+    body::before {
+      right: -7rem;
+      top: 5rem;
+      width: 24rem;
+      height: 24rem;
+      border: 5px solid rgba(33, 25, 54, 0.1);
+      border-radius: 47% 53% 61% 39%;
+      background: #9ee9ff;
+      opacity: 0.45;
+      transform: rotate(13deg);
+    }
+
+    body::after {
+      left: -9rem;
+      bottom: -8rem;
+      width: 28rem;
+      height: 28rem;
+      border: 5px solid rgba(33, 25, 54, 0.1);
+      border-radius: 61% 39% 44% 56%;
+      background: #fff06a;
+      opacity: 0.48;
+      transform: rotate(-17deg);
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .app {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 44px 0;
+    }
+
+    .hero {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 13px;
+      margin: 0 0 14px;
+      font-size: 0.83rem;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5627c9;
+      background: #fffdf7;
+      border: 3px solid var(--ink);
+      border-radius: 999px;
+      box-shadow: 4px 4px 0 #211936;
+    }
+
+    .sparkle {
+      display: inline-block;
+      animation: pulseSparkle 1.35s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseSparkle {
+      from { transform: rotate(-8deg) scale(0.9); }
+      to { transform: rotate(8deg) scale(1.08); }
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.15rem, 5vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+    }
+
+    .subhead {
+      max-width: 590px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    .privacy-pill {
+      flex: 0 0 auto;
+      max-width: 310px;
+      padding: 14px 16px;
+      border: 3px solid var(--ink);
+      border-radius: 22px;
+      color: #4f4564;
+      background: #edfbff;
+      box-shadow: 5px 5px 0 #211936;
+      font-size: 0.94rem;
+      line-height: 1.35;
+      transform: rotate(1deg);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.9fr) minmax(380px, 1.1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      position: relative;
+      overflow: hidden;
+      border: 4px solid var(--ink);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .panel::before {
+      position: absolute;
+      right: -34px;
+      top: -42px;
+      z-index: 0;
+      width: 128px;
+      height: 128px;
+      content: "";
+      border: 4px solid rgba(33, 25, 54, 0.12);
+      border-radius: 999px;
+      background: #ffb1dd;
+    }
+
+    .panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-inner {
+      padding: 22px;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.12rem;
+      letter-spacing: -0.025em;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .add-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 118px;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .look-picks {
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr) minmax(0, 1fr);
+      grid-column: 1 / -1;
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      color: #5f5376;
+      font-size: 0.82rem;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .option-row input,
+    .option-row select {
+      width: 100%;
+      min-width: 0;
+      color: var(--ink);
+      border: 3px solid var(--ink);
+      background: #ffffff;
+      outline: none;
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    }
+
+    .field input,
+    .field select {
+      height: 48px;
+      padding: 0 14px;
+      border-radius: 16px;
+      box-shadow: 3px 3px 0 rgba(33, 25, 54, 0.16);
+    }
+
+    .field input[type="color"] {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .field select,
+    .option-row select {
+      cursor: pointer;
+      appearance: none;
+      background: #ffffff;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .option-row input:focus,
+    .option-row select:focus {
+      background: #fff8c9;
+      box-shadow: 0 0 0 4px rgba(255, 225, 74, 0.5), 3px 3px 0 rgba(33, 25, 54, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 8px 0 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 3px solid var(--ink);
+      border-radius: 999px;
+      cursor: pointer;
+      color: #211936;
+      background: #ff65bd;
+      box-shadow: 4px 4px 0 #211936;
+      font-weight: 950;
+      letter-spacing: -0.015em;
+      transition: transform 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
+      user-select: none;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 #211936;
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 #211936;
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      box-shadow: 2px 2px 0 #211936;
+    }
+
+    .btn.secondary {
+      background: #9ee9ff;
+    }
+
+    .btn.danger {
+      background: #ffd1df;
+      color: #7b1748;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 10px;
+      max-height: 510px;
+      overflow: auto;
+      padding: 3px 3px 10px;
+      scrollbar-width: thin;
+    }
+
+    .option-row {
+      display: grid;
+      grid-template-columns: 16px minmax(0, 1fr) 86px 66px 36px;
+      gap: 9px;
+      align-items: center;
+      padding: 10px;
+      border: 3px solid var(--ink);
+      border-radius: 18px;
+      background: var(--paper-pink);
+      box-shadow: 3px 3px 0 rgba(33, 25, 54, 0.16);
+    }
+
+    .option-customizers {
+      display: grid;
+      grid-template-columns: 68px minmax(0, 1fr) minmax(0, 1fr);
+      grid-column: 2 / -1;
+      gap: 8px;
+      align-items: end;
+      padding-top: 2px;
+    }
+
+    .mini-field {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .mini-field span {
+      color: #5f5376;
+      font-size: 0.68rem;
+      font-weight: 950;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      background: var(--accent, #7a3ff2);
+      box-shadow: 0 0 0 4px #ffffff;
+    }
+
+    .option-row input,
+    .option-row select {
+      height: 38px;
+      padding: 0 10px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      box-shadow: none;
+    }
+
+    .option-row input[type="color"] {
+      padding: 4px;
+      cursor: pointer;
+    }
+
+    .option-row select {
+      padding-right: 8px;
+    }
+
+    .probability {
+      text-align: right;
+      color: #5f5376;
+      font-size: 0.82rem;
+      font-weight: 950;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--ink);
+      border-radius: 12px;
+      cursor: pointer;
+      color: #211936;
+      background: #ffcfdf;
+      box-shadow: 2px 2px 0 #211936;
+      font-size: 1.1rem;
+      font-weight: 950;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    .icon-btn:hover:not(:disabled) {
+      transform: rotate(5deg) scale(1.04);
+      box-shadow: 3px 3px 0 #211936;
+    }
+
+    .preview-btn {
+      background: #bff2ff;
+      font-size: 0.95rem;
+    }
+
+    .empty-state {
+      padding: 26px;
+      color: var(--muted);
+      text-align: center;
+      border: 3px dashed rgba(33, 25, 54, 0.5);
+      border-radius: 20px;
+      background: #ffffff;
+    }
+
+    .reel-panel {
+      min-height: 642px;
+      background: var(--paper-blue);
+    }
+
+    .machine {
+      position: relative;
+      padding: 24px;
+    }
+
+    .reel-shell {
+      position: relative;
+      width: min(100%, 480px);
+      margin: 0 auto;
+      padding: 18px;
+      border: 4px solid var(--ink);
+      border-radius: 34px;
+      background: #bff2ff;
+      box-shadow: 7px 7px 0 #211936;
+    }
+
+    .reel-shell::before,
+    .reel-shell::after {
+      position: absolute;
+      top: 50%;
+      z-index: 6;
+      width: 18px;
+      height: 56%;
+      content: "";
+      border: 3px solid var(--ink);
+      border-radius: 999px;
+      background: #fff06a;
+      transform: translateY(-50%);
+    }
+
+    .reel-shell::before {
+      left: -12px;
+    }
+
+    .reel-shell::after {
+      right: -12px;
+    }
+
+    .reel-window {
+      position: relative;
+      height: calc(var(--item-h) * 5);
+      overflow: hidden;
+      border: 4px solid var(--ink);
+      border-radius: 24px;
+      background: #211936;
+      box-shadow: inset 0 0 0 7px rgba(255, 255, 255, 0.08);
+      isolation: isolate;
+    }
+
+    .reel-window::before,
+    .reel-window::after {
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      height: var(--item-h);
+      content: "";
+      background: rgba(33, 25, 54, 0.52);
+      pointer-events: none;
+    }
+
+    .reel-window::before {
+      top: 0;
+      border-bottom: 3px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .reel-window::after {
+      bottom: 0;
+      border-top: 3px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .selection-band {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: 50%;
+      z-index: 4;
+      height: var(--item-h);
+      border: 4px solid #fff06a;
+      border-radius: 20px;
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 4px #211936, inset 0 0 0 3px rgba(255, 255, 255, 0.32);
+      pointer-events: none;
+    }
+
+    .reel-window.tick-hit .selection-band {
+      animation: bandPop 120ms ease-out;
+    }
+
+    @keyframes bandPop {
+      0% { transform: translateY(-50%) scale(1); }
+      48% { transform: translateY(-50%) scale(1.022); }
+      100% { transform: translateY(-50%) scale(1); }
+    }
+
+    .pointer {
+      position: absolute;
+      right: -5px;
+      top: 50%;
+      z-index: 5;
+      width: 0;
+      height: 0;
+      border-top: 18px solid transparent;
+      border-bottom: 18px solid transparent;
+      border-right: 30px solid #fff06a;
+      filter: drop-shadow(3px 3px 0 #211936);
+      transform: translateY(-50%);
+    }
+
+    .pointer.left {
+      left: -5px;
+      right: auto;
+      border-right: 0;
+      border-left: 30px solid #fff06a;
+      filter: drop-shadow(-3px 3px 0 #211936);
+    }
+
+    .reel-strip {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      will-change: transform;
+    }
+
+    .reel-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: var(--item-h);
+      padding: 0 30px;
+      color: var(--item-ink, #ffffff);
+      text-align: center;
+      text-shadow: 2px 2px 0 var(--item-shadow, rgba(33, 25, 54, 0.55));
+      border-bottom: 4px solid rgba(33, 25, 54, 0.3);
+      background: var(--accent, #7a3ff2);
+      overflow: hidden;
+    }
+
+    .reel-design {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      color: var(--design-ink, rgba(255, 255, 255, 0.48));
+      pointer-events: none;
+      text-shadow: none;
+    }
+
+    .reel-design--plain {
+      display: none;
+    }
+
+    .reel-design--dots::before {
+      position: absolute;
+      left: 18px;
+      top: 14px;
+      width: 12px;
+      height: 12px;
+      content: "";
+      border: 2px solid var(--design-ink, rgba(255, 255, 255, 0.48));
+      border-radius: 999px;
+      background: transparent;
+      box-shadow: 38px 4px 0 -1px var(--design-ink, rgba(255, 255, 255, 0.48)), 84px 28px 0 -2px var(--design-ink, rgba(255, 255, 255, 0.48)), 214px 0 0 -1px var(--design-ink, rgba(255, 255, 255, 0.48)), 286px 34px 0 -2px var(--design-ink, rgba(255, 255, 255, 0.48));
+    }
+
+    .reel-design--stars,
+    .reel-design--bolts {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-size: 1.22rem;
+      font-weight: 1000;
+      line-height: 1;
+      opacity: 0.82;
+    }
+
+    .reel-design--bolts {
+      font-size: 1.36rem;
+      transform: rotate(-2deg);
+    }
+
+    .reel-design--stripes::before {
+      position: absolute;
+      left: -18px;
+      top: 9px;
+      width: calc(100% + 36px);
+      height: 9px;
+      content: "";
+      border: 2px solid var(--design-ink, rgba(255, 255, 255, 0.48));
+      border-radius: 999px;
+      background: var(--design-ink, rgba(255, 255, 255, 0.48));
+      box-shadow: 0 25px 0 var(--design-ink, rgba(255, 255, 255, 0.48)), 0 50px 0 var(--design-ink, rgba(255, 255, 255, 0.48));
+      transform: rotate(-4deg);
+    }
+
+    .reel-design--checker::before {
+      position: absolute;
+      left: 18px;
+      top: 12px;
+      width: 14px;
+      height: 14px;
+      content: "";
+      border-radius: 3px;
+      background: var(--design-ink, rgba(255, 255, 255, 0.48));
+      box-shadow: 32px 0 0 var(--design-ink, rgba(255, 255, 255, 0.48)), 64px 0 0 var(--design-ink, rgba(255, 255, 255, 0.48)), 16px 24px 0 var(--design-ink, rgba(255, 255, 255, 0.48)), 48px 24px 0 var(--design-ink, rgba(255, 255, 255, 0.48)), 242px 4px 0 var(--design-ink, rgba(255, 255, 255, 0.48)), 274px 28px 0 var(--design-ink, rgba(255, 255, 255, 0.48));
+    }
+
+    .reel-text {
+      position: relative;
+      z-index: 1;
+      display: -webkit-box;
+      max-width: 100%;
+      overflow: hidden;
+      font-size: clamp(1.05rem, 2.4vw, 1.52rem);
+      font-weight: 1000;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .reel-window.spinning .reel-text {
+      transform: translateZ(0);
+    }
+
+    .lever-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      width: min(100%, 480px);
+      margin: 18px auto 0;
+    }
+
+    .spin-btn {
+      min-height: 58px;
+      padding: 0 26px;
+      font-size: 1.04rem;
+      background: #fff06a;
+    }
+
+    .spin-btn .emoji {
+      display: inline-block;
+      transform-origin: 50% 55%;
+    }
+
+    .spin-btn:not(:disabled):hover .emoji {
+      animation: wiggle 0.55s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat-card,
+    .motion-card {
+      padding: 12px 14px;
+      border: 3px solid var(--ink);
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 3px 3px 0 rgba(33, 25, 54, 0.16);
+    }
+
+    .stat-label,
+    .motion-label {
+      color: #5f5376;
+      font-size: 0.75rem;
+      font-weight: 950;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      margin-top: 3px;
+      font-size: 1.04rem;
+      font-weight: 1000;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tuning-controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      width: min(100%, 560px);
+      margin: 14px auto 0;
+    }
+
+    .motion-card {
+      width: auto;
+      margin: 0;
+      background: #fff4fb;
+    }
+
+    .wide-card {
+      grid-column: 1 / -1;
+    }
+
+    .range-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 8px 0 7px;
+    }
+
+    .compact-number {
+      display: grid;
+      gap: 5px;
+      color: #5f5376;
+      font-size: 0.72rem;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .compact-number input {
+      height: 40px;
+      padding: 0 10px;
+      border-width: 3px;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: none;
+      font-size: 1rem;
+      font-weight: 950;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .motion-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .motion-value {
+      font-size: 0.82rem;
+      font-weight: 950;
+      color: #5627c9;
+    }
+
+    .motion-card input[type="range"] {
+      width: 100%;
+      accent-color: #ff65bd;
+      cursor: pointer;
+    }
+
+    .motion-hints {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .sound-card {
+      width: min(100%, 480px);
+      margin: 12px auto 0;
+      padding: 12px 14px;
+      border: 3px solid var(--ink);
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 3px 3px 0 rgba(33, 25, 54, 0.16);
+    }
+
+    .sound-toggle {
+      min-height: 30px;
+      padding: 0 10px;
+      border: 3px solid var(--ink);
+      border-radius: 999px;
+      cursor: pointer;
+      color: #211936;
+      background: #9ee9ff;
+      box-shadow: 2px 2px 0 #211936;
+      font-size: 0.78rem;
+      font-weight: 950;
+    }
+
+    .sound-toggle[aria-pressed="false"] {
+      background: #ffd1df;
+    }
+
+    .sound-card input[type="range"] {
+      width: 100%;
+      accent-color: #7a3ff2;
+      cursor: pointer;
+    }
+
+    .result-card {
+      width: min(100%, 480px);
+      margin: 16px auto 0;
+      padding: 18px;
+      border: 4px solid var(--ink);
+      border-radius: 24px;
+      background: #fffdf7;
+      box-shadow: 5px 5px 0 #211936;
+    }
+
+    .result-label {
+      color: #5f5376;
+      font-size: 0.78rem;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .winner {
+      min-height: 42px;
+      margin-top: 7px;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-weight: 1000;
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+      overflow-wrap: anywhere;
+    }
+
+    .message {
+      min-height: 22px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .confetti {
+      position: absolute;
+      top: -14px;
+      width: 10px;
+      height: 16px;
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      background: var(--confetti-color, #ff65bd);
+      opacity: 0.95;
+      animation: fall var(--fall-duration, 950ms) ease-out forwards;
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    @keyframes fall {
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--drift, 0), 105vh, 0) rotate(var(--spin, 540deg));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        display: block;
+      }
+
+      .privacy-pill {
+        max-width: none;
+        margin-top: 16px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .reel-panel {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --item-h: 68px;
+      }
+
+      .app {
+        width: min(100% - 20px, 1180px);
+        padding: 24px 0;
+      }
+
+      .panel-inner,
+      .machine {
+        padding: 16px;
+      }
+
+      .add-form,
+      .look-picks,
+      .option-customizers {
+        grid-template-columns: 1fr;
+      }
+
+      .option-row {
+        grid-template-columns: 14px minmax(0, 1fr) 72px 58px 34px;
+        gap: 7px;
+        padding: 8px;
+      }
+
+      .probability {
+        font-size: 0.76rem;
+      }
+
+      .lever-row,
+      .tuning-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fully client-side. No external scripts, styles, fonts, analytics, or network requests. -->
+  <main class="app">
+    <section class="hero" aria-labelledby="pageTitle">
+      <div>
+        <p class="eyebrow"><span class="sparkle">✦</span> Weighted single-reel spinner</p>
+        <h1 id="pageTitle">Build a cute little chaos reel.</h1>
+        <p class="subhead">Add any outcomes you want, give each one a weight, color, design, and result sound, then spin the reel. The winner is selected by weight first; the visible reel path and timing are randomized afterward.</p>
+      </div>
+      <aside class="privacy-pill" aria-label="Privacy note">
+        <strong>Local only.</strong> This page has no server, no external dependencies, and no network calls. Your labels, weights, colors, designs, and sound choices stay in this browser tab.
+      </aside>
+    </section>
+
+    <section class="layout">
+      <aside class="panel" aria-labelledby="optionsTitle">
+        <div class="panel-inner">
+          <div class="panel-title">
+            <h2 id="optionsTitle">Outcomes</h2>
+            <span class="small-note" id="optionCount">0 outcomes</span>
+          </div>
+
+          <form class="add-form" id="addForm" autocomplete="off">
+            <div class="field">
+              <label for="labelInput">Label</label>
+              <input id="labelInput" name="label" type="text" maxlength="80" placeholder="e.g. 5 points" required />
+            </div>
+            <div class="field">
+              <label for="weightInput">Weight</label>
+              <input id="weightInput" name="weight" type="number" min="0" step="0.1" value="1" inputmode="decimal" required />
+            </div>
+            <div class="look-picks" aria-label="Visual and sound choices for new outcome">
+              <div class="field">
+                <label for="colorInput">Color</label>
+                <input id="colorInput" name="color" type="color" value="#7a3ff2" />
+              </div>
+              <div class="field">
+                <label for="designInput">Design</label>
+                <select id="designInput" name="design">
+                  <option value="dots">Dots</option>
+                  <option value="stars">Stars</option>
+                  <option value="bolts">Bolts</option>
+                  <option value="stripes">Stripes</option>
+                  <option value="checker">Checker</option>
+                  <option value="plain">Plain</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="soundInput">Outcome sound</label>
+                <select id="soundInput" name="sound">
+                  <option value="jackpot">Jackpot</option>
+                  <option value="amazing">Amazing winner</option>
+                  <option value="great">Great</option>
+                  <option value="good">Good</option>
+                  <option value="neutral" selected>Neutral</option>
+                  <option value="bad">Bad</option>
+                  <option value="none">None</option>
+                </select>
+              </div>
+            </div>
+          </form>
+
+          <div class="form-actions">
+            <button class="btn" id="addButton" type="submit" form="addForm">Add outcome</button>
+            <button class="btn secondary" id="sampleButton" type="button">Load samples</button>
+            <button class="btn danger" id="clearButton" type="button">Clear</button>
+          </div>
+
+          <div class="options-list" id="optionsList" aria-live="polite"></div>
+        </div>
+      </aside>
+
+      <section class="panel reel-panel" aria-labelledby="reelTitle">
+        <div class="machine">
+          <div class="panel-title">
+            <h2 id="reelTitle">The reel</h2>
+            <span class="small-note" id="totalWeight">Total weight: 0</span>
+          </div>
+
+          <div class="reel-shell">
+            <div class="reel-window" id="reelWindow" aria-live="polite" aria-label="Spinning reel">
+              <div class="pointer left" aria-hidden="true"></div>
+              <div class="pointer" aria-hidden="true"></div>
+              <div class="selection-band" aria-hidden="true"></div>
+              <div class="reel-strip" id="reelStrip"></div>
+            </div>
+          </div>
+
+          <div class="lever-row">
+            <button class="btn spin-btn" id="spinButton" type="button"><span class="emoji">🎰</span> Spin the reel</button>
+            <div class="stats" aria-label="Reel stats">
+              <div class="stat-card">
+                <div class="stat-label">Items</div>
+                <div class="stat-value" id="itemsStat">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Odds</div>
+                <div class="stat-value" id="oddsStat">Weighted</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tuning-controls">
+            <div class="motion-card wide-card" aria-label="Uniform stop range control">
+              <div class="motion-topline">
+                <span class="motion-label">Stop range</span>
+                <span class="motion-value" id="stopRangeValue">9–22 stops</span>
+              </div>
+              <div class="range-pair">
+                <label class="compact-number" for="minStopsInput">Min
+                  <input id="minStopsInput" type="number" min="1" max="120" step="1" value="9" inputmode="numeric" />
+                </label>
+                <label class="compact-number" for="maxStopsInput">Max
+                  <input id="maxStopsInput" type="number" min="1" max="120" step="1" value="22" inputmode="numeric" />
+                </label>
+              </div>
+              <div class="motion-hints"><span>winner first, then path</span><span>uniform random stops</span></div>
+            </div>
+
+            <div class="motion-card" aria-label="Base time control">
+              <div class="motion-topline">
+                <span class="motion-label">Base T</span>
+                <span class="motion-value" id="baseTimeValue">95ms</span>
+              </div>
+              <input id="baseTimeInput" type="range" min="35" max="2200" step="5" value="95" />
+              <div class="motion-hints"><span>quick ticks</span><span>extra slow ticks</span></div>
+            </div>
+
+            <div class="motion-card" aria-label="Random timing control">
+              <div class="motion-topline">
+                <span class="motion-label">Random R mean</span>
+                <span class="motion-value" id="randomTimeValue">65ms</span>
+              </div>
+              <input id="randomTimeInput" type="range" min="0" max="2200" step="5" value="65" />
+              <div class="motion-hints"><span>steady</span><span>very uneven</span></div>
+            </div>
+          </div>
+
+          <div class="sound-card" aria-label="Sound controls">
+            <div class="motion-topline">
+              <span class="motion-label">Sound</span>
+              <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true">Sound on</button>
+            </div>
+            <input id="volumeInput" type="range" min="0" max="100" value="55" aria-label="Sound volume" />
+            <div class="motion-hints"><span>quiet</span><span id="volumeValue">55%</span><span>loud</span></div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-label">Result</div>
+            <div class="winner" id="winnerText">No spin yet.</div>
+            <div class="message" id="messageText">Add outcomes, tweak weights, and let the reel do its thing.</div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const palette = [
+        "#7a3ff2", "#ff4fb8", "#00a8ff", "#ff9f1c", "#12b886",
+        "#ff5b5b", "#6d5dfc", "#00c2a8", "#f15bb5", "#f7d51d",
+        "#00bbf9", "#9b5de5", "#f97316", "#2dd4bf", "#e879f9"
+      ];
+
+      const sampleOptions = [
+        { label: "5 points", weight: 4, color: "#7a3ff2", design: "dots", sound: "good" },
+        { label: "Move to next position", weight: 2, color: "#00a8ff", design: "stripes", sound: "neutral" },
+        { label: "Bonus roll", weight: 1.5, color: "#12b886", design: "stars", sound: "amazing" },
+        { label: "Lose a turn", weight: 1, color: "#ff5b5b", design: "bolts", sound: "bad" },
+        { label: "Swap places", weight: 0.75, color: "#ff9f1c", design: "checker", sound: "neutral" },
+        { label: "Mystery prize", weight: 0.5, color: "#f7d51d", design: "stars", sound: "jackpot" }
+      ];
+
+      const designs = ["dots", "stars", "bolts", "stripes", "checker", "plain"];
+      const sounds = ["jackpot", "amazing", "great", "good", "neutral", "bad", "none"];
+
+      // Timing model:
+      // 1. Pick the winner by weight.
+      // 2. Pick visual stops uniformly from [min, max].
+      // 3. Put the start point exactly that many stops behind the winner.
+      // 4. Each visible step takes T + R, where R is exponential noise.
+      const spinTuning = {
+        stopRange: { hardMin: 1, hardMax: 120, fallbackMin: 9, fallbackMax: 22 },
+        baseTickMs: { min: 35, max: 2200, fallback: 95 },
+        randomTickMeanMs: { min: 0, max: 2200, fallback: 65 },
+        maxRandomTickMs: 6500,
+        moveFraction: 0.62,
+        moveDurationMs: { min: 38, max: 900 },
+        // After the reel visually stops, wait a randomized beat before the
+        // result text, confetti, and outcome sound register. This keeps silence
+        // from revealing that the reel must continue moving.
+        revealDelayMs: { base: 360, randomMean: 260, max: 1550 }
+      };
+
+      const visibleRows = 5;
+      const halfRows = Math.floor(visibleRows / 2);
+      const extraRows = 2;
+
+      const state = {
+        options: [],
+        currentIndex: 0,
+        spinning: false,
+        revealing: false,
+        nextId: 1,
+        lastRenderedBaseStep: Number.NaN
+      };
+
+      const audio = {
+        ctx: null,
+        enabled: true
+      };
+
+      const els = {
+        addForm: document.querySelector("#addForm"),
+        labelInput: document.querySelector("#labelInput"),
+        weightInput: document.querySelector("#weightInput"),
+        colorInput: document.querySelector("#colorInput"),
+        designInput: document.querySelector("#designInput"),
+        soundInput: document.querySelector("#soundInput"),
+        addButton: document.querySelector("#addButton"),
+        sampleButton: document.querySelector("#sampleButton"),
+        clearButton: document.querySelector("#clearButton"),
+        optionsList: document.querySelector("#optionsList"),
+        optionCount: document.querySelector("#optionCount"),
+        totalWeight: document.querySelector("#totalWeight"),
+        itemsStat: document.querySelector("#itemsStat"),
+        oddsStat: document.querySelector("#oddsStat"),
+        reelWindow: document.querySelector("#reelWindow"),
+        reelStrip: document.querySelector("#reelStrip"),
+        spinButton: document.querySelector("#spinButton"),
+        minStopsInput: document.querySelector("#minStopsInput"),
+        maxStopsInput: document.querySelector("#maxStopsInput"),
+        stopRangeValue: document.querySelector("#stopRangeValue"),
+        baseTimeInput: document.querySelector("#baseTimeInput"),
+        baseTimeValue: document.querySelector("#baseTimeValue"),
+        randomTimeInput: document.querySelector("#randomTimeInput"),
+        randomTimeValue: document.querySelector("#randomTimeValue"),
+        soundToggle: document.querySelector("#soundToggle"),
+        volumeInput: document.querySelector("#volumeInput"),
+        volumeValue: document.querySelector("#volumeValue"),
+        winnerText: document.querySelector("#winnerText"),
+        messageText: document.querySelector("#messageText"),
+        confettiLayer: document.querySelector("#confettiLayer")
+      };
+
+      function modulo(value, divisor) {
+        return ((value % divisor) + divisor) % divisor;
+      }
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
+      function mix(snappy, suspense, amount) {
+        return snappy + (suspense - snappy) * amount;
+      }
+
+      function itemHeight() {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue("--item-h");
+        return Number.parseFloat(raw) || 76;
+      }
+
+      function random01() {
+        if (window.crypto && typeof window.crypto.getRandomValues === "function") {
+          const values = new Uint32Array(1);
+          window.crypto.getRandomValues(values);
+          return values[0] / 4294967296;
+        }
+        return Math.random();
+      }
+
+      function cleanWeight(value) {
+        const number = Number.parseFloat(value);
+        return Number.isFinite(number) && number > 0 ? number : 0;
+      }
+
+      function safeDesign(value) {
+        return designs.includes(value) ? value : "dots";
+      }
+
+      function safeSound(value) {
+        return sounds.includes(value) ? value : "neutral";
+      }
+
+      function normalizeHexColor(value, fallback = "#7a3ff2") {
+        if (typeof value !== "string") return fallback;
+        const trimmed = value.trim();
+        return /^#[0-9a-f]{6}$/i.test(trimmed) ? trimmed.toLowerCase() : fallback;
+      }
+
+      function hexToRgb(hex) {
+        const safeHex = normalizeHexColor(hex);
+        return {
+          r: Number.parseInt(safeHex.slice(1, 3), 16),
+          g: Number.parseInt(safeHex.slice(3, 5), 16),
+          b: Number.parseInt(safeHex.slice(5, 7), 16)
+        };
+      }
+
+      function isLightColor(hex) {
+        const { r, g, b } = hexToRgb(hex);
+        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        return luminance > 0.62;
+      }
+
+      function textInkFor(hex) {
+        return isLightColor(hex) ? "#211936" : "#ffffff";
+      }
+
+      function textShadowFor(hex) {
+        return isLightColor(hex) ? "rgba(255, 255, 255, 0.68)" : "rgba(33, 25, 54, 0.58)";
+      }
+
+      function designInkFor(hex) {
+        return isLightColor(hex) ? "rgba(33, 25, 54, 0.24)" : "rgba(255, 255, 255, 0.48)";
+      }
+
+      function defaultColorForNextOption() {
+        return palette[(state.nextId - 1) % palette.length];
+      }
+
+      function defaultDesignForNextOption() {
+        return designs[(state.nextId - 1) % (designs.length - 1)];
+      }
+
+      function refreshNewOptionLook() {
+        els.colorInput.value = defaultColorForNextOption();
+        if (!designs.includes(els.designInput.value)) els.designInput.value = defaultDesignForNextOption();
+        if (!sounds.includes(els.soundInput.value)) els.soundInput.value = "neutral";
+      }
+
+      function getTotalPositiveWeight() {
+        return state.options.reduce((sum, option) => sum + cleanWeight(option.weight), 0);
+      }
+
+      function formatNumber(value) {
+        return new Intl.NumberFormat(undefined, {
+          maximumFractionDigits: 2
+        }).format(value);
+      }
+
+      function formatPercent(value) {
+        if (!Number.isFinite(value) || value <= 0) return "0%";
+        if (value < 1) return `${value.toFixed(2)}%`;
+        if (value < 10) return `${value.toFixed(1)}%`;
+        return `${Math.round(value)}%`;
+      }
+
+      function readIntegerInput(input, fallback) {
+        const value = Number.parseInt(input.value, 10);
+        return Number.isFinite(value) ? value : fallback;
+      }
+
+      function getStopRange() {
+        const hardMin = spinTuning.stopRange.hardMin;
+        const hardMax = spinTuning.stopRange.hardMax;
+        let min = clamp(readIntegerInput(els.minStopsInput, spinTuning.stopRange.fallbackMin), hardMin, hardMax);
+        let max = clamp(readIntegerInput(els.maxStopsInput, spinTuning.stopRange.fallbackMax), hardMin, hardMax);
+
+        min = Math.round(min);
+        max = Math.round(max);
+        if (max < min) max = min;
+        return { min, max };
+      }
+
+      function normalizeStopInputs() {
+        const range = getStopRange();
+        els.minStopsInput.value = String(range.min);
+        els.maxStopsInput.value = String(range.max);
+        updateStopRangeLabel();
+      }
+
+      function updateStopRangeLabel() {
+        const range = getStopRange();
+        const label = range.min === range.max ? `${range.min} stop` : `${range.min}–${range.max} stops`;
+        els.stopRangeValue.textContent = label;
+      }
+
+      function getBaseTickMs() {
+        const raw = Number.parseFloat(els.baseTimeInput.value);
+        const fallback = spinTuning.baseTickMs.fallback;
+        return clamp(Number.isFinite(raw) ? raw : fallback, spinTuning.baseTickMs.min, spinTuning.baseTickMs.max);
+      }
+
+      function getRandomMeanMs() {
+        const raw = Number.parseFloat(els.randomTimeInput.value);
+        const fallback = spinTuning.randomTickMeanMs.fallback;
+        return clamp(Number.isFinite(raw) ? raw : fallback, spinTuning.randomTickMeanMs.min, spinTuning.randomTickMeanMs.max);
+      }
+
+      function updateBaseTimeLabel() {
+        els.baseTimeValue.textContent = `${Math.round(getBaseTickMs())}ms`;
+      }
+
+      function updateRandomTimeLabel() {
+        const mean = Math.round(getRandomMeanMs());
+        els.randomTimeValue.textContent = mean <= 0 ? "off" : `${mean}ms`;
+      }
+
+      function updateTimingLabels() {
+        updateStopRangeLabel();
+        updateBaseTimeLabel();
+        updateRandomTimeLabel();
+      }
+
+      function getVolume() {
+        return clamp(Number(els.volumeInput.value) / 100, 0, 1);
+      }
+
+      function updateSoundControls() {
+        els.soundToggle.setAttribute("aria-pressed", String(audio.enabled));
+        els.soundToggle.textContent = audio.enabled ? "Sound on" : "Sound off";
+        els.volumeInput.disabled = !audio.enabled;
+        els.volumeValue.textContent = audio.enabled ? `${Math.round(getVolume() * 100)}%` : "muted";
+      }
+
+      function getAudioContext() {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return null;
+        if (!audio.ctx) audio.ctx = new AudioContextClass();
+        return audio.ctx;
+      }
+
+      async function ensureAudioReady() {
+        if (!audio.enabled) return null;
+        const ctx = getAudioContext();
+        if (!ctx) return null;
+        if (ctx.state === "suspended") await ctx.resume();
+        return ctx;
+      }
+
+      function scheduleTone(frequency, startOffset, duration, type = "sine", gainAmount = 0.08) {
+        if (!audio.enabled || !audio.ctx) return;
+        const ctx = audio.ctx;
+        const start = ctx.currentTime + startOffset;
+        const stop = start + duration;
+        const oscillator = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const volume = Math.max(0.0001, gainAmount * getVolume());
+
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency, start);
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(volume, start + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, stop);
+        oscillator.connect(gain);
+        gain.connect(ctx.destination);
+        oscillator.start(start);
+        oscillator.stop(stop + 0.03);
+      }
+
+      function playSpinTick(tickIndex, totalTicks) {
+        if (!audio.enabled || !audio.ctx) return;
+
+        // IMPORTANT: do not let tick sound depend on tickIndex, totalTicks,
+        // remaining stops, winner, or outcome. Any late-spin timbre shift gives
+        // the player a tell. Timing can be random, but the tick itself stays
+        // neutral and identical through the entire spin.
+        scheduleTone(720, 0, 0.034, "square", 0.032);
+      }
+
+      function playOutcomeSound(kind) {
+        const sound = safeSound(kind);
+        if (!audio.enabled || !audio.ctx || sound === "none") return;
+
+        if (sound === "jackpot") {
+          scheduleTone(261.63, 0.00, 0.10, "square", 0.065);
+          scheduleTone(523.25, 0.04, 0.12, "triangle", 0.075);
+          scheduleTone(659.25, 0.12, 0.12, "triangle", 0.08);
+          scheduleTone(783.99, 0.20, 0.14, "triangle", 0.085);
+          scheduleTone(1046.5, 0.30, 0.18, "sine", 0.095);
+          scheduleTone(1318.5, 0.42, 0.18, "sine", 0.08);
+          scheduleTone(1568.0, 0.54, 0.26, "sine", 0.07);
+          scheduleTone(2093.0, 0.74, 0.34, "triangle", 0.065);
+          scheduleTone(1046.5, 0.82, 0.36, "square", 0.035);
+          return;
+        }
+
+        if (sound === "amazing") {
+          scheduleTone(392.0, 0.00, 0.10, "triangle", 0.075);
+          scheduleTone(493.88, 0.08, 0.10, "triangle", 0.075);
+          scheduleTone(587.33, 0.16, 0.12, "triangle", 0.08);
+          scheduleTone(783.99, 0.27, 0.16, "sine", 0.09);
+          scheduleTone(987.77, 0.39, 0.20, "sine", 0.06);
+          return;
+        }
+
+        if (sound === "great") {
+          scheduleTone(523.25, 0.00, 0.12, "triangle", 0.08);
+          scheduleTone(659.25, 0.09, 0.12, "triangle", 0.08);
+          scheduleTone(783.99, 0.18, 0.14, "triangle", 0.08);
+          scheduleTone(1046.5, 0.31, 0.32, "sine", 0.095);
+          scheduleTone(1318.5, 0.40, 0.22, "sine", 0.045);
+          return;
+        }
+
+        if (sound === "good") {
+          scheduleTone(493.88, 0.00, 0.13, "triangle", 0.075);
+          scheduleTone(659.25, 0.13, 0.22, "sine", 0.085);
+          return;
+        }
+
+        if (sound === "bad") {
+          scheduleTone(392.0, 0.00, 0.16, "sawtooth", 0.055);
+          scheduleTone(329.63, 0.14, 0.18, "sawtooth", 0.055);
+          scheduleTone(220.0, 0.31, 0.30, "triangle", 0.065);
+          return;
+        }
+
+        scheduleTone(587.33, 0.00, 0.16, "sine", 0.065);
+        scheduleTone(440.0, 0.17, 0.18, "triangle", 0.04);
+      }
+
+      async function previewSound(kind) {
+        await ensureAudioReady();
+        playOutcomeSound(kind);
+      }
+
+      function makeOption(label, weight, look = {}) {
+        const id = state.nextId++;
+        const fallbackColor = palette[(id - 1) % palette.length];
+        return {
+          id,
+          label: label.trim(),
+          weight: cleanWeight(weight),
+          color: normalizeHexColor(look.color, fallbackColor),
+          design: safeDesign(look.design || designs[(id - 1) % (designs.length - 1)]),
+          sound: safeSound(look.sound || "neutral")
+        };
+      }
+
+      function addOption(label, weight, look) {
+        if (state.spinning || state.revealing) return false;
+
+        const safeLabel = label.trim();
+
+        if (!safeLabel) {
+          setMessage("Give the outcome a label first.");
+          els.labelInput.focus();
+          return false;
+        }
+
+        state.options.push(makeOption(safeLabel, weight, look));
+        if (state.options.length === 1) state.currentIndex = 0;
+        renderAll({ keepMessage: true });
+        return true;
+      }
+
+      function loadSamples() {
+        if (state.spinning || state.revealing) return;
+
+        state.options = [];
+        state.nextId = 1;
+        sampleOptions.forEach(option => state.options.push(makeOption(option.label, option.weight, option)));
+        state.currentIndex = 0;
+        state.lastRenderedBaseStep = Number.NaN;
+        els.winnerText.textContent = "No spin yet.";
+        setMessage("Sample outcomes loaded. Edit anything, then spin.");
+        renderAll({ keepMessage: true });
+        refreshNewOptionLook();
+      }
+
+      function clearOptions() {
+        if (state.spinning || state.revealing) return;
+        state.options = [];
+        state.currentIndex = 0;
+        state.lastRenderedBaseStep = Number.NaN;
+        els.winnerText.textContent = "No spin yet.";
+        setMessage("Cleared. Add new outcomes to start fresh.");
+        renderAll({ keepMessage: true });
+      }
+
+      function setMessage(text) {
+        els.messageText.textContent = text;
+      }
+
+      function canSpin() {
+        return state.options.length > 0 && getTotalPositiveWeight() > 0;
+      }
+
+      function chooseWeightedIndex() {
+        const total = getTotalPositiveWeight();
+        if (total <= 0) return -1;
+
+        let needle = random01() * total;
+        for (let index = 0; index < state.options.length; index += 1) {
+          needle -= cleanWeight(state.options[index].weight);
+          if (needle < 0) return index;
+        }
+        return state.options.length - 1;
+      }
+
+      function renderAll({ keepMessage = false } = {}) {
+        renderOptionsList();
+        renderStats();
+        renderReelWindow(0, 0, true);
+        updateControlStates();
+        updateTimingLabels();
+        updateSoundControls();
+        if (!keepMessage) setMessage("Ready when you are.");
+      }
+
+      function renderOptionsList() {
+        els.optionsList.replaceChildren();
+
+        if (state.options.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "empty-state";
+          empty.textContent = "No outcomes yet. Add a label and weight above, or load the samples.";
+          els.optionsList.append(empty);
+          return;
+        }
+
+        state.options.forEach((option, index) => {
+          const row = document.createElement("div");
+          row.className = "option-row";
+          row.dataset.optionId = String(option.id);
+
+          const dot = document.createElement("span");
+          dot.className = "dot";
+          dot.style.setProperty("--accent", option.color);
+          dot.setAttribute("aria-hidden", "true");
+
+          const labelInput = document.createElement("input");
+          labelInput.type = "text";
+          labelInput.maxLength = 80;
+          labelInput.value = option.label;
+          labelInput.ariaLabel = `Label for outcome ${index + 1}`;
+          labelInput.disabled = state.spinning || state.revealing;
+          labelInput.addEventListener("input", () => {
+            option.label = labelInput.value.trim() || "Untitled outcome";
+            renderReelWindow(0, 0, true);
+          });
+
+          const weightInput = document.createElement("input");
+          weightInput.type = "number";
+          weightInput.min = "0";
+          weightInput.step = "0.1";
+          weightInput.inputMode = "decimal";
+          weightInput.value = String(option.weight);
+          weightInput.ariaLabel = `Weight for ${option.label}`;
+          weightInput.disabled = state.spinning || state.revealing;
+          weightInput.addEventListener("input", () => {
+            option.weight = cleanWeight(weightInput.value);
+            renderStats();
+            updateControlStates();
+          });
+
+          const probability = document.createElement("span");
+          probability.className = "probability";
+          probability.dataset.probabilityFor = String(option.id);
+
+          const removeButton = document.createElement("button");
+          removeButton.className = "icon-btn";
+          removeButton.type = "button";
+          removeButton.textContent = "×";
+          removeButton.title = `Remove ${option.label}`;
+          removeButton.ariaLabel = `Remove ${option.label}`;
+          removeButton.disabled = state.spinning || state.revealing;
+          removeButton.addEventListener("click", () => {
+            removeOption(option.id);
+          });
+
+          const customizers = document.createElement("div");
+          customizers.className = "option-customizers";
+
+          const colorInput = document.createElement("input");
+          colorInput.type = "color";
+          colorInput.value = normalizeHexColor(option.color);
+          colorInput.ariaLabel = `Color for ${option.label}`;
+          colorInput.disabled = state.spinning || state.revealing;
+          colorInput.addEventListener("input", () => {
+            option.color = normalizeHexColor(colorInput.value, option.color);
+            dot.style.setProperty("--accent", option.color);
+            renderReelWindow(0, 0, true);
+          });
+
+          const designSelect = document.createElement("select");
+          designSelect.ariaLabel = `Design for ${option.label}`;
+          designSelect.disabled = state.spinning || state.revealing;
+          addSelectOptions(designSelect, [
+            ["dots", "Dots"],
+            ["stars", "Stars"],
+            ["bolts", "Bolts"],
+            ["stripes", "Stripes"],
+            ["checker", "Checker"],
+            ["plain", "Plain"]
+          ], safeDesign(option.design));
+          designSelect.addEventListener("change", () => {
+            option.design = safeDesign(designSelect.value);
+            renderReelWindow(0, 0, true);
+          });
+
+          const soundSelect = document.createElement("select");
+          soundSelect.ariaLabel = `Outcome sound for ${option.label}`;
+          soundSelect.disabled = state.spinning || state.revealing;
+          addSelectOptions(soundSelect, [
+            ["jackpot", "Jackpot"],
+            ["amazing", "Amazing winner"],
+            ["great", "Great"],
+            ["good", "Good"],
+            ["neutral", "Neutral"],
+            ["bad", "Bad"],
+            ["none", "None"]
+          ], safeSound(option.sound));
+          soundSelect.addEventListener("change", () => {
+            option.sound = safeSound(soundSelect.value);
+            if (option.sound !== "none") previewSound(option.sound);
+          });
+
+          customizers.append(
+            makeMiniField("Color", colorInput),
+            makeMiniField("Design", designSelect),
+            makeMiniField("Sound", soundSelect)
+          );
+
+          row.append(dot, labelInput, weightInput, probability, removeButton, customizers);
+          els.optionsList.append(row);
+        });
+
+        updateProbabilities();
+      }
+
+      function addSelectOptions(select, entries, selectedValue) {
+        entries.forEach(([value, label]) => {
+          const option = document.createElement("option");
+          option.value = value;
+          option.textContent = label;
+          select.append(option);
+        });
+        select.value = selectedValue;
+      }
+
+      function makeMiniField(label, control) {
+        const wrapper = document.createElement("label");
+        wrapper.className = "mini-field";
+        const caption = document.createElement("span");
+        caption.textContent = label;
+        wrapper.append(caption, control);
+        return wrapper;
+      }
+
+      function removeOption(id) {
+        if (state.spinning || state.revealing) return;
+        const removedIndex = state.options.findIndex(option => option.id === id);
+        if (removedIndex === -1) return;
+
+        state.options.splice(removedIndex, 1);
+        if (state.options.length === 0) {
+          state.currentIndex = 0;
+        } else if (removedIndex < state.currentIndex) {
+          state.currentIndex -= 1;
+        } else if (state.currentIndex >= state.options.length) {
+          state.currentIndex = 0;
+        }
+
+        renderAll({ keepMessage: true });
+        setMessage("Outcome removed.");
+      }
+
+      function updateProbabilities() {
+        const total = getTotalPositiveWeight();
+        state.options.forEach(option => {
+          const el = els.optionsList.querySelector(`[data-probability-for="${option.id}"]`);
+          if (!el) return;
+          const percent = total > 0 ? cleanWeight(option.weight) / total * 100 : 0;
+          el.textContent = formatPercent(percent);
+        });
+      }
+
+      function renderStats() {
+        const count = state.options.length;
+        const total = getTotalPositiveWeight();
+        els.optionCount.textContent = `${count} outcome${count === 1 ? "" : "s"}`;
+        els.totalWeight.textContent = `Total weight: ${formatNumber(total)}`;
+        els.itemsStat.textContent = String(count);
+        els.oddsStat.textContent = total > 0 ? "Weighted" : "No odds";
+        updateProbabilities();
+      }
+
+      function updateControlStates() {
+        const disabled = state.spinning || state.revealing;
+        els.addButton.disabled = disabled;
+        els.sampleButton.disabled = disabled;
+        els.clearButton.disabled = disabled;
+        els.labelInput.disabled = disabled;
+        els.weightInput.disabled = disabled;
+        els.colorInput.disabled = disabled;
+        els.designInput.disabled = disabled;
+        els.soundInput.disabled = disabled;
+        els.minStopsInput.disabled = disabled;
+        els.maxStopsInput.disabled = disabled;
+        els.baseTimeInput.disabled = disabled;
+        els.randomTimeInput.disabled = disabled;
+        els.optionsList.querySelectorAll("input, select, button").forEach(control => {
+          control.disabled = disabled;
+        });
+        els.spinButton.disabled = disabled || !canSpin();
+        els.spinButton.innerHTML = state.spinning
+          ? "<span class=\"emoji\">✨</span> Spinning..."
+          : state.revealing
+            ? "<span class=\"emoji\">🥁</span> Revealing..."
+            : "<span class=\"emoji\">🎰</span> Spin the reel";
+      }
+
+      function renderReelWindow(baseStep = 0, fraction = 0, force = false) {
+        const options = state.options;
+        const height = itemHeight();
+
+        if (options.length === 0) {
+          state.lastRenderedBaseStep = Number.NaN;
+          els.reelStrip.style.transform = "translate3d(0, 0, 0)";
+          els.reelStrip.replaceChildren(makePlaceholderItem());
+          return;
+        }
+
+        const normalizedBaseStep = Math.floor(baseStep);
+        const clampedFraction = clamp(fraction, 0, 0.999);
+        els.reelStrip.style.transform = `translate3d(0, ${-clampedFraction * height}px, 0)`;
+
+        if (!force && state.lastRenderedBaseStep === normalizedBaseStep) return;
+        state.lastRenderedBaseStep = normalizedBaseStep;
+        els.reelStrip.replaceChildren();
+
+        for (let offset = -halfRows; offset <= halfRows + extraRows; offset += 1) {
+          const index = modulo(state.currentIndex + normalizedBaseStep + offset, options.length);
+          els.reelStrip.append(makeReelItem(options[index]));
+        }
+      }
+
+      function makePlaceholderItem() {
+        const item = document.createElement("div");
+        applyReelItemLook(item, { color: "#7a3ff2", design: "stars" });
+        const text = document.createElement("span");
+        text.className = "reel-text";
+        text.textContent = "Add outcomes to spin";
+        item.append(makeDesignLayer("stars"), text);
+        return item;
+      }
+
+      function makeReelItem(option) {
+        const item = document.createElement("div");
+        applyReelItemLook(item, option);
+
+        const text = document.createElement("span");
+        text.className = "reel-text";
+        text.textContent = option.label;
+        item.append(makeDesignLayer(option.design), text);
+        return item;
+      }
+
+      function applyReelItemLook(item, option) {
+        const color = normalizeHexColor(option.color);
+        item.className = "reel-item";
+        item.style.setProperty("--accent", color);
+        item.style.setProperty("--item-ink", textInkFor(color));
+        item.style.setProperty("--item-shadow", textShadowFor(color));
+        item.style.setProperty("--design-ink", designInkFor(color));
+      }
+
+      function makeDesignLayer(design) {
+        const safe = safeDesign(design);
+        const layer = document.createElement("span");
+        layer.className = `reel-design reel-design--${safe}`;
+        layer.setAttribute("aria-hidden", "true");
+        if (safe === "stars") layer.textContent = "✦ ✧ ★ ✦ ✧";
+        if (safe === "bolts") layer.textContent = "⚡ ★ ⚡ ★ ⚡";
+        return layer;
+      }
+
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function sampleExponential(meanMs) {
+        if (meanMs <= 0) return 0;
+        // Use 1 - U so Math.log never sees zero. The result has mean meanMs.
+        return -meanMs * Math.log(1 - random01());
+      }
+
+      function chooseUniformTickCount(range = getStopRange()) {
+        const span = range.max - range.min + 1;
+        return range.min + Math.floor(random01() * span);
+      }
+
+      function makeTickPlan(totalTicks) {
+        const base = getBaseTickMs();
+        const mean = getRandomMeanMs();
+        const plan = [];
+
+        for (let tick = 0; tick < totalTicks; tick += 1) {
+          const randomPart = Math.min(sampleExponential(mean), spinTuning.maxRandomTickMs);
+          const interval = base + randomPart;
+          const moveDuration = clamp(
+            interval * spinTuning.moveFraction,
+            spinTuning.moveDurationMs.min,
+            spinTuning.moveDurationMs.max
+          );
+          plan.push({
+            interval,
+            moveDuration,
+            pauseDuration: Math.max(0, interval - moveDuration)
+          });
+        }
+
+        return plan;
+      }
+
+      function revealDelayMs() {
+        const randomPart = Math.min(
+          sampleExponential(spinTuning.revealDelayMs.randomMean),
+          spinTuning.revealDelayMs.max - spinTuning.revealDelayMs.base
+        );
+        return spinTuning.revealDelayMs.base + randomPart;
+      }
+
+      function delay(ms) {
+        return new Promise(resolve => window.setTimeout(resolve, ms));
+      }
+
+      function animateOneTick(baseStep, tickIndex, totalTicks, tickPlan) {
+        const duration = tickPlan.moveDuration;
+
+        return new Promise(resolve => {
+          const startedAt = performance.now();
+
+          function frame(now) {
+            const t = clamp((now - startedAt) / duration, 0, 1);
+            const fraction = easeOutCubic(t);
+            renderReelWindow(baseStep, fraction);
+
+            if (t < 1) {
+              requestAnimationFrame(frame);
+              return;
+            }
+
+            renderReelWindow(baseStep + 1, 0, true);
+            pulseTick();
+            playSpinTick(tickIndex, totalTicks);
+            resolve();
+          }
+
+          requestAnimationFrame(frame);
+        });
+      }
+
+      function pulseTick() {
+        els.reelWindow.classList.remove("tick-hit");
+        void els.reelWindow.offsetWidth;
+        els.reelWindow.classList.add("tick-hit");
+      }
+
+      async function spinReel() {
+        if (state.spinning || state.revealing) return;
+
+        const winnerIndex = chooseWeightedIndex();
+        if (winnerIndex < 0) {
+          setMessage("At least one outcome needs a positive weight before spinning.");
+          return;
+        }
+
+        await ensureAudioReady();
+
+        const count = state.options.length;
+        const stopRange = getStopRange();
+        const totalTicks = chooseUniformTickCount(stopRange);
+        const tickPlan = makeTickPlan(totalTicks);
+        const startIndex = modulo(winnerIndex - totalTicks, count);
+
+        state.spinning = true;
+        state.revealing = false;
+        state.currentIndex = startIndex;
+        state.lastRenderedBaseStep = Number.NaN;
+        updateControlStates();
+        els.winnerText.textContent = "Spinning...";
+        setMessage(`Winner chosen by weight; visual path sampled uniformly from ${stopRange.min}–${stopRange.max} stops.`);
+        els.reelWindow.classList.add("spinning");
+        renderReelWindow(0, 0, true);
+
+        for (let tick = 0; tick < totalTicks; tick += 1) {
+          await animateOneTick(tick, tick, totalTicks, tickPlan[tick]);
+          if (tickPlan[tick].pauseDuration > 0) await delay(tickPlan[tick].pauseDuration);
+        }
+
+        await finishSpin(winnerIndex, totalTicks, stopRange);
+      }
+
+      async function finishSpin(winnerIndex, totalTicks, stopRange) {
+        state.currentIndex = winnerIndex;
+        state.spinning = false;
+        state.revealing = true;
+        state.lastRenderedBaseStep = Number.NaN;
+        renderReelWindow(0, 0, true);
+        updateControlStates();
+        els.reelWindow.classList.remove("spinning");
+        els.reelWindow.classList.remove("tick-hit");
+
+        els.winnerText.textContent = "Landed...";
+        setMessage("It stopped. Hold for the official reveal.");
+
+        await delay(revealDelayMs());
+
+        const winner = state.options[winnerIndex];
+        const total = getTotalPositiveWeight();
+        const odds = total > 0 ? cleanWeight(winner.weight) / total * 100 : 0;
+
+        state.revealing = false;
+        updateControlStates();
+        els.winnerText.textContent = winner.label;
+        setMessage(`Winner revealed after ${totalTicks} stops, sampled uniformly from ${stopRange.min}–${stopRange.max}. Its current chance was ${formatPercent(odds)}.`);
+        await ensureAudioReady();
+        playOutcomeSound(winner.sound);
+        celebrate(winner.color);
+      }
+
+      function celebrate(baseColor) {
+        const colors = [baseColor, "#ff65bd", "#7a3ff2", "#00a8ff", "#fff06a", "#12b886"];
+        const pieces = 52;
+
+        for (let i = 0; i < pieces; i += 1) {
+          const bit = document.createElement("span");
+          bit.className = "confetti";
+          bit.style.left = `${random01() * 100}%`;
+          bit.style.setProperty("--confetti-color", colors[Math.floor(random01() * colors.length)]);
+          bit.style.setProperty("--drift", `${(random01() - 0.5) * 240}px`);
+          bit.style.setProperty("--spin", `${360 + random01() * 900}deg`);
+          bit.style.setProperty("--fall-duration", `${820 + random01() * 820}ms`);
+          bit.style.animationDelay = `${random01() * 120}ms`;
+          els.confettiLayer.append(bit);
+          window.setTimeout(() => bit.remove(), 1900);
+        }
+      }
+
+      els.addForm.addEventListener("submit", event => {
+        event.preventDefault();
+        const didAdd = addOption(els.labelInput.value, els.weightInput.value, {
+          color: els.colorInput.value,
+          design: els.designInput.value,
+          sound: els.soundInput.value
+        });
+        if (!didAdd) return;
+
+        const addedWeight = cleanWeight(els.weightInput.value);
+        els.labelInput.value = "";
+        els.weightInput.value = "1";
+        refreshNewOptionLook();
+        els.labelInput.focus();
+        setMessage(addedWeight > 0 ? "Outcome added. Keep stacking them or spin now." : "Outcome added as visible-only because its weight is zero.");
+      });
+
+      els.sampleButton.addEventListener("click", loadSamples);
+      els.clearButton.addEventListener("click", clearOptions);
+      els.spinButton.addEventListener("click", spinReel);
+      els.minStopsInput.addEventListener("input", updateStopRangeLabel);
+      els.maxStopsInput.addEventListener("input", updateStopRangeLabel);
+      els.minStopsInput.addEventListener("change", normalizeStopInputs);
+      els.maxStopsInput.addEventListener("change", normalizeStopInputs);
+      els.baseTimeInput.addEventListener("input", updateBaseTimeLabel);
+      els.randomTimeInput.addEventListener("input", updateRandomTimeLabel);
+      els.volumeInput.addEventListener("input", updateSoundControls);
+      els.soundToggle.addEventListener("click", async () => {
+        audio.enabled = !audio.enabled;
+        updateSoundControls();
+        if (audio.enabled) await previewSound("neutral");
+      });
+      els.soundInput.addEventListener("change", () => {
+        if (els.soundInput.value !== "none") previewSound(els.soundInput.value);
+      });
+
+      window.addEventListener("resize", () => {
+        renderReelWindow(0, 0, true);
+      });
+
+      updateTimingLabels();
+      loadSamples();
+    })();
+  </script>
+</body>
+</html>
